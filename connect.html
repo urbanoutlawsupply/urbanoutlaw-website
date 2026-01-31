@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Connect | Urban Outlaw Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500;600&family=Special+Elite&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pitch-black: #0a0a0a;
+            --gunmetal: #2a2d2e;
+            --antique-bronze: #c9a227;
+            --kraft: #b5956a;
+            --cream: #f5f0e6;
+            --rust: #8b4513;
+            --worn-edge: #3d3d3d;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'IBM Plex Mono', monospace;
+            background-color: var(--pitch-black);
+            color: var(--cream);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 2rem;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+            opacity: 0.04;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        body::after {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 2px, rgba(0, 0, 0, 0.1) 2px, rgba(0, 0, 0, 0.1) 4px);
+            pointer-events: none;
+            z-index: 999;
+        }
+
+        .container {
+            max-width: 420px;
+            width: 100%;
+            position: relative;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 2.5rem;
+            position: relative;
+        }
+
+        .classification {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.7rem;
+            color: var(--antique-bronze);
+            letter-spacing: 4px;
+            text-transform: uppercase;
+            margin-bottom: 0.5rem;
+            opacity: 0.8;
+        }
+
+        .logo-mark {
+            width: 80px;
+            height: 80px;
+            border: 2px solid var(--antique-bronze);
+            border-radius: 50%;
+            margin: 0 auto 1rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            background: linear-gradient(145deg, var(--gunmetal), var(--pitch-black));
+            box-shadow: inset 0 2px 4px rgba(0,0,0,0.5), 0 0 20px rgba(201, 162, 39, 0.1);
+        }
+
+        .logo-mark::before {
+            content: 'U.O.S';
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.75rem;
+            color: var(--antique-bronze);
+            letter-spacing: 2px;
+        }
+
+        .logo-mark::after {
+            content: '';
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+            border: 1px solid var(--worn-edge);
+            transform: rotate(45deg);
+        }
+
+        .brand-name {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 6px;
+            color: var(--cream);
+            text-transform: uppercase;
+            line-height: 1;
+            margin-bottom: 0.25rem;
+        }
+
+        .brand-sub {
+            font-family: 'IBM Plex Mono', monospace;
+            font-size: 0.65rem;
+            color: var(--kraft);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+        }
+
+        .tagline {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.75rem;
+            color: var(--cream);
+            opacity: 0.6;
+            margin-top: 1rem;
+            padding: 0.5rem 1rem;
+            border-top: 1px solid var(--worn-edge);
+            border-bottom: 1px solid var(--worn-edge);
+        }
+
+        .links-section {
+            position: relative;
+        }
+
+        .section-label {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.6rem;
+            color: var(--antique-bronze);
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            padding-left: 1rem;
+            position: relative;
+        }
+
+        .section-label::before {
+            content: '▸';
+            position: absolute;
+            left: 0;
+            color: var(--antique-bronze);
+        }
+
+        .link-item {
+            display: flex;
+            align-items: center;
+            background: linear-gradient(90deg, var(--gunmetal) 0%, var(--pitch-black) 100%);
+            border: 1px solid var(--worn-edge);
+            border-left: 3px solid var(--antique-bronze);
+            padding: 1rem 1.25rem;
+            margin-bottom: 0.75rem;
+            text-decoration: none;
+            color: var(--cream);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+            animation: fadeSlide 0.5s ease forwards;
+            opacity: 0;
+            transform: translateY(10px);
+        }
+
+        .link-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 0;
+            background: linear-gradient(90deg, rgba(201, 162, 39, 0.15) 0%, transparent 100%);
+            transition: width 0.3s ease;
+        }
+
+        .link-item:hover {
+            border-color: var(--antique-bronze);
+            transform: translateX(4px);
+            box-shadow: -4px 0 0 var(--antique-bronze);
+        }
+
+        .link-item:hover::before {
+            width: 100%;
+        }
+
+        .link-item:nth-child(2) { animation-delay: 0.1s; }
+        .link-item:nth-child(3) { animation-delay: 0.2s; }
+        .link-item:nth-child(4) { animation-delay: 0.3s; }
+        .link-item:nth-child(5) { animation-delay: 0.4s; }
+        .link-item:nth-child(6) { animation-delay: 0.5s; }
+        .link-item:nth-child(7) { animation-delay: 0.6s; }
+
+        @keyframes fadeSlide {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .link-icon {
+            width: 24px;
+            height: 24px;
+            margin-right: 1rem;
+            fill: var(--antique-bronze);
+            flex-shrink: 0;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-content {
+            flex: 1;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            text-transform: uppercase;
+            color: var(--cream);
+            margin-bottom: 0.15rem;
+        }
+
+        .link-desc {
+            font-size: 0.65rem;
+            color: var(--kraft);
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .link-arrow {
+            font-family: 'IBM Plex Mono', monospace;
+            color: var(--antique-bronze);
+            opacity: 0;
+            transform: translateX(-10px);
+            transition: all 0.3s ease;
+            position: relative;
+            z-index: 1;
+        }
+
+        .link-item:hover .link-arrow {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .footer {
+            text-align: center;
+            margin-top: 2.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid var(--worn-edge);
+        }
+
+        .copyright {
+            font-family: 'Special Elite', cursive;
+            font-size: 0.65rem;
+            color: var(--cream);
+            opacity: 0.4;
+        }
+
+        .stamp {
+            display: inline-block;
+            border: 2px solid var(--rust);
+            padding: 0.4rem 0.8rem;
+            font-family: 'Special Elite', cursive;
+            font-size: 0.6rem;
+            color: var(--rust);
+            transform: rotate(-3deg);
+            margin-top: 1rem;
+            letter-spacing: 2px;
+            opacity: 0.7;
+        }
+
+        @media (max-width: 480px) {
+            .brand-name {
+                font-size: 1.6rem;
+                letter-spacing: 4px;
+            }
+            .link-item {
+                padding: 0.875rem 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <div class="classification">// Field Communications //</div>
+            <div class="logo-mark"></div>
+            <h1 class="brand-name">Urban Outlaw</h1>
+            <div class="brand-sub">Supply Co.</div>
+            <p class="tagline">Raw Materials. Honest Craft.</p>
+        </header>
+
+        <nav class="links-section">
+            <div class="section-label">Transmission Channels</div>
+            
+            <a href="https://urbanoutlawsupply.com" class="link-item" target="_blank" rel="noopener">
+                <svg class="link-icon" viewBox="0 0 24 24">
+                    <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                </svg>
+                <div class="link-content">
+                    <div class="link-title">Main Base</div>
+                    <div class="link-desc">urbanoutlawsupply.com</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="https://www.instagram.com/urbanoutlawsupply?igsh=N3dycDNpYXdraDA3" class="link-item" target="_blank" rel="noopener">
+                <svg class="link-icon" viewBox="0 0 24 24">
+                    <path d="M7.8 2h8.4C19.4 2 22 4.6 22 7.8v8.4a5.8 5.8 0 0 1-5.8 5.8H7.8C4.6 22 2 19.4 2 16.2V7.8A5.8 5.8 0 0 1 7.8 2m-.2 2A3.6 3.6 0 0 0 4 7.6v8.8C4 18.39 5.61 20 7.6 20h8.8a3.6 3.6 0 0 0 3.6-3.6V7.6C20 5.61 18.39 4 16.4 4H7.6m9.65 1.5a1.25 1.25 0 0 1 1.25 1.25A1.25 1.25 0 0 1 17.25 8 1.25 1.25 0 0 1 16 6.75a1.25 1.25 0 0 1 1.25-1.25M12 7a5 5 0 0 1 5 5 5 5 0 0 1-5 5 5 5 0 0 1-5-5 5 5 0 0 1 5-5m0 2a3 3 0 0 0-3 3 3 3 0 0 0 3 3 3 3 0 0 0 3-3 3 3 0 0 0-3-3z"/>
+                </svg>
+                <div class="link-content">
+                    <div class="link-title">Instagram</div>
+                    <div class="link-desc">@urbanoutlawsupply</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="https://x.com/uosupplyco" class="link-item" target="_blank" rel="noopener">
+                <svg class="link-icon" viewBox="0 0 24 24">
+                    <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                </svg>
+                <div class="link-content">
+                    <div class="link-title">X</div>
+                    <div class="link-desc">@uosupplyco</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="https://www.facebook.com/share/182XAig28Q/" class="link-item" target="_blank" rel="noopener">
+                <svg class="link-icon" viewBox="0 0 24 24">
+                    <path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/>
+                </svg>
+                <div class="link-content">
+                    <div class="link-title">Facebook</div>
+                    <div class="link-desc">Join the community</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="gallery.html" class="link-item" target="_blank" rel="noopener">
+                <svg class="link-icon" viewBox="0 0 24 24">
+                    <path d="M4 4h16a2 2 0 0 1 2 2v12a2 2 0 0 1-2 2H4a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2zm0 2v.01L12 11l8-4.99V6l-8 5-8-5zm0 2.41V18h16V8.41l-8 5-8-5z"/>
+                </svg>
+                <div class="link-content">
+                    <div class="link-title">The Workshop</div>
+                    <div class="link-desc">Portrait gallery</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+
+            <a href="/cdn-cgi/l/email-protection#f5969a9b81949681b5808797949b9a808199948286808585998cdb969a98" class="link-item">
+                <svg class="link-icon" viewBox="0 0 24 24">
+                    <path d="M20 4H4c-1.1 0-1.99.9-1.99 2L2 18c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/>
+                </svg>
+                <div class="link-content">
+                    <div class="link-title">Direct Line</div>
+                    <div class="link-desc">Drop a transmission</div>
+                </div>
+                <span class="link-arrow">→</span>
+            </a>
+        </nav>
+
+        <footer class="footer">
+            <div class="copyright">© 2025 Urban Outlaw Supply Co. All rights reserved. UK

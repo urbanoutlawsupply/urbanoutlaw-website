@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dispatches | Urban Outlaw Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pitch-black: #0a0a0a;
+            --antique-bronze: #a38b5c;
+            --gunmetal: #6b7280;
+            --kraft: #c4a574;
+            --cream: #f5f0e8;
+            --rust: #8b4513;
+            --concrete: #1a1a1a;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--pitch-black);
+            color: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.05;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .display-font {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10,10,10,0.95);
+            border-bottom: 1px solid #222;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-badge {
+            width: 48px;
+            height: 48px;
+            background: var(--antique-bronze);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-badge::before {
+            content: '★';
+            font-size: 1.5rem;
+            color: var(--pitch-black);
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            color: var(--cream);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--antique-bronze);
+        }
+
+        .nav-links a.active {
+            color: var(--antique-bronze);
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 8rem 2rem 4rem;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--pitch-black) 0%, #111 100%);
+            border-bottom: 1px solid #222;
+        }
+
+        .page-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.3em;
+            color: var(--antique-bronze);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .page-title {
+            font-size: clamp(3rem, 10vw, 6rem);
+            color: var(--cream);
+            margin-bottom: 1rem;
+            line-height: 1;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--gunmetal);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Dispatches Container */
+        .dispatches-container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        /* Single Dispatch */
+        .dispatch {
+            margin-bottom: 4rem;
+            padding-bottom: 4rem;
+            border-bottom: 1px solid #222;
+        }
+
+        .dispatch:last-child {
+            border-bottom: none;
+        }
+
+        .dispatch-date {
+            font-size: 0.8rem;
+            letter-spacing: 0.2em;
+            color: var(--antique-bronze);
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .dispatch-title {
+            font-size: 1.8rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        .dispatch-image {
+            width: 100%;
+            margin-bottom: 1.5rem;
+            border: 1px solid #333;
+        }
+
+        .dispatch-image img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        .dispatch-content {
+            color: var(--cream);
+            opacity: 0.9;
+        }
+
+        .dispatch-content p {
+            margin-bottom: 1rem;
+            font-size: 1.05rem;
+            line-height: 1.8;
+        }
+
+        .dispatch-content p:last-child {
+            margin-bottom: 0;
+        }
+
+        .dispatch-content strong {
+            color: var(--kraft);
+        }
+
+        .dispatch-content a {
+            color: var(--antique-bronze);
+            text-decoration: none;
+            border-bottom: 1px solid var(--antique-bronze);
+            transition: all 0.3s ease;
+        }
+
+        .dispatch-content a:hover {
+            color: var(--kraft);
+            border-color: var(--kraft);
+        }
+
+        .dispatch-tag {
+            display: inline-block;
+            padding: 0.25rem 0.75rem;
+            background: var(--concrete);
+            border: 1px solid #333;
+            color: var(--gunmetal);
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+            margin-top: 1.5rem;
+        }
+
+        /* Newsletter CTA */
+        .newsletter-cta {
+            background: var(--concrete);
+            border: 1px solid #333;
+            padding: 3rem 2rem;
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .newsletter-cta h3 {
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-cta p {
+            color: var(--gunmetal);
+            margin-bottom: 1.5rem;
+        }
+
+        .newsletter-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .newsletter-input {
+            padding: 1rem 1.5rem;
+            background: var(--pitch-black);
+            border: 1px solid #444;
+            color: var(--cream);
+            font-family: 'Source Serif 4', serif;
+            font-size: 1rem;
+            width: 100%;
+            max-width: 300px;
+        }
+
+        .newsletter-input::placeholder {
+            color: var(--gunmetal);
+        }
+
+        .newsletter-input:focus {
+            outline: none;
+            border-color: var(--antique-bronze);
+        }
+
+        .btn {
+            padding: 1rem 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--kraft);
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: #050505;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--gunmetal);
+            font-size: 0.85rem;
+        }
+
+        .footer-text a {
+            color: var(--antique-bronze);
+            text-decoration: none;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                border-left: 1px solid #333;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            .page-header {
+                padding: 7rem 1.5rem 3rem;
+            }
+
+            .dispatches-container {
+                padding: 3rem 1.5rem;
+            }
+
+            .newsletter-form {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .newsletter-input {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-badge"></div>
+            <span class="logo-text display-font">Urban Outlaw Supply</span>
+        </div>
+        <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('active');">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
+        <ul class="nav-links">
+            <li><a href="index.html">Home</a></li>
+            <li><a href="the-build.html">The Build</a></li>
+            <li><a href="ethos.html">Ethos</a></li>
+            <li><a href="about.html">About</a></li>
+            <li><a href="gallery.html">The Workshop</a></li>
+            <li><a href="connect.html">Connect</a></li>
+            <li><a href="shop.html">Store</a></li>
+        </ul>
+    </nav>
+
+    <header class="page-header">
+        <span class="page-label display-font">// Field Updates //</span>
+        <h1 class="page-title display-font">Dispatches</h1>
+        <p class="page-subtitle">News from the workbench. Updates when there's something worth sharing.</p>
+    </header>
+
+    <main class="dispatches-container">
+
+        <!-- ============================================
+             HOW TO ADD A NEW DISPATCH:
+             
+             1. Copy the template below
+             2. Paste it at the TOP (newest first)
+             3. Update the date, title, and content
+             4. Image is optional - delete that div if no image
+             
+             TEMPLATE:
+             
+             <article class="dispatch">
+                 <span class="dispatch-date display-font">January 25, 2026</span>
+                 <h2 class="dispatch-title display-font">Your Title Here</h2>
+                 <div class="dispatch-image">
+                     <img src="images/dispatches/your-image.jpg" alt="Description">
+                 </div>
+                 <div class="dispatch-content">
+                     <p>Your content here. Use <strong>bold</strong> for emphasis.</p>
+                     <p>Add more paragraphs as needed.</p>
+                 </div>
+                 <span class="dispatch-tag display-font">Workshop</span>
+             </article>
+             
+             ============================================ -->
+
+        <!-- DISPATCH 1 - Replace this with your first real update -->
+        <article class="dispatch">
+            <span class="dispatch-date display-font">January 2026</span>
+            <h2 class="dispatch-title display-font">We're Live</h2>
+            <div class="dispatch-content">
+                <p><strong>Urban Outlaw Supply Co. is officially open for business.</strong></p>
+                <p>After months of testing, tweaking, and burning through more kraft stock than I'd like to admit, the first batch of notebooks is ready. Laser-etched covers. Torn-edge bands. Built to earn their scars.</p>
+                <p>This is just the beginning. More designs coming. More products in the pipeline. Follow along here or sign up below to get updates straight to your inbox.</p>
+                <p>— UOS</p>
+            </div>
+            <span class="dispatch-tag display-font">Announcement</span>
+        </article>
+
+        <!-- Newsletter CTA -->
+        <div class="newsletter-cta">
+            <h3 class="display-font">Get Dispatches by Email</h3>
+            <p>Updates when there's something worth sharing. No spam. Unsubscribe anytime.</p>
+            <form class="newsletter-form">
+                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+                <button type="submit" class="btn btn-primary display-font">Subscribe</button>
+            </form>
+        </div>
+
+    </main>
+
+    <footer>
+        <p class="footer-text">© 2026 Urban Outlaw Supply Co. | <a href="index.html">Back to Home</a></p>
+    </footer>
+</body>
+</html>

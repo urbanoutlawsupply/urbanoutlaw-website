@@ -1,0 +1,1280 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Custom Notebooks | Urban Outlaw Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link
+        href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap"
+        rel="stylesheet">
+
+    <!-- PayPal SDK -->
+    <script
+        src="https://www.paypal.com/sdk/js?client-id=AXzG05HJqjzOrOoIrRrWcJBZ9zp-QKEpQeMUvP8ZHBpFQ_Yp_hZuFKQGta8K8DxIbWttcJ8MOpr4g4Kq&currency=GBP"></script>
+
+    <style>
+        :root {
+            --pitch-black: #0a0a0a;
+            --antique-bronze: #a38b5c;
+            --gunmetal: #6b7280;
+            --kraft: #c4a574;
+            --cream: #f5f0e8;
+            --rust: #8b4513;
+            --concrete: #1a1a1a;
+            --success: #4a7c4e;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Source Serif 4', Georgia, serif;
+            background: var(--pitch-black);
+            color: var(--cream);
+            overflow-x: hidden;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        /* Grain overlay */
+        body::before {
+            content: '';
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.06;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .display-font {
+            font-family: 'Bebas Neue', Impact, sans-serif;
+            letter-spacing: 0.05em;
+            text-transform: uppercase;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 100;
+            padding: 1.5rem 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            background: rgba(10, 10, 10, 0.95);
+            border-bottom: 1px solid #222;
+            backdrop-filter: blur(10px);
+        }
+
+        .logo {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            text-decoration: none;
+        }
+
+        .logo-badge {
+            width: 48px;
+            height: 48px;
+            background: var(--antique-bronze);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .logo-badge::before {
+            content: '★';
+            font-size: 1.5rem;
+            color: var(--pitch-black);
+        }
+
+        .logo-text {
+            font-size: 1.1rem;
+            letter-spacing: 0.15em;
+            color: var(--cream);
+        }
+
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 2rem;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover {
+            color: var(--antique-bronze);
+        }
+
+        .nav-links a.active {
+            color: var(--antique-bronze);
+        }
+
+        /* Cart Icon */
+        .cart-icon {
+            position: relative;
+            cursor: pointer;
+            padding: 0.5rem;
+            transition: color 0.3s ease;
+            color: var(--cream);
+        }
+
+        .cart-icon:hover {
+            color: var(--antique-bronze);
+        }
+
+        .cart-icon svg {
+            width: 24px;
+            height: 24px;
+            fill: currentColor;
+        }
+
+        .cart-count {
+            position: absolute;
+            top: -2px;
+            right: -2px;
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            font-size: 0.7rem;
+            font-weight: bold;
+            width: 18px;
+            height: 18px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .cart-count.hidden {
+            display: none;
+        }
+
+        /* Hamburger Menu */
+        .hamburger {
+            display: none;
+            flex-direction: column;
+            cursor: pointer;
+            gap: 5px;
+            z-index: 101;
+        }
+
+        .hamburger span {
+            width: 25px;
+            height: 2px;
+            background: var(--cream);
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+
+        .hamburger.active span:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* Breadcrumb */
+        .breadcrumb {
+            padding: 7rem 2rem 1rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .breadcrumb a {
+            color: var(--gunmetal);
+            text-decoration: none;
+            font-size: 0.85rem;
+            transition: color 0.3s ease;
+        }
+
+        .breadcrumb a:hover {
+            color: var(--antique-bronze);
+        }
+
+        .breadcrumb span {
+            color: var(--gunmetal);
+            margin: 0 0.5rem;
+        }
+
+        .breadcrumb .current {
+            color: var(--cream);
+        }
+
+        /* Page Header */
+        .page-header {
+            padding: 2rem 2rem 3rem;
+            text-align: center;
+        }
+
+        .page-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .page-subtitle {
+            font-size: 1.1rem;
+            color: var(--gunmetal);
+            font-style: italic;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Products Grid */
+        .products-section {
+            padding: 2rem 2rem 5rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: var(--concrete);
+            border: 1px solid #333;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .product-card:hover {
+            border-color: var(--antique-bronze);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Product Image Gallery */
+        .product-gallery {
+            position: relative;
+            width: 100%;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #111;
+        }
+
+        .gallery-main {
+            width: 100%;
+            height: 100%;
+            position: relative;
+        }
+
+        .gallery-main img {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .gallery-main img.active {
+            opacity: 1;
+        }
+
+        .gallery-nav {
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            right: 0;
+            display: flex;
+            justify-content: center;
+            gap: 0.5rem;
+            padding: 0.75rem;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.7) 0%, transparent 100%);
+        }
+
+        .gallery-dot {
+            width: 8px;
+            height: 8px;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.4);
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+            padding: 0;
+        }
+
+        .gallery-dot:hover {
+            background: rgba(255, 255, 255, 0.7);
+        }
+
+        .gallery-dot.active {
+            background: var(--antique-bronze);
+            transform: scale(1.2);
+        }
+
+        .gallery-arrows {
+            position: absolute;
+            top: 50%;
+            left: 0;
+            right: 0;
+            transform: translateY(-50%);
+            display: flex;
+            justify-content: space-between;
+            padding: 0 0.5rem;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-gallery:hover .gallery-arrows {
+            opacity: 1;
+        }
+
+        .gallery-arrow {
+            width: 32px;
+            height: 32px;
+            background: rgba(0, 0, 0, 0.6);
+            border: 1px solid #444;
+            color: var(--cream);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            pointer-events: auto;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .gallery-arrow:hover {
+            background: rgba(0, 0, 0, 0.8);
+            border-color: var(--antique-bronze);
+            color: var(--antique-bronze);
+        }
+
+        /* Thumbnails */
+        .gallery-thumbs {
+            display: flex;
+            gap: 0.25rem;
+            padding: 0.5rem;
+            background: #111;
+            overflow-x: auto;
+        }
+
+        .gallery-thumb {
+            width: 50px;
+            height: 50px;
+            flex-shrink: 0;
+            cursor: pointer;
+            border: 2px solid transparent;
+            opacity: 0.6;
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .gallery-thumb:hover {
+            opacity: 0.9;
+        }
+
+        .gallery-thumb.active {
+            border-color: var(--antique-bronze);
+            opacity: 1;
+        }
+
+        .gallery-thumb img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.3rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-description {
+            font-size: 0.9rem;
+            color: var(--gunmetal);
+            margin-bottom: 1rem;
+            line-height: 1.5;
+        }
+
+        .product-price {
+            font-size: 1.5rem;
+            color: var(--kraft);
+            margin-bottom: 1rem;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-align: center;
+            width: 100%;
+        }
+
+        .btn-primary {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+        }
+
+        .btn-primary:hover {
+            background: var(--kraft);
+        }
+
+        .btn-added {
+            background: var(--success);
+            color: var(--cream);
+        }
+
+        /* Features Section */
+        .features-section {
+            padding: 4rem 2rem;
+            background: var(--concrete);
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 2rem;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .feature {
+            text-align: center;
+            padding: 1rem;
+        }
+
+        .feature-icon {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+        }
+
+        .feature-title {
+            font-size: 1rem;
+            color: var(--kraft);
+            margin-bottom: 0.5rem;
+        }
+
+        .feature-text {
+            font-size: 0.85rem;
+            color: var(--gunmetal);
+        }
+
+        /* Cart Sidebar */
+        .cart-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.7);
+            z-index: 200;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .cart-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .cart-sidebar {
+            position: fixed;
+            top: 0;
+            right: -450px;
+            width: 450px;
+            max-width: 100%;
+            height: 100%;
+            background: var(--pitch-black);
+            border-left: 1px solid #333;
+            z-index: 201;
+            transition: right 0.3s ease;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .cart-sidebar.active {
+            right: 0;
+        }
+
+        .cart-header {
+            padding: 1.5rem;
+            border-bottom: 1px solid #333;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .cart-title {
+            font-size: 1.5rem;
+            color: var(--cream);
+        }
+
+        .cart-close {
+            background: none;
+            border: none;
+            color: var(--gunmetal);
+            font-size: 1.5rem;
+            cursor: pointer;
+            transition: color 0.3s ease;
+            padding: 0.5rem;
+        }
+
+        .cart-close:hover {
+            color: var(--cream);
+        }
+
+        .cart-items {
+            flex: 1;
+            overflow-y: auto;
+            padding: 1.5rem;
+        }
+
+        .cart-empty {
+            text-align: center;
+            color: var(--gunmetal);
+            padding: 3rem 1rem;
+        }
+
+        .cart-empty-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .cart-item {
+            display: flex;
+            gap: 1rem;
+            padding: 1rem 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .cart-item-image {
+            width: 80px;
+            height: 80px;
+            background: #111;
+            flex-shrink: 0;
+        }
+
+        .cart-item-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .cart-item-details {
+            flex: 1;
+        }
+
+        .cart-item-name {
+            font-size: 1rem;
+            color: var(--cream);
+            margin-bottom: 0.25rem;
+        }
+
+        .cart-item-price {
+            color: var(--kraft);
+            font-size: 1.1rem;
+            margin-bottom: 0.5rem;
+        }
+
+        .cart-item-qty {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .qty-btn {
+            background: var(--concrete);
+            border: 1px solid #444;
+            color: var(--cream);
+            width: 28px;
+            height: 28px;
+            cursor: pointer;
+            font-size: 1rem;
+            transition: all 0.3s ease;
+        }
+
+        .qty-btn:hover {
+            border-color: var(--antique-bronze);
+            color: var(--antique-bronze);
+        }
+
+        .qty-value {
+            color: var(--cream);
+            min-width: 20px;
+            text-align: center;
+        }
+
+        .cart-item-remove {
+            background: none;
+            border: none;
+            color: var(--rust);
+            cursor: pointer;
+            font-size: 0.8rem;
+            margin-left: auto;
+            transition: color 0.3s ease;
+        }
+
+        .cart-item-remove:hover {
+            color: #c0392b;
+        }
+
+        .cart-footer {
+            padding: 1.5rem;
+            border-top: 1px solid #333;
+            background: var(--concrete);
+        }
+
+        .cart-subtotal {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 0.5rem;
+            color: var(--gunmetal);
+        }
+
+        .cart-shipping {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 1rem;
+            color: var(--gunmetal);
+            font-size: 0.9rem;
+        }
+
+        .cart-total {
+            display: flex;
+            justify-content: space-between;
+            font-size: 1.3rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+            padding-top: 1rem;
+            border-top: 1px solid #444;
+        }
+
+        .cart-total-amount {
+            color: var(--kraft);
+        }
+
+        #paypal-button-container {
+            min-height: 50px;
+        }
+
+        .paypal-loading {
+            text-align: center;
+            color: var(--gunmetal);
+            padding: 1rem;
+        }
+
+        /* Footer */
+        footer {
+            padding: 3rem 2rem;
+            background: #050505;
+            border-top: 1px solid #1a1a1a;
+            text-align: center;
+        }
+
+        .footer-text {
+            color: var(--gunmetal);
+            font-size: 0.85rem;
+        }
+
+        .footer-text a {
+            color: var(--antique-bronze);
+            text-decoration: none;
+        }
+
+        /* Toast Notification */
+        .toast {
+            position: fixed;
+            bottom: 2rem;
+            left: 50%;
+            transform: translateX(-50%) translateY(100px);
+            background: var(--success);
+            color: var(--cream);
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-family: 'Bebas Neue', sans-serif;
+            letter-spacing: 0.1em;
+            z-index: 300;
+            opacity: 0;
+            transition: all 0.3s ease;
+        }
+
+        .toast.show {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+
+        /* Responsive */
+        @media (max-width: 1024px) {
+            .products-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+
+            .features-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+
+        @media (max-width: 768px) {
+            nav {
+                padding: 1rem 1.5rem;
+            }
+
+            .hamburger {
+                display: flex;
+            }
+
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.98);
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap: 2rem;
+                transition: right 0.3s ease;
+                border-left: 1px solid #333;
+            }
+
+            .nav-links.active {
+                right: 0;
+            }
+
+            .nav-links a {
+                font-size: 1.1rem;
+            }
+
+            .products-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .features-grid {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+            }
+
+            .breadcrumb {
+                padding: 5rem 1.5rem 1rem;
+            }
+
+            .cart-sidebar {
+                width: 100%;
+                right: -100%;
+            }
+
+            .cart-icon {
+                order: -1;
+            }
+
+            .gallery-arrows {
+                opacity: 1;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <nav>
+        <div class="logo">
+            <div class="logo-badge"></div>
+            <span class="logo-text display-font">Urban Outlaw Supply</span>
+        </div>
+        <div class="nav-right">
+            <div class="hamburger"
+                onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('active');">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+            <ul class="nav-links">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="the-build.html">The Build</a></li>
+                <li><a href="ethos.html">Ethos</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="gallery.html">The Workshop</a></li>
+                <li><a href="connect.html">Connect</a></li>
+                <li><a href="shop.html" class="active">Store</a></li>
+            </ul>
+            <div class="cart-icon" onclick="toggleCart()">
+                <svg viewBox="0 0 24 24">
+                    <path
+                        d="M7 18c-1.1 0-1.99.9-1.99 2S5.9 22 7 22s2-.9 2-2-.9-2-2-2zM1 2v2h2l3.6 7.59-1.35 2.45c-.16.28-.25.61-.25.96 0 1.1.9 2 2 2h12v-2H7.42c-.14 0-.25-.11-.25-.25l.03-.12.9-1.63h7.45c.75 0 1.41-.41 1.75-1.03l3.58-6.49c.08-.14.12-.31.12-.48 0-.55-.45-1-1-1H5.21l-.94-2H1zm16 16c-1.1 0-1.99.9-1.99 2s.89 2 1.99 2 2-.9 2-2-.9-2-2-2z" />
+                </svg>
+                <span class="cart-count hidden" id="cart-count">0</span>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Cart Overlay -->
+    <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
+
+    <!-- Cart Sidebar -->
+    <div class="cart-sidebar" id="cart-sidebar">
+        <div class="cart-header">
+            <h3 class="cart-title display-font">Your Cart</h3>
+            <button class="cart-close" onclick="toggleCart()">×</button>
+        </div>
+        <div class="cart-items" id="cart-items">
+            <!-- Cart items will be inserted here -->
+        </div>
+        <div class="cart-footer" id="cart-footer" style="display: none;">
+            <div class="cart-subtotal">
+                <span>Subtotal</span>
+                <span id="cart-subtotal">£0.00</span>
+            </div>
+            <div class="cart-shipping">
+                <span>Shipping (UK)</span>
+                <span>£1.50</span>
+            </div>
+            <div class="cart-total">
+                <span>Total</span>
+                <span class="cart-total-amount" id="cart-total">£0.00</span>
+            </div>
+            <div id="paypal-button-container"></div>
+        </div>
+    </div>
+
+    <div class="breadcrumb">
+        <a href="index.html">Home</a>
+        <span>/</span>
+        <a href="shop.html">Store</a>
+        <span>/</span>
+        <span class="current">Custom Notebooks</span>
+    </div>
+
+    <section class="page-header">
+        <h1 class="page-title display-font">Custom Notebooks</h1>
+        <p class="page-subtitle">Laser-etched kraft journals built for makers, storytellers, and those who put pen to
+            paper.</p>
+    </section>
+
+    <section class="products-section">
+        <div class="products-grid">
+
+            <!-- ============================================
+                 PRODUCT: Urban Outlaw A6 Notebook
+                 ============================================ -->
+            <div class="product-card">
+                <div class="product-gallery"
+                    data-images="images/products/uos-nb-001/06.jpg,images/products/uos-nb-001/01.jpg,images/products/uos-nb-001/02.jpg,images/products/uos-nb-001/03.jpg,images/products/uos-nb-001/05.jpg">
+                    <div class="gallery-main">
+                        <!-- Images inserted by JavaScript -->
+                    </div>
+                    <div class="gallery-arrows">
+                        <button class="gallery-arrow gallery-prev">‹</button>
+                        <button class="gallery-arrow gallery-next">›</button>
+                    </div>
+                    <div class="gallery-nav">
+                        <!-- Dots inserted by JavaScript -->
+                    </div>
+                </div>
+                <div class="gallery-thumbs">
+                    <!-- Thumbnails inserted by JavaScript -->
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name display-font">Forged For The Independent Spirit</h3>
+                    <p class="product-description">Rugged, replaceable, and ready for the hustle. Handmade for the
+                        makers.</p>
+                    <div class="product-price">£5.99</div>
+                    <button class="btn btn-primary display-font"
+                        onclick="addToCart('uos-nb-001', 'Forged For The Independent Spirit', 5.99, 'images/products/uos-nb-001/06.jpg', this)">Add
+                        to Cart</button>
+                </div>
+            </div>
+
+            <!-- Coming Soon Message -->
+            <div class="coming-soon-message"
+                style="grid-column: 1 / -1; text-align: center; padding: 4rem 0; color: var(--gunmetal); border-top: 1px solid #333; margin-top: 2rem;">
+                <h2 class="display-font"
+                    style="font-size: 2rem; margin-bottom: 1rem; color: var(--cream); letter-spacing: 0.1em;">More
+                    Coming Soon</h2>
+                <p style="font-size: 1.1rem; font-style: italic;">The workshop is firing on all cylinders. New gear
+                    dropping shortly.</p>
+            </div>
+
+        </div>
+    </section>
+
+    <section class="features-section">
+        <div class="features-grid">
+            <div class="feature">
+                <div class="feature-icon">🔥</div>
+                <h4 class="feature-title display-font">Laser-Etched</h4>
+                <p class="feature-text">Every design burned deep into the kraft fibre. Permanent. No two identical.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🇬🇧</div>
+                <h4 class="feature-title display-font">UK Designed</h4>
+                <p class="feature-text">Born in Portsmouth. 42 years of obsessive perfectionism in every detail.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">📦</div>
+                <h4 class="feature-title display-font">Fast Shipping</h4>
+                <p class="feature-text">£1.50 UK shipping. Dispatched within 2-3 working days.</p>
+            </div>
+            <div class="feature">
+                <div class="feature-icon">🔒</div>
+                <h4 class="feature-title display-font">Secure Payment</h4>
+                <p class="feature-text">PayPal checkout. Buy with confidence.</p>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <p class="footer-text">© 2026 Urban Outlaw Supply Co. | <a href="shop.html">Back to Store</a></p>
+    </footer>
+
+    <!-- Toast Notification -->
+    <div class="toast" id="toast">Added to cart!</div>
+
+    <script>
+        // ================================================
+        // PRODUCT GALLERY SYSTEM
+        // ================================================
+
+        document.addEventListener('DOMContentLoaded', function () {
+            initGalleries();
+            updateCartUI();
+            renderPayPalButtons();
+        });
+
+        function initGalleries() {
+            const galleries = document.querySelectorAll('.product-gallery');
+
+            galleries.forEach((gallery, galleryIndex) => {
+                const imagesStr = gallery.dataset.images;
+                if (!imagesStr) return;
+
+                const images = imagesStr.split(',').map(s => s.trim());
+                const mainContainer = gallery.querySelector('.gallery-main');
+                const navContainer = gallery.querySelector('.gallery-nav');
+                const thumbsContainer = gallery.parentElement.querySelector('.gallery-thumbs');
+                const prevBtn = gallery.querySelector('.gallery-prev');
+                const nextBtn = gallery.querySelector('.gallery-next');
+
+                let currentIndex = 0;
+
+                // Create main images
+                images.forEach((src, index) => {
+                    const img = document.createElement('img');
+                    img.src = src;
+                    img.alt = `Product image ${index + 1}`;
+                    if (index === 0) img.classList.add('active');
+                    mainContainer.appendChild(img);
+                });
+
+                // Create dots
+                images.forEach((_, index) => {
+                    const dot = document.createElement('button');
+                    dot.className = 'gallery-dot' + (index === 0 ? ' active' : '');
+                    dot.onclick = () => goToSlide(index);
+                    navContainer.appendChild(dot);
+                });
+
+                // Create thumbnails
+                if (thumbsContainer) {
+                    images.forEach((src, index) => {
+                        const thumb = document.createElement('div');
+                        thumb.className = 'gallery-thumb' + (index === 0 ? ' active' : '');
+                        thumb.innerHTML = `<img src="${src}" alt="Thumbnail ${index + 1}">`;
+                        thumb.onclick = () => goToSlide(index);
+                        thumbsContainer.appendChild(thumb);
+                    });
+                }
+
+                // Navigation functions
+                function goToSlide(index) {
+                    currentIndex = index;
+                    updateGallery();
+                }
+
+                function updateGallery() {
+                    // Update main images
+                    mainContainer.querySelectorAll('img').forEach((img, i) => {
+                        img.classList.toggle('active', i === currentIndex);
+                    });
+
+                    // Update dots
+                    navContainer.querySelectorAll('.gallery-dot').forEach((dot, i) => {
+                        dot.classList.toggle('active', i === currentIndex);
+                    });
+
+                    // Update thumbnails
+                    if (thumbsContainer) {
+                        thumbsContainer.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+                            thumb.classList.toggle('active', i === currentIndex);
+                        });
+                    }
+                }
+
+                // Arrow navigation
+                if (prevBtn) {
+                    prevBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        currentIndex = (currentIndex - 1 + images.length) % images.length;
+                        updateGallery();
+                    };
+                }
+
+                if (nextBtn) {
+                    nextBtn.onclick = (e) => {
+                        e.stopPropagation();
+                        currentIndex = (currentIndex + 1) % images.length;
+                        updateGallery();
+                    };
+                }
+            });
+        }
+
+        // ================================================
+        // CART SYSTEM
+        // ================================================
+
+        let cart = JSON.parse(localStorage.getItem('uos-cart')) || [];
+        const SHIPPING_COST = 1.50;
+
+        function toggleCart() {
+            document.getElementById('cart-overlay').classList.toggle('active');
+            document.getElementById('cart-sidebar').classList.toggle('active');
+            document.body.style.overflow = document.getElementById('cart-sidebar').classList.contains('active') ? 'hidden' : '';
+        }
+
+        function addToCart(id, name, price, image, buttonEl) {
+            const existingItem = cart.find(item => item.id === id);
+
+            if (existingItem) {
+                existingItem.qty += 1;
+            } else {
+                cart.push({ id, name, price, image, qty: 1 });
+            }
+
+            saveCart();
+            updateCartUI();
+            showToast('Added to cart!');
+
+            if (buttonEl) {
+                const originalText = buttonEl.textContent;
+                buttonEl.textContent = '✓ Added';
+                buttonEl.classList.add('btn-added');
+                setTimeout(() => {
+                    buttonEl.textContent = originalText;
+                    buttonEl.classList.remove('btn-added');
+                }, 1500);
+            }
+        }
+
+        function removeFromCart(id) {
+            cart = cart.filter(item => item.id !== id);
+            saveCart();
+            updateCartUI();
+        }
+
+        function updateQty(id, change) {
+            const item = cart.find(item => item.id === id);
+            if (item) {
+                item.qty += change;
+                if (item.qty <= 0) {
+                    removeFromCart(id);
+                } else {
+                    saveCart();
+                    updateCartUI();
+                }
+            }
+        }
+
+        function saveCart() {
+            localStorage.setItem('uos-cart', JSON.stringify(cart));
+        }
+
+        function getSubtotal() {
+            return cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
+        }
+
+        function getTotal() {
+            const subtotal = getSubtotal();
+            return subtotal > 0 ? subtotal + SHIPPING_COST : 0;
+        }
+
+        function getTotalItems() {
+            return cart.reduce((sum, item) => sum + item.qty, 0);
+        }
+
+        function updateCartUI() {
+            const cartItemsEl = document.getElementById('cart-items');
+            const cartFooterEl = document.getElementById('cart-footer');
+            const cartCountEl = document.getElementById('cart-count');
+            const subtotalEl = document.getElementById('cart-subtotal');
+            const totalEl = document.getElementById('cart-total');
+
+            const totalItems = getTotalItems();
+            cartCountEl.textContent = totalItems;
+            cartCountEl.classList.toggle('hidden', totalItems === 0);
+
+            if (cart.length === 0) {
+                cartItemsEl.innerHTML = `
+                    <div class="cart-empty">
+                        <div class="cart-empty-icon">🛒</div>
+                        <p>Your cart is empty</p>
+                    </div>
+                `;
+                cartFooterEl.style.display = 'none';
+            } else {
+                cartItemsEl.innerHTML = cart.map(item => `
+                    <div class="cart-item">
+                        <div class="cart-item-image">
+                            <img src="${item.image}" alt="${item.name}">
+                        </div>
+                        <div class="cart-item-details">
+                            <div class="cart-item-name display-font">${item.name}</div>
+                            <div class="cart-item-price">£${item.price.toFixed(2)}</div>
+                            <div class="cart-item-qty">
+                                <button class="qty-btn" onclick="updateQty('${item.id}', -1)">−</button>
+                                <span class="qty-value">${item.qty}</span>
+                                <button class="qty-btn" onclick="updateQty('${item.id}', 1)">+</button>
+                                <button class="cart-item-remove" onclick="removeFromCart('${item.id}')">Remove</button>
+                            </div>
+                        </div>
+                    </div>
+                `).join('');
+
+                cartFooterEl.style.display = 'block';
+                subtotalEl.textContent = `£${getSubtotal().toFixed(2)}`;
+                totalEl.textContent = `£${getTotal().toFixed(2)}`;
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            toast.textContent = message;
+            toast.classList.add('show');
+            setTimeout(() => toast.classList.remove('show'), 2500);
+        }
+
+        // ================================================
+        // PAYPAL INTEGRATION
+        // ================================================
+
+        function renderPayPalButtons() {
+            const container = document.getElementById('paypal-button-container');
+
+            if (typeof paypal === 'undefined') {
+                container.innerHTML = '<p class="paypal-loading">PayPal loading...</p>';
+                return;
+            }
+
+            paypal.Buttons({
+                style: {
+                    layout: 'vertical',
+                    color: 'gold',
+                    shape: 'rect',
+                    label: 'paypal'
+                },
+
+                createOrder: function (data, actions) {
+                    if (cart.length === 0) {
+                        showToast('Your cart is empty');
+                        return;
+                    }
+
+                    return actions.order.create({
+                        purchase_units: [{
+                            description: 'Urban Outlaw Supply Co. - Custom Notebooks',
+                            amount: {
+                                currency_code: 'GBP',
+                                value: getTotal().toFixed(2),
+                                breakdown: {
+                                    item_total: {
+                                        currency_code: 'GBP',
+                                        value: getSubtotal().toFixed(2)
+                                    },
+                                    shipping: {
+                                        currency_code: 'GBP',
+                                        value: SHIPPING_COST.toFixed(2)
+                                    }
+                                }
+                            },
+                            items: cart.map(item => ({
+                                name: item.name,
+                                unit_amount: {
+                                    currency_code: 'GBP',
+                                    value: item.price.toFixed(2)
+                                },
+                                quantity: item.qty.toString()
+                            }))
+                        }]
+                    });
+                },
+
+                onApprove: function (data, actions) {
+                    return actions.order.capture().then(function (details) {
+                        cart = [];
+                        saveCart();
+                        updateCartUI();
+                        alert('Payment successful! Thank you, ' + details.payer.name.given_name + '. Your order is confirmed.');
+                        toggleCart();
+                    });
+                },
+
+                onError: function (err) {
+                    console.error('PayPal Error:', err);
+                    showToast('Payment error. Please try again.');
+                }
+
+            }).render('#paypal-button-container');
+        }
+    </script>
+</body>
+
+</html>
