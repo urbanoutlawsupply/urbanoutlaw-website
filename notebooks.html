@@ -211,7 +211,7 @@
         /* Breadcrumb */
         .breadcrumb {
             padding: 7rem 2rem 1rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -255,17 +255,17 @@
             margin: 0 auto;
         }
 
-        /* Products Grid */
+        /* Products Grid - 4 columns */
         .products-section {
             padding: 2rem 2rem 5rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
         .products-grid {
             display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 2rem;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
         }
 
         .product-card {
@@ -279,6 +279,68 @@
             border-color: var(--antique-bronze);
             transform: translateY(-5px);
             box-shadow: 0 10px 40px rgba(0, 0, 0, 0.3);
+        }
+
+        /* Coming Soon Card Styles */
+        .product-card.coming-soon {
+            opacity: 0.6;
+            pointer-events: none;
+        }
+
+        .product-card.coming-soon:hover {
+            transform: none;
+            border-color: #333;
+            box-shadow: none;
+        }
+
+        .coming-soon-placeholder {
+            width: 100%;
+            aspect-ratio: 1;
+            background: linear-gradient(135deg, #1a1a1a 0%, #0d0d0d 100%);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .coming-soon-placeholder::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                45deg,
+                transparent,
+                transparent 10px,
+                rgba(163, 139, 92, 0.03) 10px,
+                rgba(163, 139, 92, 0.03) 20px
+            );
+        }
+
+        .coming-soon-icon {
+            font-size: 3rem;
+            opacity: 0.3;
+        }
+
+        .coming-soon-badge {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            padding: 0.25rem 0.75rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.75rem;
+            letter-spacing: 0.1em;
+        }
+
+        .btn-coming-soon {
+            background: #333;
+            color: var(--gunmetal);
+            cursor: not-allowed;
         }
 
         /* Product Image Gallery */
@@ -418,33 +480,33 @@
         }
 
         .product-info {
-            padding: 1.5rem;
+            padding: 1.25rem;
         }
 
         .product-name {
-            font-size: 1.3rem;
+            font-size: 1.1rem;
             color: var(--cream);
             margin-bottom: 0.5rem;
         }
 
         .product-description {
-            font-size: 0.9rem;
+            font-size: 0.85rem;
             color: var(--gunmetal);
             margin-bottom: 1rem;
             line-height: 1.5;
         }
 
         .product-price {
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--kraft);
             margin-bottom: 1rem;
         }
 
         .btn {
             display: inline-block;
-            padding: 1rem 2rem;
+            padding: 0.875rem 1.5rem;
             font-family: 'Bebas Neue', sans-serif;
-            font-size: 1rem;
+            font-size: 0.9rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
             text-decoration: none;
@@ -481,7 +543,7 @@
             display: grid;
             grid-template-columns: repeat(4, 1fr);
             gap: 2rem;
-            max-width: 1200px;
+            max-width: 1400px;
             margin: 0 auto;
         }
 
@@ -753,11 +815,13 @@
         }
 
         /* Responsive */
-        @media (max-width: 1024px) {
+        @media (max-width: 1200px) {
             .products-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
+        }
 
+        @media (max-width: 1024px) {
             .features-grid {
                 grid-template-columns: repeat(2, 1fr);
             }
@@ -904,7 +968,7 @@
         <div class="products-grid">
 
             <!-- ============================================
-                 PRODUCT: Urban Outlaw A6 Notebook
+                 PRODUCT 1: Urban Outlaw A6 Notebook (LIVE)
                  ============================================ -->
             <div class="product-card">
                 <div class="product-gallery"
@@ -934,14 +998,52 @@
                 </div>
             </div>
 
-            <!-- Coming Soon Message -->
-            <div class="coming-soon-message"
-                style="grid-column: 1 / -1; text-align: center; padding: 4rem 0; color: var(--gunmetal); border-top: 1px solid #333; margin-top: 2rem;">
-                <h2 class="display-font"
-                    style="font-size: 2rem; margin-bottom: 1rem; color: var(--cream); letter-spacing: 0.1em;">More
-                    Coming Soon</h2>
-                <p style="font-size: 1.1rem; font-style: italic;">The workshop is firing on all cylinders. New gear
-                    dropping shortly.</p>
+            <!-- ============================================
+                 PRODUCT 2: Coming Soon
+                 ============================================ -->
+            <div class="product-card coming-soon">
+                <div class="coming-soon-placeholder">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="coming-soon-icon">📓</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name display-font">New Design Incoming</h3>
+                    <p class="product-description">The workshop is firing on all cylinders. Watch this space.</p>
+                    <div class="product-price" style="color: var(--gunmetal);">TBC</div>
+                    <button class="btn btn-coming-soon display-font" disabled>Coming Soon</button>
+                </div>
+            </div>
+
+            <!-- ============================================
+                 PRODUCT 3: Coming Soon
+                 ============================================ -->
+            <div class="product-card coming-soon">
+                <div class="coming-soon-placeholder">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="coming-soon-icon">📓</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name display-font">New Design Incoming</h3>
+                    <p class="product-description">Something different. Something raw. Stay tuned.</p>
+                    <div class="product-price" style="color: var(--gunmetal);">TBC</div>
+                    <button class="btn btn-coming-soon display-font" disabled>Coming Soon</button>
+                </div>
+            </div>
+
+            <!-- ============================================
+                 PRODUCT 4: Coming Soon
+                 ============================================ -->
+            <div class="product-card coming-soon">
+                <div class="coming-soon-placeholder">
+                    <span class="coming-soon-badge">Coming Soon</span>
+                    <span class="coming-soon-icon">📓</span>
+                </div>
+                <div class="product-info">
+                    <h3 class="product-name display-font">New Design Incoming</h3>
+                    <p class="product-description">More gear dropping shortly. Built for those who carry.</p>
+                    <div class="product-price" style="color: var(--gunmetal);">TBC</div>
+                    <button class="btn btn-coming-soon display-font" disabled>Coming Soon</button>
+                </div>
             </div>
 
         </div>
