@@ -230,6 +230,24 @@
             text-transform: uppercase;
         }
 
+        /* Drop Banner */
+        .drop-banner {
+            position: fixed;
+            top: 81px;
+            left: 0;
+            right: 0;
+            z-index: 99;
+            background: var(--antique-bronze);
+            padding: 0.75rem 1rem;
+            text-align: center;
+        }
+
+        .drop-banner-text {
+            color: var(--pitch-black);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -302,7 +320,8 @@
             justify-content: center;
             align-items: center;
             text-align: center;
-            padding: 6rem 2rem 1.5rem;
+            padding: 8rem 2rem 1.5rem;
+            margin-top: 40px;
             position: relative;
             background:
                 radial-gradient(ellipse at 50% 0%, rgba(163, 139, 92, 0.15) 0%, transparent 50%),
@@ -775,6 +794,11 @@
         </ul>
     </nav>
 
+    <!-- Drop Banner -->
+    <div class="drop-banner">
+        <span class="drop-banner-text display-font">🔥 Next Drop: Friday 6PM GMT • Limited Runs • Fresh Supplies 🔥</span>
+    </div>
+
     <section class="hero" id="home">
         <video class="main-title-video" autoplay loop muted playsinline>
             <source src="images/uos-title-video.mp4" type="video/mp4">
@@ -792,7 +816,7 @@
 
     <section class="ethos" id="ethos">
         <div class="ethos-content">
-            <p class="ethos-quote">"These notebooks arnt made to look pristine. there not meant to stay pristine."</p>
+            <p class="ethos-quote">"These notebooks aren't made to look pristine. They're not meant to stay pristine."</p>
             <p class="ethos-text">Built for the streets, workshops, and your EDC where ideas get dirty and work gets
                 done. These are custom lasered Kraft notebooks that live in your pocket, survives your day, and earns
                 its scars.</p>
@@ -867,7 +891,7 @@
         </div>
         <div class="footer-bottom">
             <span>© 2026 Urban Outlaw Supply Co. All rights reserved.</span>
-            <span>London, UK</span>
+            <span>Portsmouth, UK</span>
         </div>
     </footer>
     <!-- Newsletter Modal -->
@@ -875,11 +899,11 @@
         <div class="newsletter-modal-content">
             <button class="modal-close"
                 onclick="document.getElementById('newsletter-modal').classList.remove('active')">×</button>
-            <h3 class="display-font">Stay in the Loop</h3>
-            <p>Get dispatches delivered. New products, restocks, and workshop updates. No spam.</p>
+            <h3 class="display-font">Join the Drop List</h3>
+            <p>Limited runs. Custom drops. Don't miss the launch.</p>
             <form class="modal-form">
                 <input type="email" class="modal-input" placeholder="Your email address" required>
-                <button type="submit" class="btn btn-primary display-font">Subscribe</button>
+                <button type="submit" class="btn btn-primary display-font">Notify Me of Drops</button>
             </form>
         </div>
     </div>

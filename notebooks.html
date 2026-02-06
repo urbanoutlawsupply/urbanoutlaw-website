@@ -66,6 +66,261 @@
             text-transform: uppercase;
         }
 
+        /* Drop Banner */
+        .drop-banner {
+            position: fixed;
+            top: 81px;
+            left: 0;
+            right: 0;
+            z-index: 99;
+            background: var(--antique-bronze);
+            padding: 0.75rem 1rem;
+            text-align: center;
+        }
+
+        .drop-banner-text {
+            color: var(--pitch-black);
+            font-size: 0.9rem;
+            letter-spacing: 0.15em;
+        }
+
+        .drop-countdown {
+            display: inline-block;
+            background: var(--pitch-black);
+            color: var(--antique-bronze);
+            padding: 0.2rem 0.6rem;
+            margin-left: 0.5rem;
+            font-family: 'Courier New', monospace;
+            font-size: 0.85rem;
+        }
+
+        /* Product Badges */
+        .product-badge {
+            position: absolute;
+            top: 12px;
+            left: 12px;
+            padding: 0.4rem 0.8rem;
+            font-size: 0.7rem;
+            letter-spacing: 0.1em;
+            z-index: 10;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .badge-instock {
+            background: #4a7c4e;
+            color: var(--cream);
+        }
+
+        .badge-soldout {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+        }
+
+        .badge-nextdrop {
+            background: #c0392b;
+            color: var(--cream);
+        }
+
+        .badge-limited {
+            background: transparent;
+            color: var(--antique-bronze);
+            border: 1px solid var(--antique-bronze);
+        }
+
+        /* Waitlist Button */
+        .btn-waitlist {
+            background: transparent;
+            color: var(--antique-bronze);
+            border: 2px solid var(--antique-bronze);
+        }
+
+        .btn-waitlist:hover {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+        }
+
+        .btn-notify {
+            background: var(--concrete);
+            color: var(--cream);
+            border: 1px solid #444;
+        }
+
+        .btn-notify:hover {
+            border-color: var(--antique-bronze);
+            color: var(--antique-bronze);
+        }
+
+        /* Specs Panel */
+        .specs-toggle {
+            background: none;
+            border: none;
+            color: var(--antique-bronze);
+            font-size: 0.75rem;
+            cursor: pointer;
+            padding: 0;
+            margin-bottom: 1rem;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            display: flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-family: 'Source Serif 4', serif;
+        }
+
+        .specs-toggle:hover {
+            text-decoration: underline;
+        }
+
+        .specs-panel {
+            background: var(--pitch-black);
+            border: 1px solid #333;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            display: none;
+        }
+
+        .specs-panel.open {
+            display: block;
+        }
+
+        .specs-title {
+            color: var(--antique-bronze);
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            margin-bottom: 0.75rem;
+            padding-bottom: 0.5rem;
+            border-bottom: 1px solid #333;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .spec-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 0.5rem 0;
+            border-bottom: 1px solid #222;
+            font-size: 0.8rem;
+        }
+
+        .spec-row:last-child {
+            border-bottom: none;
+        }
+
+        .spec-label {
+            color: var(--gunmetal);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            font-size: 0.7rem;
+        }
+
+        .spec-value {
+            color: var(--cream);
+            font-size: 0.8rem;
+        }
+
+        /* Bundle Section */
+        .bundle-section {
+            background: linear-gradient(135deg, var(--concrete) 0%, var(--pitch-black) 100%);
+            border: 2px solid var(--antique-bronze);
+            margin: 3rem 2rem;
+            padding: 3rem;
+            max-width: 1360px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .bundle-header {
+            text-align: center;
+            margin-bottom: 2rem;
+        }
+
+        .bundle-label {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            padding: 0.3rem 1rem;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.15em;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .bundle-title {
+            font-size: 2.5rem;
+            color: var(--antique-bronze);
+            letter-spacing: 0.1em;
+            margin-bottom: 0.5rem;
+        }
+
+        .bundle-subtitle {
+            color: var(--gunmetal);
+            font-size: 1rem;
+        }
+
+        .bundle-contents {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .bundle-item {
+            background: var(--pitch-black);
+            border: 1px solid #333;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .bundle-item-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .bundle-item-name {
+            color: var(--cream);
+            font-size: 1rem;
+            margin-bottom: 0.25rem;
+        }
+
+        .bundle-item-value {
+            color: var(--gunmetal);
+            font-size: 0.85rem;
+        }
+
+        .bundle-pricing {
+            text-align: center;
+            margin: 2rem 0;
+        }
+
+        .bundle-original {
+            color: var(--gunmetal);
+            font-size: 1rem;
+            text-decoration: line-through;
+            margin-bottom: 0.25rem;
+        }
+
+        .bundle-price {
+            font-size: 3rem;
+            color: var(--antique-bronze);
+            font-family: 'Bebas Neue', sans-serif;
+        }
+
+        .bundle-savings {
+            color: #4a7c4e;
+            font-size: 1rem;
+            margin-top: 0.25rem;
+        }
+
+        .bundle-cta {
+            max-width: 350px;
+            margin: 0 auto;
+        }
+
+        .bundle-cta .btn {
+            width: 100%;
+        }
+
         /* Navigation */
         nav {
             position: fixed;
@@ -210,7 +465,7 @@
 
         /* Breadcrumb */
         .breadcrumb {
-            padding: 7rem 2rem 1rem;
+            padding: 8.5rem 2rem 1rem;
             max-width: 1400px;
             margin: 0 auto;
         }
@@ -921,6 +1176,11 @@
         </div>
     </nav>
 
+    <!-- Drop Banner -->
+    <div class="drop-banner">
+        <span class="drop-banner-text display-font">🔥 Next Drop: Friday 6PM GMT <span class="drop-countdown" id="countdown"></span> • Limited Runs</span>
+    </div>
+
     <!-- Cart Overlay -->
     <div class="cart-overlay" id="cart-overlay" onclick="toggleCart()"></div>
 
@@ -971,6 +1231,7 @@
                  PRODUCT 1: Urban Outlaw A6 Notebook (LIVE)
                  ============================================ -->
             <div class="product-card">
+                <span class="product-badge badge-instock display-font">In Stock</span>
                 <div class="product-gallery"
                     data-images="images/products/uos-nb-001/06.jpg,images/products/uos-nb-001/01.jpg,images/products/uos-nb-001/02.jpg,images/products/uos-nb-001/03.jpg,images/products/uos-nb-001/05.jpg">
                     <div class="gallery-main">
@@ -991,6 +1252,38 @@
                     <h3 class="product-name display-font">Forged For The Independent Spirit</h3>
                     <p class="product-description">Rugged, replaceable, and ready for the hustle. Handmade for the
                         makers.</p>
+                    
+                    <button class="specs-toggle" onclick="toggleSpecs(this)">
+                        ▶ View Specifications
+                    </button>
+                    <div class="specs-panel">
+                        <div class="specs-title">Technical Specifications</div>
+                        <div class="spec-row">
+                            <span class="spec-label">Chassis</span>
+                            <span class="spec-value">Hardcover Raw Kraft</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Core</span>
+                            <span class="spec-value">120 GSM Acid-Free</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Binding</span>
+                            <span class="spec-value">Lay-flat Industrial Stitch</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Graphic</span>
+                            <span class="spec-value">Laser-etched 0.3mm Relief</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Format</span>
+                            <span class="spec-value">A6 (105 × 148mm)</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Pages</span>
+                            <span class="spec-value">64 Sheets / Lined</span>
+                        </div>
+                    </div>
+
                     <div class="product-price">£5.99</div>
                     <button class="btn btn-primary display-font"
                         onclick="addToCart('uos-nb-001', 'Forged For The Independent Spirit', 5.99, 'images/products/uos-nb-001/06.jpg', this)">Add
@@ -999,53 +1292,91 @@
             </div>
 
             <!-- ============================================
-                 PRODUCT 2: Coming Soon
+                 PRODUCT 2: Next Drop
                  ============================================ -->
-            <div class="product-card coming-soon">
+            <div class="product-card">
+                <span class="product-badge badge-nextdrop display-font">Next Drop</span>
                 <div class="coming-soon-placeholder">
-                    <span class="coming-soon-badge">Coming Soon</span>
                     <span class="coming-soon-icon">📓</span>
+                    <span style="color: var(--gunmetal); font-size: 0.8rem; display: block; margin-top: 0.5rem;">Friday 6PM GMT</span>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name display-font">New Design Incoming</h3>
-                    <p class="product-description">The workshop is firing on all cylinders. Watch this space.</p>
+                    <p class="product-description">The workshop is firing on all cylinders. Be first to know when it drops.</p>
                     <div class="product-price" style="color: var(--gunmetal);">TBC</div>
-                    <button class="btn btn-coming-soon display-font" disabled>Coming Soon</button>
+                    <button class="btn btn-notify display-font" onclick="openNotifyModal()">Notify Me When It Drops</button>
                 </div>
             </div>
 
             <!-- ============================================
-                 PRODUCT 3: Coming Soon
+                 PRODUCT 3: Get Notified
                  ============================================ -->
-            <div class="product-card coming-soon">
+            <div class="product-card">
+                <span class="product-badge badge-limited display-font">Coming Soon</span>
                 <div class="coming-soon-placeholder">
-                    <span class="coming-soon-badge">Coming Soon</span>
                     <span class="coming-soon-icon">📓</span>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name display-font">New Design Incoming</h3>
-                    <p class="product-description">Something different. Something raw. Stay tuned.</p>
+                    <p class="product-description">Something different. Something raw. Join the list to know first.</p>
                     <div class="product-price" style="color: var(--gunmetal);">TBC</div>
-                    <button class="btn btn-coming-soon display-font" disabled>Coming Soon</button>
+                    <button class="btn btn-notify display-font" onclick="openNotifyModal()">Join the Waitlist</button>
                 </div>
             </div>
 
             <!-- ============================================
-                 PRODUCT 4: Coming Soon
+                 PRODUCT 4: Get Notified
                  ============================================ -->
-            <div class="product-card coming-soon">
+            <div class="product-card">
+                <span class="product-badge badge-limited display-font">Coming Soon</span>
                 <div class="coming-soon-placeholder">
-                    <span class="coming-soon-badge">Coming Soon</span>
                     <span class="coming-soon-icon">📓</span>
                 </div>
                 <div class="product-info">
                     <h3 class="product-name display-font">New Design Incoming</h3>
                     <p class="product-description">More gear dropping shortly. Built for those who carry.</p>
                     <div class="product-price" style="color: var(--gunmetal);">TBC</div>
-                    <button class="btn btn-coming-soon display-font" disabled>Coming Soon</button>
+                    <button class="btn btn-notify display-font" onclick="openNotifyModal()">Get Notified</button>
                 </div>
             </div>
 
+        </div>
+    </section>
+
+    <!-- Bundle Section -->
+    <section class="bundle-section">
+        <div class="bundle-header">
+            <span class="bundle-label">New</span>
+            <h2 class="bundle-title display-font">⚡ Outlaw Field Kit</h2>
+            <p class="bundle-subtitle">Complete tactical documentation system. Everything you need to get started.</p>
+        </div>
+
+        <div class="bundle-contents">
+            <div class="bundle-item">
+                <div class="bundle-item-icon">📓</div>
+                <div class="bundle-item-name display-font">A6 Kraft Journal</div>
+                <div class="bundle-item-value">£5.99 value</div>
+            </div>
+            <div class="bundle-item">
+                <div class="bundle-item-icon">🖊️</div>
+                <div class="bundle-item-name display-font">Tactical Pen (Matte Black)</div>
+                <div class="bundle-item-value">£4.99 value</div>
+            </div>
+            <div class="bundle-item">
+                <div class="bundle-item-icon">🏷️</div>
+                <div class="bundle-item-name display-font">Outlaw Sticker Pack (5pc)</div>
+                <div class="bundle-item-value">£3.99 value</div>
+            </div>
+        </div>
+
+        <div class="bundle-pricing">
+            <div class="bundle-original">Individual Total: £14.97</div>
+            <div class="bundle-price">£11.99</div>
+            <div class="bundle-savings">Save £2.98 (20% off)</div>
+        </div>
+
+        <div class="bundle-cta">
+            <button class="btn btn-primary display-font" onclick="addToCart('outlaw-field-kit', 'Outlaw Field Kit', 11.99, 'images/products/uos-nb-001/06.jpg', this)">Get the Field Kit</button>
         </div>
     </section>
 
@@ -1082,6 +1413,56 @@
     <div class="toast" id="toast">Added to cart!</div>
 
     <script>
+        // ================================================
+        // SPECS TOGGLE
+        // ================================================
+        function toggleSpecs(btn) {
+            const panel = btn.nextElementSibling;
+            panel.classList.toggle('open');
+            btn.textContent = panel.classList.contains('open') ? '▼ Hide Specifications' : '▶ View Specifications';
+        }
+
+        // ================================================
+        // NOTIFY MODAL
+        // ================================================
+        function openNotifyModal() {
+            // For now, show an alert - you can replace with a modal later
+            const email = prompt("Enter your email to be notified when this drops:");
+            if (email) {
+                alert("Thanks! We'll notify you at " + email + " when new products drop.");
+            }
+        }
+
+        // ================================================
+        // COUNTDOWN TIMER
+        // ================================================
+        function updateCountdown() {
+            const countdownEl = document.getElementById('countdown');
+            if (!countdownEl) return;
+            
+            const now = new Date();
+            const dayOfWeek = now.getDay();
+            const daysUntilFriday = (5 - dayOfWeek + 7) % 7 || 7;
+            
+            const nextFriday = new Date(now);
+            nextFriday.setDate(now.getDate() + daysUntilFriday);
+            nextFriday.setHours(18, 0, 0, 0);
+            
+            if (now > nextFriday) {
+                nextFriday.setDate(nextFriday.getDate() + 7);
+            }
+            
+            const diff = nextFriday - now;
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const mins = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            
+            countdownEl.textContent = days + 'D ' + hours + 'H ' + mins + 'M';
+        }
+        
+        setInterval(updateCountdown, 60000);
+        updateCountdown();
+
         // ================================================
         // PRODUCT GALLERY SYSTEM
         // ================================================
