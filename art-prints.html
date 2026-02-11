@@ -102,47 +102,142 @@
             font-weight: 300;
         }
 
-        .hero-tagline {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 4px;
-            color: var(--antique-bronze);
+        .hero-badges {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+            margin-top: 1.5rem;
         }
 
-        /* Pricing Info Bar */
+        .hero-badge {
+            background: var(--gunmetal);
+            border: 1px solid var(--antique-bronze);
+            padding: 0.5rem 1.25rem;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: var(--kraft);
+        }
+
+        /* Pricing Bar */
         .pricing-bar {
             background: var(--gunmetal);
-            padding: 1.5rem 2rem;
-            text-align: center;
+            padding: 2rem;
             border-bottom: 1px solid var(--antique-bronze);
         }
 
-        .pricing-info {
+        .pricing-container {
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .pricing-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 3px;
+            text-align: center;
+            margin-bottom: 1.5rem;
+            color: var(--cream);
+        }
+
+        .pricing-grid {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .price-pill {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+            background: var(--pitch-black);
+            border: 1px solid var(--antique-bronze);
+            padding: 0.75rem 1.5rem;
+            transition: all 0.3s ease;
+        }
+
+        .price-pill:hover {
+            background: var(--antique-bronze);
+        }
+
+        .price-pill:hover .price-size,
+        .price-pill:hover .price-tag {
+            color: var(--pitch-black);
+        }
+
+        .price-size {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 2px;
+            color: var(--cream);
+            transition: color 0.3s ease;
+        }
+
+        .price-tag {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            padding: 0.2rem 0.6rem;
+            font-weight: 600;
+            font-size: 0.9rem;
+        }
+
+        .price-pill:hover .price-tag {
+            background: var(--pitch-black);
+            color: var(--cream);
+        }
+
+        /* Print Guide */
+        .print-guide {
+            background: var(--pitch-black);
+            padding: 3rem 2rem;
+            border-bottom: 1px solid var(--gunmetal);
+        }
+
+        .guide-container {
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .guide-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 4px;
+            text-align: center;
+            margin-bottom: 2rem;
+            color: var(--cream);
+        }
+
+        .guide-steps {
             display: flex;
             justify-content: center;
             gap: 3rem;
             flex-wrap: wrap;
         }
 
-        .price-item {
+        .step {
             display: flex;
             align-items: center;
-            gap: 0.75rem;
+            gap: 1rem;
         }
 
-        .price-size {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: 2px;
-            color: var(--cream);
-        }
-
-        .price-tag {
+        .step-num {
+            width: 40px;
+            height: 40px;
             background: var(--antique-bronze);
             color: var(--pitch-black);
-            padding: 0.3rem 0.75rem;
-            font-weight: 600;
-            font-size: 1rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .step-text {
+            font-size: 0.95rem;
+            color: var(--kraft);
+            font-weight: 400;
         }
 
         /* Catalogue Section */
@@ -236,27 +331,43 @@
         .print-description {
             font-size: 0.9rem;
             color: var(--kraft);
-            margin-bottom: 1.25rem;
+            margin-bottom: 1rem;
             font-weight: 300;
             line-height: 1.5;
         }
 
-        .print-options {
+        .print-formats {
             display: flex;
-            flex-direction: column;
-            gap: 0.75rem;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.25rem;
+        }
+
+        .format-tag {
+            background: var(--pitch-black);
+            border: 1px solid rgba(139, 115, 85, 0.5);
+            padding: 0.25rem 0.6rem;
+            font-size: 0.7rem;
+            color: var(--kraft);
+            letter-spacing: 0.5px;
+        }
+
+        .print-options {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 0.5rem;
         }
 
         .download-btn {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 0.85rem 1.25rem;
+            padding: 0.7rem 1rem;
             background: transparent;
             border: 1px solid var(--antique-bronze);
             color: var(--cream);
             text-decoration: none;
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 1px;
             text-transform: uppercase;
             transition: all 0.3s ease;
@@ -276,7 +387,59 @@
             font-weight: 600;
         }
 
-        /* Empty State (for when no prints are uploaded yet) */
+        /* Digital Notice */
+        .digital-notice {
+            background: var(--gunmetal);
+            border: 1px solid var(--antique-bronze);
+            padding: 2rem;
+            margin: 4rem auto;
+            max-width: 800px;
+            text-align: center;
+        }
+
+        .digital-notice h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .digital-notice p {
+            color: var(--kraft);
+            font-size: 0.9rem;
+            font-weight: 300;
+            line-height: 1.7;
+        }
+
+        /* Reviews Link */
+        .reviews-link {
+            text-align: center;
+            padding: 3rem 2rem;
+            background: var(--pitch-black);
+            border-top: 1px solid var(--gunmetal);
+        }
+
+        .reviews-link a {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.75rem;
+            color: var(--cream);
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
+            padding: 1rem 2rem;
+            border: 1px solid var(--antique-bronze);
+            transition: all 0.3s ease;
+        }
+
+        .reviews-link a:hover {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+        }
+
+        /* Empty State */
         .empty-state {
             text-align: center;
             padding: 4rem 2rem;
@@ -332,6 +495,7 @@
             justify-content: center;
             gap: 2rem;
             margin-bottom: 1.5rem;
+            flex-wrap: wrap;
         }
 
         .footer-links a {
@@ -385,11 +549,28 @@
                 display: flex;
             }
 
-            .pricing-info {
+            .pricing-grid {
+                flex-direction: column;
+                align-items: center;
+            }
+
+            .price-pill {
+                width: 100%;
+                max-width: 280px;
+                justify-content: center;
+            }
+
+            .guide-steps {
+                flex-direction: column;
+                align-items: center;
                 gap: 1.5rem;
             }
 
             .print-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .print-options {
                 grid-template-columns: 1fr;
             }
 
@@ -410,6 +591,7 @@
                 <li><a href="index.html">Home</a></li>
                 <li><a href="notebooks.html">Notebooks</a></li>
                 <li><a href="art-prints.html" class="active">Art Prints</a></li>
+                <li><a href="reviews.html">Reviews</a></li>
                 <li><a href="about.html">About</a></li>
                 <li><a href="contact.html">Contact</a></li>
             </ul>
@@ -420,33 +602,69 @@
     <section class="hero">
         <h1>Art Prints</h1>
         <p>The kind of detail you feel before you see it.</p>
-        <span class="hero-tagline">Digital Downloads • Instant Access</span>
+        <div class="hero-badges">
+            <span class="hero-badge">⚡ Instant Download</span>
+            <span class="hero-badge">🖨️ Print Ready</span>
+            <span class="hero-badge">300 DPI</span>
+        </div>
     </section>
 
     <!-- Pricing Bar -->
     <div class="pricing-bar">
-        <div class="pricing-info">
-            <div class="price-item">
-                <span class="price-size">A4 Prints</span>
-                <span class="price-tag">£2.50</span>
-            </div>
-            <div class="price-item">
-                <span class="price-size">A3 Prints</span>
-                <span class="price-tag">£3.50</span>
+        <div class="pricing-container">
+            <div class="pricing-title">Choose Your Size</div>
+            <div class="pricing-grid">
+                <div class="price-pill">
+                    <span class="price-size">A6</span>
+                    <span class="price-tag">£2.00</span>
+                </div>
+                <div class="price-pill">
+                    <span class="price-size">A5</span>
+                    <span class="price-tag">£3.00</span>
+                </div>
+                <div class="price-pill">
+                    <span class="price-size">A4</span>
+                    <span class="price-tag">£4.00</span>
+                </div>
+                <div class="price-pill">
+                    <span class="price-size">A3</span>
+                    <span class="price-tag">£4.50</span>
+                </div>
             </div>
         </div>
     </div>
+
+    <!-- Print Guide -->
+    <section class="print-guide">
+        <div class="guide-container">
+            <div class="guide-title">How It Works</div>
+            <div class="guide-steps">
+                <div class="step">
+                    <span class="step-num">1</span>
+                    <span class="step-text">Purchase & Download</span>
+                </div>
+                <div class="step">
+                    <span class="step-num">2</span>
+                    <span class="step-text">Print at Home or Pro Lab</span>
+                </div>
+                <div class="step">
+                    <span class="step-num">3</span>
+                    <span class="step-text">Frame & Display</span>
+                </div>
+            </div>
+        </div>
+    </section>
 
     <!-- Catalogue -->
     <section class="catalogue">
         <div class="catalogue-header">
             <h2>The Collection</h2>
-            <p>High-resolution digital downloads ready for professional printing</p>
+            <p>42 years of realism. High-resolution digital downloads.</p>
         </div>
 
         <div class="print-grid" id="printGrid">
-            <!-- PRINT CARDS WILL GO HERE -->
-            <!-- Template for adding prints:
+            <!-- PRINT CARDS GO HERE -->
+            <!-- Template:
             
             <article class="print-card">
                 <div class="print-image-container">
@@ -455,15 +673,28 @@
                 </div>
                 <div class="print-info">
                     <h3 class="print-title">Print Title</h3>
-                    <p class="print-description">Brief description of the artwork and its subject.</p>
+                    <p class="print-description">Brief description of the artwork.</p>
+                    <div class="print-formats">
+                        <span class="format-tag">JPG</span>
+                        <span class="format-tag">300 DPI</span>
+                        <span class="format-tag">A6–A3</span>
+                    </div>
                     <div class="print-options">
-                        <a href="downloads/print-name-a4.pdf" class="download-btn" download>
-                            <span class="size">A4 Download</span>
-                            <span class="price">£2.50</span>
+                        <a href="#" class="download-btn">
+                            <span class="size">A6</span>
+                            <span class="price">£2.00</span>
                         </a>
-                        <a href="downloads/print-name-a3.pdf" class="download-btn" download>
-                            <span class="size">A3 Download</span>
-                            <span class="price">£3.50</span>
+                        <a href="#" class="download-btn">
+                            <span class="size">A5</span>
+                            <span class="price">£3.00</span>
+                        </a>
+                        <a href="#" class="download-btn">
+                            <span class="size">A4</span>
+                            <span class="price">£4.00</span>
+                        </a>
+                        <a href="#" class="download-btn">
+                            <span class="size">A3</span>
+                            <span class="price">£4.50</span>
                         </a>
                     </div>
                 </div>
@@ -472,12 +703,23 @@
             -->
         </div>
 
-        <!-- Empty State - Remove this once prints are added -->
+        <!-- Empty State -->
         <div class="empty-state" id="emptyState">
             <div class="empty-state-icon">🎨</div>
             <h3>Collection Loading</h3>
-            <p>Prints are being prepared. Check back soon for the full catalogue.</p>
+            <p>Prints are being prepared. Check back soon.</p>
         </div>
+
+        <!-- Digital Notice -->
+        <div class="digital-notice">
+            <h3>⚡ Digital Downloads Only</h3>
+            <p>These are high-resolution digital files — nothing is physically shipped. Download instantly after purchase. Print at home or use a professional print service for best results. Personal use only. All artwork © Urban Outlaw Supply Co.</p>
+        </div>
+    </section>
+
+    <!-- Reviews Link -->
+    <section class="reviews-link">
+        <a href="reviews.html">★ Read Customer Reviews →</a>
     </section>
 
     <!-- Footer -->
@@ -488,6 +730,7 @@
             <a href="index.html">Home</a>
             <a href="notebooks.html">Notebooks</a>
             <a href="art-prints.html">Art Prints</a>
+            <a href="reviews.html">Reviews</a>
             <a href="about.html">About</a>
             <a href="contact.html">Contact</a>
         </div>
@@ -499,12 +742,10 @@
             document.getElementById('navLinks').classList.toggle('active');
         }
 
-        // Hide empty state if prints exist
         document.addEventListener('DOMContentLoaded', function() {
             const printGrid = document.getElementById('printGrid');
             const emptyState = document.getElementById('emptyState');
             
-            // Check if there are any print cards
             if (printGrid.querySelectorAll('.print-card').length > 0) {
                 emptyState.style.display = 'none';
             }

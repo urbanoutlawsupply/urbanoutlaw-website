@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews | Urban Outlaw Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pitch-black: #0a0a0a;
+            --gunmetal: #2a2d2e;
+            --antique-bronze: #8b7355;
+            --kraft: #c4a574;
+            --cream: #f5f0e6;
+            --accent: #d4a853;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--pitch-black);
+            color: var(--cream);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gunmetal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--cream);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--antique-bronze);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 2rem 60px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--pitch-black) 0%, var(--gunmetal) 100%);
+            border-bottom: 1px solid var(--antique-bronze);
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--kraft);
+            max-width: 600px;
+            margin: 0 auto;
+            font-weight: 300;
+        }
+
+        /* Stats Bar */
+        .stats-bar {
+            background: var(--gunmetal);
+            padding: 2rem;
+            border-bottom: 1px solid var(--antique-bronze);
+        }
+
+        .stats-container {
+            max-width: 800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2.5rem;
+            letter-spacing: 2px;
+            color: var(--antique-bronze);
+        }
+
+        .stat-label {
+            font-size: 0.85rem;
+            color: var(--kraft);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Filter Tabs */
+        .filter-tabs {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem 2rem 0;
+            display: flex;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .filter-tab {
+            background: transparent;
+            border: 1px solid var(--gunmetal);
+            color: var(--kraft);
+            padding: 0.6rem 1.25rem;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .filter-tab:hover,
+        .filter-tab.active {
+            background: var(--antique-bronze);
+            border-color: var(--antique-bronze);
+            color: var(--pitch-black);
+        }
+
+        /* Reviews Section */
+        .reviews-section {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 3rem 2rem;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Review Card */
+        .review-card {
+            background: var(--gunmetal);
+            border: 1px solid rgba(139, 115, 85, 0.3);
+            padding: 2rem;
+            transition: all 0.3s ease;
+        }
+
+        .review-card:hover {
+            border-color: var(--antique-bronze);
+            transform: translateY(-2px);
+        }
+
+        .review-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.25rem;
+        }
+
+        .reviewer-info {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+        }
+
+        .reviewer-avatar {
+            width: 48px;
+            height: 48px;
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            letter-spacing: 1px;
+        }
+
+        .reviewer-details h4 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--cream);
+            margin-bottom: 0.2rem;
+        }
+
+        .reviewer-details span {
+            font-size: 0.8rem;
+            color: var(--kraft);
+            opacity: 0.7;
+        }
+
+        .review-stars {
+            color: var(--antique-bronze);
+            font-size: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .review-product {
+            display: inline-block;
+            background: var(--pitch-black);
+            border: 1px solid rgba(139, 115, 85, 0.5);
+            padding: 0.3rem 0.75rem;
+            font-size: 0.75rem;
+            color: var(--kraft);
+            letter-spacing: 0.5px;
+            margin-bottom: 1rem;
+        }
+
+        .review-content {
+            color: var(--cream);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            font-weight: 300;
+            margin-bottom: 1rem;
+        }
+
+        .review-content blockquote {
+            border-left: 2px solid var(--antique-bronze);
+            padding-left: 1rem;
+            font-style: italic;
+            color: var(--kraft);
+        }
+
+        .verified-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 0.4rem;
+            font-size: 0.75rem;
+            color: var(--antique-bronze);
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        /* Featured Review */
+        .review-card.featured {
+            grid-column: 1 / -1;
+            background: linear-gradient(135deg, var(--gunmetal) 0%, rgba(139, 115, 85, 0.15) 100%);
+            border-color: var(--antique-bronze);
+        }
+
+        .featured-badge {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            margin-bottom: 1rem;
+            display: inline-block;
+        }
+
+        /* Empty State */
+        .empty-reviews {
+            text-align: center;
+            padding: 4rem 2rem;
+            border: 2px dashed var(--gunmetal);
+        }
+
+        .empty-reviews h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--kraft);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-reviews p {
+            color: var(--kraft);
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        /* CTA Section */
+        .cta-section {
+            background: var(--gunmetal);
+            padding: 4rem 2rem;
+            text-align: center;
+            border-top: 1px solid var(--antique-bronze);
+        }
+
+        .cta-section h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 4px;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .cta-section p {
+            color: var(--kraft);
+            font-weight: 300;
+            max-width: 500px;
+            margin: 0 auto 2rem;
+        }
+
+        .cta-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .cta-btn {
+            display: inline-block;
+            padding: 1rem 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 2px;
+            text-decoration: none;
+            transition: all 0.3s ease;
+        }
+
+        .cta-btn.primary {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            border: 1px solid var(--antique-bronze);
+        }
+
+        .cta-btn.primary:hover {
+            background: transparent;
+            color: var(--cream);
+        }
+
+        .cta-btn.secondary {
+            background: transparent;
+            color: var(--cream);
+            border: 1px solid var(--cream);
+        }
+
+        .cta-btn.secondary:hover {
+            background: var(--cream);
+            color: var(--pitch-black);
+        }
+
+        /* Footer */
+        footer {
+            background: var(--pitch-black);
+            border-top: 1px solid var(--gunmetal);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            color: var(--kraft);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+            flex-wrap: wrap;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--antique-bronze);
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: var(--kraft);
+            opacity: 0.6;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--pitch-black);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--gunmetal);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .stats-container {
+                gap: 2rem;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .review-card.featured {
+                grid-column: 1;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Urban Outlaw Supply Co.</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="notebooks.html">Notebooks</a></li>
+                <li><a href="art-prints.html">Art Prints</a></li>
+                <li><a href="reviews.html" class="active">Reviews</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Reviews</h1>
+        <p>What the community says about our notebooks and art prints.</p>
+    </section>
+
+    <!-- Stats Bar -->
+    <div class="stats-bar">
+        <div class="stats-container">
+            <div class="stat-item">
+                <div class="stat-number">5.0</div>
+                <div class="stat-label">Average Rating</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">★★★★★</div>
+                <div class="stat-label">Customer Satisfaction</div>
+            </div>
+            <div class="stat-item">
+                <div class="stat-number">100%</div>
+                <div class="stat-label">Would Recommend</div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Filter Tabs -->
+    <div class="filter-tabs">
+        <button class="filter-tab active" data-filter="all">All Reviews</button>
+        <button class="filter-tab" data-filter="notebooks">Notebooks</button>
+        <button class="filter-tab" data-filter="art-prints">Art Prints</button>
+    </div>
+
+    <!-- Reviews Section -->
+    <section class="reviews-section">
+        <div class="reviews-grid" id="reviewsGrid">
+            
+            <!-- EXAMPLE REVIEWS - Replace with real ones -->
+            
+            <!-- Featured Review Example -->
+            <!--
+            <article class="review-card featured" data-category="notebooks">
+                <span class="featured-badge">Featured Review</span>
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">JD</div>
+                        <div class="reviewer-details">
+                            <h4>John Doe</h4>
+                            <span>London, UK • January 2025</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <span class="review-product">Street Stories Notebook</span>
+                <div class="review-content">
+                    <p>Absolutely blown away by the quality. The laser etching is crisp, the kraft paper feels substantial, and it's already earning its scars in my back pocket. This is what a notebook should be.</p>
+                </div>
+                <span class="verified-badge">✓ Verified Purchase</span>
+            </article>
+            -->
+
+            <!-- Standard Review Example -->
+            <!--
+            <article class="review-card" data-category="art-prints">
+                <div class="review-header">
+                    <div class="reviewer-info">
+                        <div class="reviewer-avatar">SM</div>
+                        <div class="reviewer-details">
+                            <h4>Sarah M.</h4>
+                            <span>Manchester • February 2025</span>
+                        </div>
+                    </div>
+                    <div class="review-stars">★★★★★</div>
+                </div>
+                <span class="review-product">Portrait Print - A3</span>
+                <div class="review-content">
+                    <p>The detail in this print is incredible. Printed it at a local shop on matte paper and it looks gallery quality. 42 years of practice really shows.</p>
+                </div>
+                <span class="verified-badge">✓ Verified Purchase</span>
+            </article>
+            -->
+
+        </div>
+
+        <!-- Empty State - Remove when reviews are added -->
+        <div class="empty-reviews" id="emptyReviews">
+            <h3>Reviews Coming Soon</h3>
+            <p>Be the first to share your experience with Urban Outlaw Supply.</p>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="cta-section">
+        <h2>Ready to Join the Outlaws?</h2>
+        <p>Explore our collection of handcrafted notebooks and realism art prints.</p>
+        <div class="cta-buttons">
+            <a href="notebooks.html" class="cta-btn primary">Shop Notebooks</a>
+            <a href="art-prints.html" class="cta-btn secondary">View Art Prints</a>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Urban Outlaw Supply Co.</div>
+        <p class="footer-tagline">Built to earn scars.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notebooks.html">Notebooks</a>
+            <a href="art-prints.html">Art Prints</a>
+            <a href="reviews.html">Reviews</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="copyright">© 2025 Urban Outlaw Supply Co. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Filter functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            const tabs = document.querySelectorAll('.filter-tab');
+            const reviews = document.querySelectorAll('.review-card');
+            const emptyState = document.getElementById('emptyReviews');
+            const reviewsGrid = document.getElementById('reviewsGrid');
+
+            // Hide empty state if reviews exist
+            if (reviewsGrid.querySelectorAll('.review-card').length > 0) {
+                emptyState.style.display = 'none';
+            }
+
+            tabs.forEach(tab => {
+                tab.addEventListener('click', function() {
+                    // Update active tab
+                    tabs.forEach(t => t.classList.remove('active'));
+                    this.classList.add('active');
+
+                    const filter = this.dataset.filter;
+
+                    // Filter reviews
+                    reviews.forEach(review => {
+                        if (filter === 'all' || review.dataset.category === filter) {
+                            review.style.display = 'block';
+                        } else {
+                            review.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
+</body>
+</html>
