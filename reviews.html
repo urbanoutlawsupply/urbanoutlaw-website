@@ -700,7 +700,7 @@
         <p class="copyright">© 2025 Urban Outlaw Supply Co. All rights reserved.</p>
     </footer>
 
-    <script data-cfasync="false" src="/cdn-cgi/scripts/5c5dd728/cloudflare-static/email-decode.min.js"></script><script>
+    <script>
         function toggleMenu() {
             document.getElementById('navLinks').classList.toggle('active');
         }
@@ -709,22 +709,22 @@
         document.addEventListener('DOMContentLoaded', function() {
             const tabs = document.querySelectorAll('.filter-tab');
             const reviews = document.querySelectorAll('.review-card');
-            const emptyState = document.getElementById('emptyReviews');
-            const reviewsGrid = document.getElementById('reviewsGrid');
-
-            // Hide empty state if reviews exist
-            if (reviewsGrid.querySelectorAll('.review-card').length > 0) {
-                emptyState.style.display = 'none';
-            }
 
             tabs.forEach(tab => {
                 tab.addEventListener('click', function() {
-                    // Update active tab
                     tabs.forEach(t => t.classList.remove('active'));
                     this.classList.add('active');
 
                     const filter = this.dataset.filter;
 
-                    // Filter reviews
                     reviews.forEach(review => {
-                        if (filter === 'a
+                        if (filter === 'all' || review.dataset.category === filter) {
+                            review.style.display = '';
+                        } else {
+                            review.style.display = 'none';
+                        }
+                    });
+                });
+            });
+        });
+    </script>
