@@ -1,0 +1,514 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Art Prints | Urban Outlaw Supply Co.</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --pitch-black: #0a0a0a;
+            --gunmetal: #2a2d2e;
+            --antique-bronze: #8b7355;
+            --kraft: #c4a574;
+            --cream: #f5f0e6;
+            --accent: #d4a853;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--pitch-black);
+            color: var(--cream);
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: rgba(10, 10, 10, 0.95);
+            backdrop-filter: blur(10px);
+            z-index: 1000;
+            border-bottom: 1px solid var(--gunmetal);
+        }
+
+        .nav-container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--cream);
+            text-decoration: none;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+            list-style: none;
+        }
+
+        .nav-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .nav-links a:hover,
+        .nav-links a.active {
+            color: var(--antique-bronze);
+        }
+
+        /* Hero Section */
+        .hero {
+            padding: 140px 2rem 60px;
+            text-align: center;
+            background: linear-gradient(180deg, var(--pitch-black) 0%, var(--gunmetal) 100%);
+            border-bottom: 1px solid var(--antique-bronze);
+        }
+
+        .hero h1 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: clamp(3rem, 8vw, 5rem);
+            letter-spacing: 8px;
+            margin-bottom: 1rem;
+            color: var(--cream);
+        }
+
+        .hero p {
+            font-size: 1.1rem;
+            color: var(--kraft);
+            max-width: 600px;
+            margin: 0 auto 1.5rem;
+            font-weight: 300;
+        }
+
+        .hero-tagline {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            letter-spacing: 4px;
+            color: var(--antique-bronze);
+        }
+
+        /* Pricing Info Bar */
+        .pricing-bar {
+            background: var(--gunmetal);
+            padding: 1.5rem 2rem;
+            text-align: center;
+            border-bottom: 1px solid var(--antique-bronze);
+        }
+
+        .pricing-info {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            flex-wrap: wrap;
+        }
+
+        .price-item {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .price-size {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 2px;
+            color: var(--cream);
+        }
+
+        .price-tag {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            padding: 0.3rem 0.75rem;
+            font-weight: 600;
+            font-size: 1rem;
+        }
+
+        /* Catalogue Section */
+        .catalogue {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 4rem 2rem;
+        }
+
+        .catalogue-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .catalogue-header h2 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            letter-spacing: 4px;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .catalogue-header p {
+            color: var(--kraft);
+            font-weight: 300;
+        }
+
+        /* Print Grid */
+        .print-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+            gap: 2rem;
+        }
+
+        .print-card {
+            background: var(--gunmetal);
+            border: 1px solid rgba(139, 115, 85, 0.3);
+            transition: all 0.3s ease;
+            overflow: hidden;
+        }
+
+        .print-card:hover {
+            border-color: var(--antique-bronze);
+            transform: translateY(-4px);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+        }
+
+        .print-image-container {
+            position: relative;
+            aspect-ratio: 4/5;
+            background: var(--pitch-black);
+            overflow: hidden;
+        }
+
+        .print-image {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.4s ease;
+        }
+
+        .print-card:hover .print-image {
+            transform: scale(1.03);
+        }
+
+        .print-badge {
+            position: absolute;
+            top: 1rem;
+            left: 1rem;
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            padding: 0.25rem 0.75rem;
+            font-size: 0.7rem;
+            font-weight: 600;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+        }
+
+        .print-info {
+            padding: 1.5rem;
+        }
+
+        .print-title {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.4rem;
+            letter-spacing: 2px;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .print-description {
+            font-size: 0.9rem;
+            color: var(--kraft);
+            margin-bottom: 1.25rem;
+            font-weight: 300;
+            line-height: 1.5;
+        }
+
+        .print-options {
+            display: flex;
+            flex-direction: column;
+            gap: 0.75rem;
+        }
+
+        .download-btn {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0.85rem 1.25rem;
+            background: transparent;
+            border: 1px solid var(--antique-bronze);
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.85rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .download-btn:hover {
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+        }
+
+        .download-btn .size {
+            font-weight: 500;
+        }
+
+        .download-btn .price {
+            font-weight: 600;
+        }
+
+        /* Empty State (for when no prints are uploaded yet) */
+        .empty-state {
+            text-align: center;
+            padding: 4rem 2rem;
+            border: 2px dashed var(--gunmetal);
+            margin: 2rem 0;
+        }
+
+        .empty-state-icon {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            opacity: 0.5;
+        }
+
+        .empty-state h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.5rem;
+            letter-spacing: 3px;
+            color: var(--kraft);
+            margin-bottom: 0.5rem;
+        }
+
+        .empty-state p {
+            color: var(--kraft);
+            opacity: 0.7;
+            font-weight: 300;
+        }
+
+        /* Footer */
+        footer {
+            background: var(--gunmetal);
+            border-top: 1px solid var(--antique-bronze);
+            padding: 3rem 2rem;
+            text-align: center;
+        }
+
+        .footer-logo {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            letter-spacing: 4px;
+            color: var(--cream);
+            margin-bottom: 1rem;
+        }
+
+        .footer-tagline {
+            color: var(--kraft);
+            font-size: 0.85rem;
+            margin-bottom: 1.5rem;
+            font-weight: 300;
+        }
+
+        .footer-links {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .footer-links a {
+            color: var(--cream);
+            text-decoration: none;
+            font-size: 0.8rem;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            transition: color 0.3s ease;
+        }
+
+        .footer-links a:hover {
+            color: var(--antique-bronze);
+        }
+
+        .copyright {
+            font-size: 0.75rem;
+            color: var(--kraft);
+            opacity: 0.6;
+        }
+
+        /* Mobile Menu */
+        .mobile-menu-btn {
+            display: none;
+            background: none;
+            border: none;
+            color: var(--cream);
+            font-size: 1.5rem;
+            cursor: pointer;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .mobile-menu-btn {
+                display: block;
+            }
+
+            .nav-links {
+                display: none;
+                position: absolute;
+                top: 100%;
+                left: 0;
+                right: 0;
+                background: var(--pitch-black);
+                flex-direction: column;
+                padding: 1rem 2rem;
+                border-bottom: 1px solid var(--gunmetal);
+            }
+
+            .nav-links.active {
+                display: flex;
+            }
+
+            .pricing-info {
+                gap: 1.5rem;
+            }
+
+            .print-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <a href="index.html" class="logo">Urban Outlaw Supply Co.</a>
+            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
+            <ul class="nav-links" id="navLinks">
+                <li><a href="index.html">Home</a></li>
+                <li><a href="notebooks.html">Notebooks</a></li>
+                <li><a href="art-prints.html" class="active">Art Prints</a></li>
+                <li><a href="about.html">About</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="hero">
+        <h1>Art Prints</h1>
+        <p>The kind of detail you feel before you see it.</p>
+        <span class="hero-tagline">Digital Downloads • Instant Access</span>
+    </section>
+
+    <!-- Pricing Bar -->
+    <div class="pricing-bar">
+        <div class="pricing-info">
+            <div class="price-item">
+                <span class="price-size">A4 Prints</span>
+                <span class="price-tag">£2.50</span>
+            </div>
+            <div class="price-item">
+                <span class="price-size">A3 Prints</span>
+                <span class="price-tag">£3.50</span>
+            </div>
+        </div>
+    </div>
+
+    <!-- Catalogue -->
+    <section class="catalogue">
+        <div class="catalogue-header">
+            <h2>The Collection</h2>
+            <p>High-resolution digital downloads ready for professional printing</p>
+        </div>
+
+        <div class="print-grid" id="printGrid">
+            <!-- PRINT CARDS WILL GO HERE -->
+            <!-- Template for adding prints:
+            
+            <article class="print-card">
+                <div class="print-image-container">
+                    <img src="images/prints/print-name.jpg" alt="Print Title" class="print-image">
+                    <span class="print-badge">New</span>
+                </div>
+                <div class="print-info">
+                    <h3 class="print-title">Print Title</h3>
+                    <p class="print-description">Brief description of the artwork and its subject.</p>
+                    <div class="print-options">
+                        <a href="downloads/print-name-a4.pdf" class="download-btn" download>
+                            <span class="size">A4 Download</span>
+                            <span class="price">£2.50</span>
+                        </a>
+                        <a href="downloads/print-name-a3.pdf" class="download-btn" download>
+                            <span class="size">A3 Download</span>
+                            <span class="price">£3.50</span>
+                        </a>
+                    </div>
+                </div>
+            </article>
+            
+            -->
+        </div>
+
+        <!-- Empty State - Remove this once prints are added -->
+        <div class="empty-state" id="emptyState">
+            <div class="empty-state-icon">🎨</div>
+            <h3>Collection Loading</h3>
+            <p>Prints are being prepared. Check back soon for the full catalogue.</p>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <div class="footer-logo">Urban Outlaw Supply Co.</div>
+        <p class="footer-tagline">Built to earn scars.</p>
+        <div class="footer-links">
+            <a href="index.html">Home</a>
+            <a href="notebooks.html">Notebooks</a>
+            <a href="art-prints.html">Art Prints</a>
+            <a href="about.html">About</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <p class="copyright">© 2025 Urban Outlaw Supply Co. All rights reserved.</p>
+    </footer>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navLinks').classList.toggle('active');
+        }
+
+        // Hide empty state if prints exist
+        document.addEventListener('DOMContentLoaded', function() {
+            const printGrid = document.getElementById('printGrid');
+            const emptyState = document.getElementById('emptyState');
+            
+            // Check if there are any print cards
+            if (printGrid.querySelectorAll('.print-card').length > 0) {
+                emptyState.style.display = 'none';
+            }
+        });
+    </script>
+</body>
+</html>
