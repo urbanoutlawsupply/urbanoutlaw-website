@@ -1284,9 +1284,9 @@
                         </div>
                     </div>
 
-                    <div class="product-price">£7.99</div>
+                    <div class="product-price">£8</div>
                     <button class="btn btn-primary display-font"
-                        onclick="addToCart('uos-nb-001', 'Forged For The Independent Spirit', 7.99, 'images/products/uos-nb-001/01.jpg?v=2', this)">Add
+                        onclick="addToCart('uos-nb-001', 'Forged For The Independent Spirit', 8, 'images/products/uos-nb-001/01.jpg?v=2', this)">Add
                         to Cart</button>
                 </div>
             </div>
@@ -1351,9 +1351,9 @@
                         </div>
                     </div>
 
-                    <div class="product-price">£7.99</div>
+                    <div class="product-price">£8</div>
                     <button class="btn btn-primary display-font"
-                        onclick="addToCart('uos-nb-002', 'Street Studio Essentials Kit', 7.99, 'images/products/uos-nb-002/01.jpg', this)">Add
+                        onclick="addToCart('uos-nb-002', 'Street Studio Essentials Kit', 8, 'images/products/uos-nb-002/01.jpg', this)">Add
                         to Cart</button>
                 </div>
             </div>
@@ -1588,7 +1588,7 @@
         // ================================================
 
         let cart = JSON.parse(localStorage.getItem('uos-cart')) || [];
-        const SHIPPING_COST = 1.50;
+        const SHIPPING_COST = Free;
 
         function toggleCart() {
             document.getElementById('cart-overlay').classList.toggle('active');
