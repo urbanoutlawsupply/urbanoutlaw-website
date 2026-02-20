@@ -3,10 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Shop | Urban Outlaw Supply Co.</title>
+    <title>Store | Urban Outlaw Supply Co.</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Source+Serif+4:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+
+    <!-- 
+        ============================================
+        PAYPAL SETUP INSTRUCTIONS:
+        
+        1. Go to developer.paypal.com → Log in with your PayPal business account
+        2. Create an App under "Apps & Credentials" (use LIVE mode, not Sandbox)
+        3. Copy your Client ID
+        4. Replace YOUR_PAYPAL_CLIENT_ID below with your actual Client ID
+        5. The currency is set to GBP — change if needed
+        6. Each "Buy Now" button creates a PayPal order for that specific product
+        
+        For digital downloads (art prints):
+        - After payment completes, the buyer gets redirected to a thank-you message
+        - You'll need to manually send the download link OR use PayPal's 
+          IPN (Instant Payment Notification) to automate delivery
+        - Alternatively, host files on a service like Gumroad for auto-delivery
+          and link PayPal as the payment method
+        ============================================
+    -->
+
     <style>
         :root {
             --pitch-black: #0a0a0a;
@@ -19,15 +40,8 @@
             --warning: #d4a843;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        html {
-            scroll-behavior: smooth;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html { scroll-behavior: smooth; }
 
         body {
             font-family: 'Source Serif 4', Georgia, serif;
@@ -42,10 +56,7 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             opacity: 0.06;
             pointer-events: none;
@@ -60,99 +71,40 @@
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             background: rgba(10,10,10,0.95);
             border-bottom: 1px solid #222;
             backdrop-filter: blur(10px);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
 
         .logo-badge {
-            width: 48px;
-            height: 48px;
-            background: var(--antique-bronze);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 48px; height: 48px; background: var(--antique-bronze);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
 
-        .logo-badge::before {
-            content: '★';
-            font-size: 1.5rem;
-            color: var(--pitch-black);
-        }
+        .logo-badge::before { content: '★'; font-size: 1.5rem; color: var(--pitch-black); }
+        .logo-text { font-size: 1.1rem; letter-spacing: 0.15em; color: var(--cream); }
 
-        .logo-text {
-            font-size: 1.1rem;
-            letter-spacing: 0.15em;
-            color: var(--cream);
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
         .nav-links a {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
+            color: var(--cream); text-decoration: none; font-size: 0.85rem;
+            letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--antique-bronze);
-        }
+        .nav-links a:hover { color: var(--antique-bronze); }
+        .nav-links a.active { color: var(--antique-bronze); }
 
-        .nav-links a.active {
-            color: var(--antique-bronze);
-        }
-
-        /* Hamburger Menu */
-        .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            z-index: 101;
-        }
-
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: var(--cream);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+        /* Hamburger */
+        .hamburger { display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 101; }
+        .hamburger span { width: 25px; height: 2px; background: var(--cream); transition: all 0.3s ease; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         /* Drop Banner */
         .drop-banner {
@@ -162,11 +114,7 @@
             text-align: center;
         }
 
-        .drop-banner-text {
-            color: var(--pitch-black);
-            font-size: 0.9rem;
-            letter-spacing: 0.15em;
-        }
+        .drop-banner-text { color: var(--pitch-black); font-size: 0.9rem; letter-spacing: 0.15em; }
 
         /* Shop Hero */
         .shop-hero {
@@ -189,101 +137,113 @@
             margin: 0 auto;
         }
 
-        /* Categories Section */
-        .categories-section {
+        /* ==================== */
+        /* PRODUCT SECTIONS     */
+        /* ==================== */
+        .product-section {
             padding: 4rem 2rem;
-            background: var(--concrete);
-        }
-
-        .section-title {
-            text-align: center;
-            font-size: 2rem;
-            color: var(--kraft);
-            margin-bottom: 3rem;
-        }
-
-        .categories-grid {
-            display: grid;
-            grid-template-columns: repeat(2, 1fr);
-            gap: 1.5rem;
-            max-width: 1000px;
+            max-width: 1200px;
             margin: 0 auto;
         }
 
-        .category-card {
-            background: var(--pitch-black);
-            border: 1px solid #333;
-            padding: 3rem 2rem;
-            text-align: center;
-            position: relative;
-            overflow: hidden;
-            transition: all 0.4s ease;
+        .product-section-title {
+            font-size: 2rem;
+            color: var(--kraft);
+            margin-bottom: 0.5rem;
         }
 
-        .category-card::before {
+        .product-section-desc {
+            color: var(--gunmetal);
+            margin-bottom: 2.5rem;
+            font-size: 1rem;
+        }
+
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 2rem;
+        }
+
+        /* Product Card */
+        .product-card {
+            background: var(--concrete);
+            border: 1px solid #333;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card::before {
             content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 3px;
+            position: absolute; top: 0; left: 0; right: 0; height: 3px;
             background: var(--antique-bronze);
             transform: scaleX(0);
             transition: transform 0.4s ease;
         }
 
-        .category-card:hover::before {
-            transform: scaleX(1);
-        }
+        .product-card:hover::before { transform: scaleX(1); }
+        .product-card:hover { border-color: #444; transform: translateY(-4px); }
 
-        .category-card:hover {
-            border-color: #444;
-            transform: translateY(-5px);
-        }
-
-        .category-card.featured {
-            border-color: var(--antique-bronze);
-        }
-
-        .category-card.featured::before {
-            transform: scaleX(1);
-        }
-
-        .category-icon {
-            font-size: 3rem;
-            margin-bottom: 1.5rem;
-            display: block;
-            opacity: 0.8;
-        }
-
-        .category-video {
+        .product-media {
             width: 100%;
-            max-width: 320px;
-            height: auto;
-            margin-bottom: 1.5rem;
-            border: 1px solid #333;
+            aspect-ratio: 1;
+            overflow: hidden;
+            background: #111;
         }
 
-        .category-card h3 {
-            font-size: 1.8rem;
+        .product-media video,
+        .product-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-body {
+            padding: 1.5rem;
+        }
+
+        .product-name {
+            font-size: 1.4rem;
             color: var(--cream);
-            margin-bottom: 0.75rem;
+            margin-bottom: 0.5rem;
         }
 
-        .category-card p {
+        .product-desc {
             color: var(--gunmetal);
-            font-size: 0.95rem;
-            margin-bottom: 1.5rem;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
         }
 
-        .coming-soon-tag {
+        .product-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.3rem;
+            color: var(--kraft);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .product-badges {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .product-badge {
             display: inline-block;
-            padding: 0.4rem 1rem;
-            background: transparent;
-            border: 1px solid var(--warning);
-            color: var(--warning);
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
+            padding: 0.2rem 0.6rem;
+            background: rgba(163, 139, 92, 0.15);
+            border: 1px solid rgba(163, 139, 92, 0.3);
+            font-size: 0.7rem;
+            color: var(--kraft);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+
+        /* PayPal Button Container */
+        .paypal-btn-container {
+            min-height: 45px;
         }
 
         .btn {
@@ -299,13 +259,98 @@
             transition: all 0.3s ease;
         }
 
-        .btn-primary {
-            background: var(--antique-bronze);
-            color: var(--pitch-black);
+        .btn-primary { background: var(--antique-bronze); color: var(--pitch-black); }
+        .btn-primary:hover { background: var(--kraft); }
+
+        .btn-full { display: block; width: 100%; text-align: center; }
+
+        /* Coming Soon */
+        .coming-soon-tag {
+            display: inline-block;
+            padding: 0.5rem 1.5rem;
+            border: 1px dashed var(--gunmetal);
+            color: var(--gunmetal);
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
         }
 
-        .btn-primary:hover {
-            background: var(--kraft);
+        .product-card.coming-soon {
+            opacity: 0.6;
+        }
+
+        .product-card.coming-soon:hover {
+            transform: none;
+            border-color: #333;
+        }
+
+        .product-card.coming-soon::before {
+            display: none;
+        }
+
+        /* Section divider */
+        .section-divider {
+            border: none;
+            border-top: 1px solid #222;
+            margin: 0;
+        }
+
+        /* Art Prints sub-section */
+        .size-options {
+            display: flex;
+            gap: 0.5rem;
+            margin-bottom: 1rem;
+            flex-wrap: wrap;
+        }
+
+        .size-btn {
+            padding: 0.5rem 1rem;
+            background: var(--pitch-black);
+            border: 1px solid #444;
+            color: var(--cream);
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.85rem;
+            letter-spacing: 0.05em;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .size-btn:hover, .size-btn.active {
+            border-color: var(--antique-bronze);
+            color: var(--antique-bronze);
+        }
+
+        .size-btn .size-price {
+            font-family: 'Source Serif 4', serif;
+            font-size: 0.75rem;
+            color: var(--gunmetal);
+            display: block;
+        }
+
+        .size-btn.active .size-price { color: var(--kraft); }
+
+        /* Digital notice */
+        .digital-notice {
+            background: var(--concrete);
+            border: 1px solid #333;
+            padding: 1.5rem 2rem;
+            margin-top: 3rem;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .digital-notice h3 {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 2px;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .digital-notice p {
+            color: var(--gunmetal);
+            font-size: 0.85rem;
+            line-height: 1.6;
         }
 
         /* Newsletter Section */
@@ -316,47 +361,27 @@
             border-top: 1px solid #222;
         }
 
-        .newsletter-content {
-            max-width: 500px;
-            margin: 0 auto;
+        .newsletter-content { max-width: 500px; margin: 0 auto; }
+
+        .newsletter-title { font-size: 2rem; color: var(--cream); margin-bottom: 1rem; }
+        .newsletter-text { color: var(--gunmetal); margin-bottom: 2rem; }
+
+        .mc-form {
+            display: flex; gap: 1rem; justify-content: center;
         }
 
-        .newsletter-title {
-            font-size: 2rem;
-            color: var(--cream);
-            margin-bottom: 1rem;
-        }
-
-        .newsletter-text {
-            color: var(--gunmetal);
-            margin-bottom: 2rem;
-        }
-
-        .newsletter-form {
-            display: flex;
-            gap: 1rem;
-            justify-content: center;
-        }
-
-        .newsletter-input {
+        .mc-form input[type="email"] {
+            flex: 1;
             padding: 1rem 1.5rem;
             background: var(--concrete);
             border: 1px solid #333;
             color: var(--cream);
             font-family: 'Source Serif 4', serif;
             font-size: 1rem;
-            width: 100%;
-            max-width: 300px;
         }
 
-        .newsletter-input::placeholder {
-            color: var(--gunmetal);
-        }
-
-        .newsletter-input:focus {
-            outline: none;
-            border-color: var(--antique-bronze);
-        }
+        .mc-form input[type="email"]::placeholder { color: var(--gunmetal); }
+        .mc-form input[type="email"]:focus { outline: none; border-color: var(--antique-bronze); }
 
         /* Social Section */
         .social-section {
@@ -365,35 +390,20 @@
             background: var(--concrete);
         }
 
-        .social-text {
-            color: var(--gunmetal);
-            margin-bottom: 1.5rem;
-        }
+        .social-text { color: var(--gunmetal); margin-bottom: 1.5rem; }
 
-        .social-links {
-            display: flex;
-            justify-content: center;
-            gap: 1.5rem;
-        }
+        .social-links { display: flex; justify-content: center; gap: 1.5rem; }
 
         .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
+            display: inline-flex; align-items: center; gap: 0.5rem;
             padding: 0.75rem 1.5rem;
-            background: transparent;
-            border: 1px solid var(--gunmetal);
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
+            background: transparent; border: 1px solid var(--gunmetal);
+            color: var(--cream); text-decoration: none;
+            font-size: 0.85rem; letter-spacing: 0.1em;
             transition: all 0.3s ease;
         }
 
-        .social-link:hover {
-            border-color: var(--antique-bronze);
-            color: var(--antique-bronze);
-        }
+        .social-link:hover { border-color: var(--antique-bronze); color: var(--antique-bronze); }
 
         /* Footer */
         footer {
@@ -403,66 +413,29 @@
             text-align: center;
         }
 
-        .footer-text {
-            color: var(--gunmetal);
-            font-size: 0.85rem;
-        }
-
-        .footer-text a {
-            color: var(--antique-bronze);
-            text-decoration: none;
-        }
+        .footer-text { color: var(--gunmetal); font-size: 0.85rem; }
+        .footer-text a { color: var(--antique-bronze); text-decoration: none; }
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
+            nav { padding: 1rem 1.5rem; }
+            .hamburger { display: flex; }
 
             .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
+                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
                 background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                transition: right 0.3s ease;
-                border-left: 1px solid #333;
+                flex-direction: column; justify-content: center; align-items: center;
+                gap: 2rem; transition: right 0.3s ease; border-left: 1px solid #333;
             }
 
-            .nav-links.active {
-                right: 0;
-            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.1rem; }
 
-            .nav-links a {
-                font-size: 1.1rem;
-            }
+            .products-grid { grid-template-columns: 1fr; }
 
-            .categories-grid {
-                grid-template-columns: 1fr;
-            }
+            .mc-form { flex-direction: column; }
 
-            .newsletter-form {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .newsletter-input {
-                max-width: 100%;
-            }
-
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
+            .social-links { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -473,18 +446,15 @@
             <span class="logo-text display-font">Urban Outlaw Supply</span>
         </div>
         <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('active');">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="the-build.html">The Build</a></li>
-            <li><a href="ethos.html">Ethos</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="gallery.html">The Workshop</a></li>
-            <li><a href="connect.html">Connect</a></li>
             <li><a href="shop.html" class="active">Store</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="dispatches.html">Dispatches</a></li>
         </ul>
     </nav>
 
@@ -493,63 +463,194 @@
         <span class="drop-banner-text display-font">🔥 Next Drop: Friday 6PM GMT • Limited Runs • Fresh Supplies 🔥</span>
     </div>
 
+    <!-- ==================== -->
+    <!-- HERO                 -->
+    <!-- ==================== -->
     <section class="shop-hero">
         <h1 class="shop-title display-font">The Supply</h1>
-        <p class="shop-subtitle">Custom notebooks, art prints, urban gear, and stationery. Built for outlaws.</p>
+        <p class="shop-subtitle">Custom notebooks, art prints, and urban gear. Built for outlaws.</p>
     </section>
 
-    <section class="categories-section">
-        <h2 class="section-title display-font">Shop Categories</h2>
-        <div class="categories-grid">
-            <div class="category-card featured">
-                <video class="category-video" autoplay loop muted playsinline>
-                    <source src="images/products/We_al_have_a_story_to_tell_unboxing.mp4" type="video/mp4">
-                </video>
-                <h3 class="display-font">Custom Notebooks</h3>
-                <p>Laser-etched kraft journals, field notes, and sketchbooks. Raw materials, burned-in designs.</p>
-                <a href="notebooks.html" class="btn btn-primary display-font">Shop Now</a>
+    <!-- ==================== -->
+    <!-- NOTEBOOKS            -->
+    <!-- ==================== -->
+    <section class="product-section">
+        <h2 class="product-section-title display-font">Custom Notebooks</h2>
+        <p class="product-section-desc">Laser-etched kraft journals, field notes, and sketchbooks. Raw materials, burned-in designs.</p>
+
+        <div class="products-grid">
+
+            <!-- Notebook 1: Raw Utility Journal -->
+            <div class="product-card">
+                <div class="product-media">
+                    <video autoplay loop muted playsinline>
+                        <source src="images/products/We_al_have_a_story_to_tell_unboxing.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-name display-font">Raw Utility Journal</h3>
+                    <p class="product-desc">A6 laser-etched kraft notebook. Torn-edge band. Creator identity page. Built to survive your day.</p>
+                    <div class="product-badges">
+                        <span class="product-badge">A6</span>
+                        <span class="product-badge">Laser-Etched</span>
+                        <span class="product-badge">Lined</span>
+                    </div>
+                    <div class="product-price">£4.99</div>
+                    <!-- PayPal Buy Button -->
+                    <div id="paypal-notebook-1" class="paypal-btn-container"></div>
+                </div>
             </div>
-            <div class="category-card featured">
-    <video class="category-video" autoplay loop muted playsinline>
-        <source src="images/products/Art-Prints.mp4" type="video/mp4">
-    </video>
-    <h3 class="display-font">Art Prints</h3>
-    <p>The kind of detail you feel before you see it.</p>
-    <a href="art-prints.html" class="btn btn-primary display-font">Shop Now</a>
-</div>
-</div>
+
+            <!-- 
+                ADD MORE NOTEBOOKS HERE:
+                Copy the product-card above and update:
+                - Image/video source
+                - Name, description, badges
+                - Price
+                - PayPal container ID (paypal-notebook-2, etc)
+                - Add corresponding PayPal render in the script below
+            -->
+
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ==================== -->
+    <!-- ART PRINTS           -->
+    <!-- ==================== -->
+    <section class="product-section">
+        <h2 class="product-section-title display-font">Art Prints</h2>
+        <p class="product-section-desc">42 years of realism. High-resolution digital downloads, A6 to A3. Print at home or use a pro lab.</p>
+
+        <div class="products-grid">
+
+            <!-- 
+                ART PRINT TEMPLATE:
+                
+                For each print, copy this card and update:
+                - Image src
+                - Title and description
+                - PayPal container ID
+                - Add PayPal render call in the script section
+                
+                The size selector lets buyers pick A6-A3 and the price
+                updates accordingly before they hit PayPal.
+            -->
+
+            <div class="product-card" data-print="print-1">
+                <div class="product-media">
+                    <img src="images/prints/print-placeholder.jpg" alt="Art Print" loading="lazy">
+                </div>
+                <div class="product-body">
+                    <h3 class="product-name display-font">Portrait Print #1</h3>
+                    <p class="product-desc">High-resolution realism portrait. 300 DPI, print-ready JPG. Instant download after purchase.</p>
+                    <div class="product-badges">
+                        <span class="product-badge">⚡ Instant Download</span>
+                        <span class="product-badge">300 DPI</span>
+                        <span class="product-badge">JPG</span>
+                    </div>
+                    <div class="size-options">
+                        <button class="size-btn active" onclick="selectSize(this, 'print-1', 2.00)">
+                            A6 <span class="size-price">£2.00</span>
+                        </button>
+                        <button class="size-btn" onclick="selectSize(this, 'print-1', 3.00)">
+                            A5 <span class="size-price">£3.00</span>
+                        </button>
+                        <button class="size-btn" onclick="selectSize(this, 'print-1', 4.00)">
+                            A4 <span class="size-price">£4.00</span>
+                        </button>
+                        <button class="size-btn" onclick="selectSize(this, 'print-1', 4.50)">
+                            A3 <span class="size-price">£4.50</span>
+                        </button>
+                    </div>
+                    <div class="product-price" id="price-print-1">£2.00</div>
+                    <div id="paypal-print-1" class="paypal-btn-container"></div>
+                </div>
             </div>
-            <div class="category-card">
-                <span class="category-icon">🎒</span>
-                <h3 class="display-font">Urban Gear</h3>
-                <p>EDC essentials and accessories. Functional kit for the streets, workshops, and beyond.</p>
-                <span class="coming-soon-tag display-font">Coming Soon</span>
+
+        </div>
+
+        <div class="digital-notice">
+            <h3 class="display-font">⚡ Digital Downloads Only</h3>
+            <p>These are high-resolution digital files — nothing is physically shipped. Download instantly after purchase. Print at home or use a professional print service for best results. Personal use only. All artwork © Urban Outlaw Supply Co.</p>
+        </div>
+    </section>
+
+    <hr class="section-divider">
+
+    <!-- ==================== -->
+    <!-- COMING SOON          -->
+    <!-- ==================== -->
+    <section class="product-section">
+        <h2 class="product-section-title display-font">Coming Soon</h2>
+        <p class="product-section-desc">More gear in the pipeline. Sign up to the drop list to be first in line.</p>
+
+        <div class="products-grid">
+            <div class="product-card coming-soon">
+                <div class="product-media" style="display:flex;align-items:center;justify-content:center;background:#111;">
+                    <span style="font-size:4rem;opacity:0.3;">🎒</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-name display-font">Urban Gear</h3>
+                    <p class="product-desc">EDC essentials and accessories. Functional kit for the streets, workshops, and beyond.</p>
+                    <span class="coming-soon-tag display-font">Coming Soon</span>
+                </div>
             </div>
-            <div class="category-card">
-                <span class="category-icon">✏️</span>
-                <h3 class="display-font">Stationery</h3>
-                <p>Pens, pencils, and tools of the trade. No fancy gimmicks, just gear that works.</p>
-                <span class="coming-soon-tag display-font">Coming Soon</span>
+            <div class="product-card coming-soon">
+                <div class="product-media" style="display:flex;align-items:center;justify-content:center;background:#111;">
+                    <span style="font-size:4rem;opacity:0.3;">✏️</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-name display-font">Stationery</h3>
+                    <p class="product-desc">Pens, pencils, and tools of the trade. No fancy gimmicks, just gear that works.</p>
+                    <span class="coming-soon-tag display-font">Coming Soon</span>
+                </div>
+            </div>
+            <div class="product-card coming-soon">
+                <div class="product-media" style="display:flex;align-items:center;justify-content:center;background:#111;">
+                    <span style="font-size:4rem;opacity:0.3;">📦</span>
+                </div>
+                <div class="product-body">
+                    <h3 class="product-name display-font">Outlaw Field Kit</h3>
+                    <p class="product-desc">Bundled kits with everything you need. Notebook, tools, and accessories in one drop.</p>
+                    <span class="coming-soon-tag display-font">Coming Soon</span>
+                </div>
             </div>
         </div>
     </section>
 
+    <!-- ==================== -->
+    <!-- NEWSLETTER           -->
+    <!-- ==================== -->
     <section class="newsletter-section">
         <div class="newsletter-content">
             <h2 class="newsletter-title display-font">Join the Drop List</h2>
             <p class="newsletter-text">Limited runs. Custom drops. Don't miss the launch.</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Your email address">
+            <form 
+                action="https://urbanoutlawsupply.us10.list-manage.com/subscribe/post?u=9d3fc47fd4cb1bd7d2101f8e2&amp;id=2024e6b273&amp;f_id=001af2e0f0" 
+                method="post" 
+                class="mc-form" 
+                target="_blank" 
+                novalidate
+            >
+                <input type="email" name="EMAIL" placeholder="Your email address" required>
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                    <input type="text" name="b_9d3fc47fd4cb1bd7d2101f8e2_2024e6b273" tabindex="-1" value="">
+                </div>
                 <button type="submit" class="btn btn-primary display-font">Notify Me</button>
             </form>
         </div>
     </section>
 
+    <!-- ==================== -->
+    <!-- SOCIAL               -->
+    <!-- ==================== -->
     <section class="social-section">
         <p class="social-text">Follow the journey</p>
         <div class="social-links">
-            <a href="https://www.facebook.com/urbanoutlawsupplyco/" target="_blank" class="social-link display-font">Facebook</a>
-            <a href="https://www.instagram.com/urbanoutlawsupply/" target="_blank" class="social-link display-font">Instagram</a>
+            <a href="https://www.facebook.com/share/182XAig28Q/" target="_blank" class="social-link display-font">Facebook</a>
+            <a href="https://www.instagram.com/urbanoutlawsupply" target="_blank" class="social-link display-font">Instagram</a>
             <a href="https://x.com/uosupplyco" target="_blank" class="social-link display-font">X</a>
         </div>
     </section>
@@ -557,5 +658,129 @@
     <footer>
         <p class="footer-text">© 2026 Urban Outlaw Supply Co. | <a href="index.html">Back to Home</a></p>
     </footer>
+
+    <!-- ==================== -->
+    <!-- PAYPAL SDK + LOGIC   -->
+    <!-- ==================== -->
+    <!-- 
+        Replace YOUR_PAYPAL_CLIENT_ID with your actual PayPal client ID.
+        To get this:
+        1. Go to developer.paypal.com
+        2. Log in → My Apps & Credentials
+        3. Switch to LIVE (not Sandbox)
+        4. Create a new app or use existing
+        5. Copy the Client ID
+    -->
+    <script src="https://www.paypal.com/sdk/js?client-id=YOUR_PAYPAL_CLIENT_ID&currency=GBP&intent=capture"></script>
+    
+    <script>
+        // =====================
+        // PRICE STATE for prints
+        // =====================
+        const printPrices = {
+            'print-1': 2.00,
+            // Add more: 'print-2': 2.00, etc.
+        };
+
+        function selectSize(btn, printId, price) {
+            // Update active state
+            btn.closest('.size-options').querySelectorAll('.size-btn').forEach(b => b.classList.remove('active'));
+            btn.classList.add('active');
+            
+            // Update price display
+            printPrices[printId] = price;
+            document.getElementById('price-' + printId).textContent = '£' + price.toFixed(2);
+        }
+
+        // =====================
+        // PAYPAL BUTTON RENDERS
+        // =====================
+
+        // Notebook 1 — Raw Utility Journal @ £4.99
+        if (document.getElementById('paypal-notebook-1')) {
+            paypal.Buttons({
+                style: {
+                    layout: 'horizontal',
+                    color: 'gold',
+                    shape: 'rect',
+                    label: 'buynow',
+                    height: 40,
+                    tagline: false
+                },
+                createOrder: function(data, actions) {
+                    return actions.order.create({
+                        purchase_units: [{
+                            description: 'Raw Utility Journal – A6 Laser-Etched Kraft Notebook',
+                            amount: {
+                                currency_code: 'GBP',
+                                value: '4.99'
+                            }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Payment complete! Thank you, ' + details.payer.name.given_name + '. Your order is confirmed.');
+                        // TODO: Add order confirmation / redirect logic here
+                    });
+                },
+                onError: function(err) {
+                    console.error('PayPal error:', err);
+                    alert('Something went wrong with payment. Please try again.');
+                }
+            }).render('#paypal-notebook-1');
+        }
+
+        // Art Print 1 — Dynamic pricing based on size selection
+        if (document.getElementById('paypal-print-1')) {
+            paypal.Buttons({
+                style: {
+                    layout: 'horizontal',
+                    color: 'gold',
+                    shape: 'rect',
+                    label: 'buynow',
+                    height: 40,
+                    tagline: false
+                },
+                createOrder: function(data, actions) {
+                    const price = printPrices['print-1'];
+                    const activeBtn = document.querySelector('[data-print="print-1"] .size-btn.active');
+                    const sizeName = activeBtn ? activeBtn.textContent.trim().split('\n')[0] : 'A6';
+                    
+                    return actions.order.create({
+                        purchase_units: [{
+                            description: 'Art Print – Portrait Print #1 (' + sizeName + ')',
+                            amount: {
+                                currency_code: 'GBP',
+                                value: price.toFixed(2)
+                            }
+                        }]
+                    });
+                },
+                onApprove: function(data, actions) {
+                    return actions.order.capture().then(function(details) {
+                        alert('Payment complete! Thank you, ' + details.payer.name.given_name + '. Your download link will be sent to your email shortly.');
+                        // TODO: Trigger download delivery (email with link, or redirect to download page)
+                    });
+                },
+                onError: function(err) {
+                    console.error('PayPal error:', err);
+                    alert('Something went wrong with payment. Please try again.');
+                }
+            }).render('#paypal-print-1');
+        }
+
+        /*
+            ============================================
+            TO ADD MORE PAYPAL BUTTONS:
+            
+            1. Add a new product card in the HTML above
+            2. Give its container a unique ID (e.g., paypal-notebook-2, paypal-print-2)
+            3. Copy one of the paypal.Buttons() blocks above
+            4. Update: container ID, description, price
+            5. For prints with size selectors, add the printId to printPrices object
+            ============================================
+        */
+    </script>
 </body>
 </html>

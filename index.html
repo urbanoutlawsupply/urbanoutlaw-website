@@ -18,27 +18,16 @@
             --kraft: #c4a574;
             --cream: #f5f0e8;
             --rust: #8b4513;
-
-            /* Cyber-Grit Additions */
+            --concrete: #1a1a1a;
             --signal-white: #e0e0e0;
             --terminal-green: #a38b5c;
-            /* Using Bronze as the "terminal" color to stay on brand, but brighter */
             --scanline-color: rgba(163, 139, 92, 0.05);
         }
 
-        /* Cyber Fonts & Utilities */
         .cyber-mono {
             font-family: 'Courier New', Courier, monospace;
             text-transform: uppercase;
             letter-spacing: 0.1em;
-        }
-
-        /* Cyber-Grit Overrides */
-        body::before {
-            /* Enhanced Noise */
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
-            opacity: 0.04;
-            animation: noiseShift 0.5s steps(3) infinite;
         }
 
         /* Scanlines */
@@ -49,9 +38,7 @@
             left: 0;
             width: 100vw;
             height: 100vh;
-            background: linear-gradient(to bottom,
-                    transparent 50%,
-                    var(--scanline-color) 51%);
+            background: linear-gradient(to bottom, transparent 50%, var(--scanline-color) 51%);
             background-size: 100% 4px;
             pointer-events: none;
             z-index: 51;
@@ -59,32 +46,14 @@
         }
 
         @keyframes noiseShift {
-            0% {
-                transform: translate(0, 0);
-            }
-
-            10% {
-                transform: translate(-1%, -1%);
-            }
-
-            20% {
-                transform: translate(1%, 1%);
-            }
-
-            30% {
-                transform: translate(-2%, 2%);
-            }
-
-            40% {
-                transform: translate(2%, -2%);
-            }
-
-            100% {
-                transform: translate(0, 0);
-            }
+            0% { transform: translate(0, 0); }
+            10% { transform: translate(-1%, -1%); }
+            20% { transform: translate(1%, 1%); }
+            30% { transform: translate(-2%, 2%); }
+            40% { transform: translate(2%, -2%); }
+            100% { transform: translate(0, 0); }
         }
 
-        /* Ambient Glow Pulse behind hero */
         .hero::before {
             content: '';
             position: absolute;
@@ -100,26 +69,12 @@
         }
 
         @keyframes pulseGlow {
-
-            0%,
-            100% {
-                opacity: 0.5;
-                transform: translate(-50%, -50%) scale(1);
-            }
-
-            50% {
-                opacity: 0.8;
-                transform: translate(-50%, -50%) scale(1.05);
-            }
+            0%, 100% { opacity: 0.5; transform: translate(-50%, -50%) scale(1); }
+            50% { opacity: 0.8; transform: translate(-50%, -50%) scale(1.05); }
         }
 
-        /* Text Decode Effect Styles */
-        .cyber-decode {
-            position: relative;
-            display: inline-block;
-        }
+        .cyber-decode { position: relative; display: inline-block; }
 
-        /* Magnetic Button Base */
         .btn-magnetic {
             position: relative;
             overflow: hidden;
@@ -143,11 +98,8 @@
             filter: blur(10px);
         }
 
-        .btn-magnetic:hover::after {
-            opacity: 1;
-        }
+        .btn-magnetic:hover::after { opacity: 1; }
 
-        /* Scroll Reveal */
         .cyber-reveal {
             opacity: 0;
             transform: translateY(20px);
@@ -159,48 +111,23 @@
             transform: translateY(0);
         }
 
-        /* Glitch Effect on Hover for Key Headers */
         .glitch-hover:hover {
             animation: glitch-anim 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
             color: var(--antique-bronze);
         }
 
         @keyframes glitch-anim {
-            0% {
-                transform: translate(0)
-            }
-
-            20% {
-                transform: translate(-2px, 2px)
-            }
-
-            40% {
-                transform: translate(-2px, -2px)
-            }
-
-            60% {
-                transform: translate(2px, 2px)
-            }
-
-            80% {
-                transform: translate(2px, -2px)
-            }
-
-            100% {
-                transform: translate(0)
-            }
+            0% { transform: translate(0) }
+            20% { transform: translate(-2px, 2px) }
+            40% { transform: translate(-2px, -2px) }
+            60% { transform: translate(2px, 2px) }
+            80% { transform: translate(2px, -2px) }
+            100% { transform: translate(0) }
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
-        }
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 
         body {
             font-family: 'Source Serif 4', Georgia, serif;
@@ -218,10 +145,11 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
-            opacity: 0.03;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.4'/%3E%3C/svg%3E");
+            opacity: 0.04;
             pointer-events: none;
             z-index: 50;
+            animation: noiseShift 0.5s steps(3) infinite;
         }
 
         .display-font {
@@ -278,7 +206,6 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            position: relative;
         }
 
         .logo-badge::before {
@@ -304,13 +231,10 @@
             font-size: 0.85rem;
             letter-spacing: 0.1em;
             text-transform: uppercase;
-            opacity: 1;
             transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--antique-bronze);
-        }
+        .nav-links a:hover { color: var(--antique-bronze); }
 
         /* Hero Section */
         .hero {
@@ -323,29 +247,15 @@
             padding: 8rem 2rem 1.5rem;
             margin-top: 40px;
             position: relative;
-            background:
-                radial-gradient(ellipse at 50% 0%, rgba(163, 139, 92, 0.15) 0%, transparent 50%),
-                var(--pitch-black);
+            background: radial-gradient(ellipse at 50% 0%, rgba(163, 139, 92, 0.15) 0%, transparent 50%), var(--pitch-black);
         }
 
         .hero video.main-title-video {
             max-width: 100%;
             width: 600px;
-            /* Adjust based on desired size */
             height: auto;
             margin-bottom: 1.5rem;
             display: block;
-        }
-
-        .hero h1 .main-title {
-            color: var(--cream);
-        }
-
-        .hero h1 .sub-title {
-            font-size: 0.35em;
-            letter-spacing: 0.3em;
-            color: var(--antique-bronze);
-            margin-top: 0.5rem;
         }
 
         .hero-tagline {
@@ -395,31 +305,12 @@
             color: var(--antique-bronze);
         }
 
-        /* Scroll indicator */
-        .scroll-indicator {
-            position: absolute;
-            bottom: 3rem;
-            left: 50%;
-            transform: translateX(-50%);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 0.5rem;
-            opacity: 0.5;
-            animation: bounce 2s infinite;
-        }
-
-        .scroll-indicator span {
-            font-size: 0.7rem;
-            letter-spacing: 0.2em;
+        .ref-code {
+            font-size: 0.75rem;
+            letter-spacing: 0.15em;
+            color: var(--gunmetal);
             text-transform: uppercase;
-        }
-
-        .scroll-indicator::after {
-            content: '';
-            width: 1px;
-            height: 40px;
-            background: linear-gradient(to bottom, var(--cream), transparent);
+            margin-top: 2rem;
         }
 
         /* Ethos Section */
@@ -431,15 +322,6 @@
         .ethos-content {
             max-width: 900px;
             margin: 0 auto;
-            position: relative;
-        }
-
-        .ref-code {
-            font-size: 0.75rem;
-            letter-spacing: 0.15em;
-            color: var(--gunmetal);
-            text-transform: uppercase;
-            margin-top: 2rem;
         }
 
         .ethos-quote {
@@ -456,6 +338,247 @@
             max-width: 800px;
             border-top: 1px solid #333;
             padding-top: 2rem;
+        }
+
+        /* ===================== */
+        /* FEATURED PRODUCTS     */
+        /* ===================== */
+        .featured-products {
+            padding: 5rem 2rem;
+            background: var(--concrete);
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        .featured-products .section-header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .featured-products .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .featured-products .section-header p {
+            color: var(--gunmetal);
+            font-style: italic;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 2rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .product-card {
+            background: var(--pitch-black);
+            border: 1px solid #333;
+            overflow: hidden;
+            transition: all 0.4s ease;
+            position: relative;
+        }
+
+        .product-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 3px;
+            background: var(--antique-bronze);
+            transform: scaleX(0);
+            transition: transform 0.4s ease;
+        }
+
+        .product-card:hover::before { transform: scaleX(1); }
+        .product-card:hover { border-color: #444; transform: translateY(-4px); }
+
+        .product-card-media {
+            width: 100%;
+            aspect-ratio: 4/3;
+            overflow: hidden;
+            background: #111;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .product-card-media video,
+        .product-card-media img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card-body {
+            padding: 1.5rem;
+        }
+
+        .product-card-body h3 {
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .product-card-body .product-desc {
+            color: var(--gunmetal);
+            font-size: 0.95rem;
+            margin-bottom: 1rem;
+            line-height: 1.6;
+        }
+
+        .product-card-body .product-price {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.2rem;
+            color: var(--kraft);
+            letter-spacing: 0.05em;
+            margin-bottom: 1rem;
+        }
+
+        .product-card-body .btn {
+            display: inline-block;
+            padding: 0.75rem 1.75rem;
+            font-size: 0.95rem;
+        }
+
+        /* ===================== */
+        /* SOCIAL PROOF          */
+        /* ===================== */
+        .social-proof {
+            padding: 5rem 2rem;
+            background: var(--pitch-black);
+            border-bottom: 1px solid #222;
+        }
+
+        .social-proof .section-header {
+            text-align: center;
+            margin-bottom: 1rem;
+        }
+
+        .social-proof .section-header h2 {
+            font-size: clamp(2rem, 5vw, 3rem);
+            margin-bottom: 0.5rem;
+        }
+
+        .proof-stats {
+            display: flex;
+            justify-content: center;
+            gap: 3rem;
+            margin-bottom: 3rem;
+        }
+
+        .proof-stat {
+            text-align: center;
+        }
+
+        .proof-stat-number {
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 2rem;
+            color: var(--kraft);
+            letter-spacing: 0.05em;
+        }
+
+        .proof-stat-label {
+            font-size: 0.75rem;
+            color: var(--gunmetal);
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 1.5rem;
+            max-width: 1100px;
+            margin: 0 auto 2rem;
+        }
+
+        .review-card {
+            background: var(--concrete);
+            border: 1px solid #333;
+            padding: 1.75rem;
+            position: relative;
+        }
+
+        .review-stars {
+            color: var(--antique-bronze);
+            font-size: 1rem;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .review-text {
+            color: var(--cream);
+            font-size: 0.95rem;
+            line-height: 1.7;
+            margin-bottom: 1.25rem;
+            opacity: 0.9;
+        }
+
+        .review-author {
+            display: flex;
+            align-items: center;
+            gap: 0.75rem;
+        }
+
+        .review-avatar {
+            width: 36px;
+            height: 36px;
+            background: var(--antique-bronze);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 0.8rem;
+            color: var(--pitch-black);
+            letter-spacing: 1px;
+        }
+
+        .review-meta {
+            font-size: 0.8rem;
+            color: var(--gunmetal);
+        }
+
+        .review-meta strong {
+            color: var(--cream);
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        .review-product-tag {
+            display: inline-block;
+            padding: 0.2rem 0.6rem;
+            background: rgba(163, 139, 92, 0.15);
+            border: 1px solid rgba(163, 139, 92, 0.3);
+            font-size: 0.7rem;
+            color: var(--kraft);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            margin-top: 0.75rem;
+        }
+
+        .all-reviews-link {
+            text-align: center;
+        }
+
+        .all-reviews-link a {
+            color: var(--antique-bronze);
+            text-decoration: none;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
+            letter-spacing: 0.1em;
+            border-bottom: 1px solid var(--antique-bronze);
+            padding-bottom: 2px;
+            transition: all 0.3s ease;
+        }
+
+        .all-reviews-link a:hover {
+            color: var(--kraft);
+            border-color: var(--kraft);
         }
 
         /* The Build Section */
@@ -496,52 +619,12 @@
             gap: 0.75rem;
         }
 
-        .feature-dash {
-            color: var(--gunmetal);
-        }
+        .feature-dash { color: var(--gunmetal); }
 
         .build-feature p {
             color: var(--gunmetal);
             font-size: 1rem;
             line-height: 1.8;
-        }
-
-        /* Features Section */
-        .features {
-            padding: 8rem 2rem;
-            background: var(--pitch-black);
-        }
-
-        .features-grid {
-            display: grid;
-            grid-template-columns: repeat(3, 1fr);
-            gap: 1px;
-            max-width: 1000px;
-            margin: 0 auto;
-            background: #222;
-        }
-
-        .feature {
-            background: var(--pitch-black);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .feature-icon {
-            font-size: 2.5rem;
-            margin-bottom: 1rem;
-            display: block;
-        }
-
-        .feature h3 {
-            font-size: 1.2rem;
-            margin-bottom: 0.5rem;
-            color: var(--kraft);
-        }
-
-        .feature p {
-            font-size: 0.9rem;
-            color: var(--gunmetal);
         }
 
         /* Manifesto */
@@ -585,6 +668,76 @@
             color: var(--gunmetal);
         }
 
+        /* ===================== */
+        /* NEWSLETTER (Mailchimp)*/
+        /* ===================== */
+        .newsletter-section {
+            padding: 5rem 2rem;
+            background: var(--concrete);
+            border-top: 1px solid #222;
+            text-align: center;
+        }
+
+        .newsletter-section h2 {
+            font-size: 2rem;
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .newsletter-section .newsletter-sub {
+            color: var(--gunmetal);
+            margin-bottom: 2rem;
+            font-size: 1rem;
+        }
+
+        .mc-form {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            max-width: 500px;
+            margin: 0 auto 1rem;
+        }
+
+        .mc-form input[type="email"] {
+            flex: 1;
+            padding: 1rem 1.5rem;
+            background: var(--pitch-black);
+            border: 1px solid #444;
+            color: var(--cream);
+            font-family: 'Source Serif 4', serif;
+            font-size: 1rem;
+        }
+
+        .mc-form input[type="email"]::placeholder { color: var(--gunmetal); }
+        .mc-form input[type="email"]:focus { outline: none; border-color: var(--antique-bronze); }
+
+        .mc-form button {
+            padding: 1rem 2rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1rem;
+            letter-spacing: 0.1em;
+            text-transform: uppercase;
+            background: var(--antique-bronze);
+            color: var(--pitch-black);
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .mc-form button:hover { background: var(--kraft); }
+
+        .mc-status {
+            font-size: 0.85rem;
+            color: var(--kraft);
+            min-height: 1.5em;
+        }
+
+        .newsletter-note {
+            font-size: 0.75rem;
+            color: var(--gunmetal);
+            margin-top: 0.5rem;
+        }
+
         /* Footer */
         footer {
             padding: 4rem 2rem 2rem;
@@ -614,9 +767,7 @@
             color: var(--kraft);
         }
 
-        .footer-section ul {
-            list-style: none;
-        }
+        .footer-section ul { list-style: none; }
 
         .footer-section a {
             color: var(--gunmetal);
@@ -627,9 +778,7 @@
             padding: 0.25rem 0;
         }
 
-        .footer-section a:hover {
-            color: var(--cream);
-        }
+        .footer-section a:hover { color: var(--cream); }
 
         .footer-bottom {
             max-width: 1200px;
@@ -643,38 +792,16 @@
             color: var(--gunmetal);
         }
 
-
-
-        /* --- Existing Animations --- */
+        /* Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes bounce {
-
-            0%,
-            20%,
-            50%,
-            80%,
-            100% {
-                transform: translateX(-50%) translateY(0);
-            }
-
-            40% {
-                transform: translateX(-50%) translateY(-10px);
-            }
-
-            60% {
-                transform: translateX(-50%) translateY(-5px);
-            }
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-10px); }
+            60% { transform: translateX(-50%) translateY(-5px); }
         }
 
         /* Hamburger Menu */
@@ -693,27 +820,15 @@
             transition: all 0.3s ease;
         }
 
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
+            nav { padding: 1rem 1.5rem; }
 
-            .hamburger {
-                display: flex;
-            }
+            .hamburger { display: flex; }
 
             .nav-links {
                 position: fixed;
@@ -730,42 +845,24 @@
                 border-left: 1px solid #333;
             }
 
-            .nav-links.active {
-                right: 0;
-            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.1rem; }
 
-            .nav-links a {
-                font-size: 1.1rem;
-            }
+            .build-features { grid-template-columns: 1fr; gap: 3rem; }
+            .product-grid { grid-template-columns: 1fr; }
+            .reviews-grid { grid-template-columns: 1fr; }
+            .proof-stats { gap: 1.5rem; }
 
-            .build-features {
-                grid-template-columns: 1fr;
-                gap: 3rem;
-            }
+            .footer-content { grid-template-columns: 1fr 1fr; }
+            .footer-bottom { flex-direction: column; gap: 1rem; text-align: center; }
 
-            .features-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr 1fr;
-            }
-
-            .footer-bottom {
-                flex-direction: column;
-                gap: 1rem;
-                text-align: center;
-            }
+            .mc-form { flex-direction: column; }
         }
 
         @media (max-width: 480px) {
-            .hero-cta {
-                flex-direction: column;
-            }
-
-            .footer-content {
-                grid-template-columns: 1fr;
-            }
+            .hero-cta { flex-direction: column; }
+            .footer-content { grid-template-columns: 1fr; }
+            .proof-stats { flex-direction: column; gap: 1rem; }
         }
     </style>
 </head>
@@ -783,14 +880,12 @@
             <span></span>
         </div>
         <ul class="nav-links">
-            <li><a href="#home">Home</a></li>
-            <li><a href="the-build.html">The Build</a></li>
-            <li><a href="ethos.html">Ethos</a></li>
+            <li><a href="index.html">Home</a></li>
             <li><a href="about.html">About</a></li>
             <li><a href="gallery.html">The Workshop</a></li>
-            <li><a href="connect.html">Connect</a></li>
-            <li><a href="https://app.urbanoutlawsupply.com/premium-planner">Planner</a></li>
             <li><a href="shop.html">Store</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="dispatches.html">Dispatches</a></li>
         </ul>
     </nav>
 
@@ -799,30 +894,143 @@
         <span class="drop-banner-text display-font">🔥 Next Drop: Friday 6PM GMT • Limited Runs • Fresh Supplies 🔥</span>
     </div>
 
+    <!-- ==================== -->
+    <!-- HERO                 -->
+    <!-- ==================== -->
     <section class="hero" id="home">
         <video class="main-title-video" autoplay loop muted playsinline>
             <source src="images/uos-title-video.mp4" type="video/mp4">
             Urban Outlaw Supply Co.
         </video>
-        <p class="hero-tagline cyber-reveal" style="transition-delay: 0.3s">Forged for the independent spirit. Built to
-            last.</p>
+        <p class="hero-tagline cyber-reveal" style="transition-delay: 0.3s">Forged for the independent spirit. Built to last.</p>
         <div class="hero-cta">
             <a href="shop.html" class="btn btn-primary btn-magnetic">Shop Now</a>
-            <a href="https://app.urbanoutlawsupply.com/premium-planner" class="btn btn-outline btn-magnetic">Survival Planner</a>
             <a href="about.html" class="btn btn-outline btn-magnetic">Our Story</a>
         </div>
         <span class="ref-code">REF: RAW-KRAFT-01</span>
     </section>
 
+    <!-- ==================== -->
+    <!-- ETHOS QUOTE          -->
+    <!-- ==================== -->
     <section class="ethos" id="ethos">
         <div class="ethos-content">
             <p class="ethos-quote">"These notebooks aren't made to look pristine. They're not meant to stay pristine."</p>
-            <p class="ethos-text">Built for the streets, workshops, and your EDC where ideas get dirty and work gets
-                done. These are custom lasered Kraft notebooks that live in your pocket, survives your day, and earns
-                its scars.</p>
+            <p class="ethos-text">Built for the streets, workshops, and your EDC where ideas get dirty and work gets done. These are custom lasered Kraft notebooks that live in your pocket, survive your day, and earn their scars.</p>
         </div>
     </section>
 
+    <!-- ==================== -->
+    <!-- FEATURED PRODUCTS    -->
+    <!-- ==================== -->
+    <section class="featured-products cyber-reveal">
+        <div class="section-header">
+            <h2 class="display-font cyber-decode">Featured Gear</h2>
+            <p>Limited runs. Honest craft.</p>
+        </div>
+        <div class="product-grid">
+            <div class="product-card">
+                <div class="product-card-media">
+                    <video autoplay loop muted playsinline>
+                        <source src="images/products/We_al_have_a_story_to_tell_unboxing.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-card-body">
+                    <h3 class="display-font">Custom Notebooks</h3>
+                    <p class="product-desc">Laser-etched raw kraft journals. Torn-edge bands. Built to earn their scars.</p>
+                    <div class="product-price">From £4.99</div>
+                    <a href="shop.html" class="btn btn-primary display-font">Shop Notebooks</a>
+                </div>
+            </div>
+            <div class="product-card">
+                <div class="product-card-media">
+                    <video autoplay loop muted playsinline>
+                        <source src="images/products/Art-Prints.mp4" type="video/mp4">
+                    </video>
+                </div>
+                <div class="product-card-body">
+                    <h3 class="display-font">Art Prints</h3>
+                    <p class="product-desc">42 years of realism. High-res digital downloads, A6 to A3. Print-ready.</p>
+                    <div class="product-price">From £2.00</div>
+                    <a href="art-prints.html" class="btn btn-primary display-font">Shop Prints</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== -->
+    <!-- SOCIAL PROOF         -->
+    <!-- ==================== -->
+    <section class="social-proof cyber-reveal">
+        <div class="section-header">
+            <h2 class="display-font">From the Field</h2>
+        </div>
+
+        <div class="proof-stats">
+            <div class="proof-stat">
+                <div class="proof-stat-number display-font">4.7 ★</div>
+                <div class="proof-stat-label">Average Rating</div>
+            </div>
+            <div class="proof-stat">
+                <div class="proof-stat-number display-font">100%</div>
+                <div class="proof-stat-label">Would Recommend</div>
+            </div>
+            <div class="proof-stat">
+                <div class="proof-stat-number display-font">3</div>
+                <div class="proof-stat-label">Continents Sold</div>
+            </div>
+        </div>
+
+        <div class="reviews-grid">
+            <!-- Review 1 -->
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Gorgeous print – the resolution is excellent and it came out perfectly at A3. Instant download made it so convenient."</p>
+                <div class="review-author">
+                    <div class="review-avatar">MR</div>
+                    <div class="review-meta">
+                        <strong>Megan R.</strong>
+                        Bristol, UK
+                    </div>
+                </div>
+                <span class="review-product-tag">A3 Art Print</span>
+            </div>
+            <!-- Review 2 -->
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"Small but solid. Cover's got that worn-in feel straight out the pack. Doesn't feel like some overpriced hipster bullshit."</p>
+                <div class="review-author">
+                    <div class="review-avatar">JO</div>
+                    <div class="review-meta">
+                        <strong>Jay O.</strong>
+                        Manchester, UK
+                    </div>
+                </div>
+                <span class="review-product-tag">A6 Notebook</span>
+            </div>
+            <!-- Review 3 -->
+            <div class="review-card">
+                <div class="review-stars">★★★★★</div>
+                <p class="review-text">"I was unsure about buying art as a download, but the quality exceeded expectations. Crisp lines, true to the photos, no pixelation."</p>
+                <div class="review-author">
+                    <div class="review-avatar">JL</div>
+                    <div class="review-meta">
+                        <strong>J.L.</strong>
+                        Leeds, UK
+                    </div>
+                </div>
+                <span class="review-product-tag">A3 Art Print</span>
+            </div>
+        </div>
+
+        <div class="all-reviews-link">
+            <a href="reviews.html" class="display-font">Read All Reviews →</a>
+        </div>
+    </section>
+
+    <!-- ==================== -->
+    <!-- THE BUILD            -->
+    <!-- ==================== -->
     <section class="products cyber-reveal" id="build-section">
         <div class="section-header">
             <h2 class="display-font cyber-decode">The Build</h2>
@@ -830,19 +1038,18 @@
         <div class="build-features">
             <div class="build-feature cyber-reveal" style="transition-delay: 0.2s">
                 <h3 class="display-font glitch-hover"><span class="feature-dash">—</span> Built Rough</h3>
-                <p>Laser-etched raw kraft cover with that industrial aesthetic – no glossy finish, no fancy coating.
-                    Just honest materials that show their character from day one. The torn-edge black band isn't
-                    decoration; it's attitude. The UOS badge isn't printed on – it's burned in.</p>
+                <p>Laser-etched raw kraft cover with that industrial aesthetic – no glossy finish, no fancy coating. Just honest materials that show their character from day one. The torn-edge black band isn't decoration; it's attitude. The UOS badge isn't printed on – it's burned in.</p>
             </div>
             <div class="build-feature cyber-reveal" style="transition-delay: 0.4s">
                 <h3 class="display-font glitch-hover"><span class="feature-dash">—</span> Made For Makers</h3>
-                <p>Inside you'll find space for the chaos: Creator Identity fields for when you need to remember whose
-                    notebook this is after it's been through hell. Objectives section for mapping out the next move.
-                    Lined pages that don't care if you're sketching with pencil dust or taking notes in the rain.</p>
+                <p>Inside you'll find space for the chaos: Creator Identity fields for when you need to remember whose notebook this is after it's been through hell. Objectives section for mapping out the next move. Lined pages that don't care if you're sketching with pencil dust or taking notes in the rain.</p>
             </div>
         </div>
     </section>
 
+    <!-- ==================== -->
+    <!-- MANIFESTO            -->
+    <!-- ==================== -->
     <section class="manifesto" id="about">
         <div class="manifesto-content">
             <h2 class="display-font">
@@ -854,6 +1061,50 @@
         </div>
     </section>
 
+    <!-- ==================== -->
+    <!-- NEWSLETTER           -->
+    <!-- ==================== -->
+    <section class="newsletter-section">
+        <h2 class="display-font">Join the Drop List</h2>
+        <p class="newsletter-sub">Limited runs. Custom drops. First access. No spam.</p>
+
+        <!-- 
+            ============================================
+            MAILCHIMP SETUP INSTRUCTIONS:
+            
+            1. Log in to Mailchimp (free account at mailchimp.com)
+            2. Create an Audience (your mailing list)
+            3. Go to Audience → Signup Forms → Embedded Forms
+            4. Copy your form's ACTION URL — it looks like:
+               https://yourname.us21.list-manage.com/subscribe/post?u=XXXXX&id=YYYYY
+            5. Replace the action URL below with YOUR Mailchimp URL
+            6. The hidden input with name="b_9d3fc47fd4cb1bd7d2101f8e2_2024e6b273" is your bot-trap field — 
+               get the exact name from your Mailchimp embed code
+            ============================================
+        -->
+        <form 
+            action="https://urbanoutlawsupply.us10.list-manage.com/subscribe/post?u=9d3fc47fd4cb1bd7d2101f8e2&amp;id=2024e6b273&amp;f_id=001af2e0f0" 
+            method="post" 
+            class="mc-form" 
+            id="mc-embedded-subscribe-form" 
+            name="mc-embedded-subscribe-form" 
+            target="_blank" 
+            novalidate
+        >
+            <input type="email" name="EMAIL" placeholder="Your email address" required>
+            <!-- Bot protection — do not remove, do not fill -->
+            <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                <input type="text" name="b_9d3fc47fd4cb1bd7d2101f8e2_2024e6b273" tabindex="-1" value="">
+            </div>
+            <button type="submit" class="display-font">Notify Me</button>
+        </form>
+        <p class="mc-status" id="mc-status"></p>
+        <p class="newsletter-note">Unsubscribe anytime. We respect your inbox.</p>
+    </section>
+
+    <!-- ==================== -->
+    <!-- FOOTER               -->
+    <!-- ==================== -->
     <footer id="contact">
         <div class="footer-content">
             <div class="footer-brand">
@@ -863,29 +1114,26 @@
             <div class="footer-section">
                 <h4 class="display-font">Shop</h4>
                 <ul>
-                    <li><a href="#">Journals</a></li>
-                    <li><a href="#">Writing Tools</a></li>
-                    <li><a href="#">Field Kits</a></li>
-                    <li><a href="#">Accessories</a></li>
+                    <li><a href="shop.html">Notebooks</a></li>
+                    <li><a href="art-prints.html">Art Prints</a></li>
+                    <li><a href="shop.html">Field Kits</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4 class="display-font">Company</h4>
                 <ul>
                     <li><a href="about.html">Our Story</a></li>
-                    <li><a href="the-build.html">Journal</a></li>
-                    <li><a href="shop.html">Stockists</a></li>
-                    <li><a href="connect.html">Contact</a></li>
+                    <li><a href="dispatches.html">Dispatches</a></li>
+                    <li><a href="reviews.html">Reviews</a></li>
+                    <li><a href="gallery.html">The Workshop</a></li>
                 </ul>
             </div>
             <div class="footer-section">
                 <h4 class="display-font">Connect</h4>
                 <ul>
-                    <li><a href="https://www.facebook.com/urbanoutlawsupplyco/" target="_blank">Facebook</a></li>
-                    <li><a href="https://www.instagram.com/urbanoutlawsupply/" target="_blank">Instagram</a></li>
+                    <li><a href="https://www.facebook.com/share/182XAig28Q/" target="_blank">Facebook</a></li>
+                    <li><a href="https://www.instagram.com/urbanoutlawsupply" target="_blank">Instagram</a></li>
                     <li><a href="https://x.com/uosupplyco" target="_blank">X</a></li>
-                    <li><a href="dispatches.html">Dispatches</a></li>
-                    <li><a href="#" onclick="openNewsletter(); return false;">Newsletter</a></li>
                 </ul>
             </div>
         </div>
@@ -894,125 +1142,73 @@
             <span>Portsmouth, UK</span>
         </div>
     </footer>
-    <!-- Newsletter Modal -->
+
+    <!-- Newsletter Modal (for footer link) -->
     <div class="newsletter-modal" id="newsletter-modal">
         <div class="newsletter-modal-content">
-            <button class="modal-close"
-                onclick="document.getElementById('newsletter-modal').classList.remove('active')">×</button>
+            <button class="modal-close" onclick="document.getElementById('newsletter-modal').classList.remove('active')">×</button>
             <h3 class="display-font">Join the Drop List</h3>
             <p>Limited runs. Custom drops. Don't miss the launch.</p>
-            <form class="modal-form">
-                <input type="email" class="modal-input" placeholder="Your email address" required>
-                <button type="submit" class="btn btn-primary display-font">Notify Me of Drops</button>
+            <form 
+                action="https://urbanoutlawsupply.us10.list-manage.com/subscribe/post?u=9d3fc47fd4cb1bd7d2101f8e2&amp;id=2024e6b273&amp;f_id=001af2e0f0" 
+                method="post" 
+                target="_blank"
+                novalidate
+            >
+                <input type="email" name="EMAIL" class="modal-input" placeholder="Your email address" required style="width:100%;padding:1rem;background:var(--pitch-black);border:1px solid #444;color:var(--cream);font-family:'Source Serif 4',serif;font-size:1rem;text-align:center;margin-bottom:1rem;">
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                    <input type="text" name="b_9d3fc47fd4cb1bd7d2101f8e2_2024e6b273" tabindex="-1" value="">
+                </div>
+                <button type="submit" class="btn btn-primary display-font" style="width:100%;">Notify Me of Drops</button>
             </form>
         </div>
     </div>
 
     <style>
         .newsletter-modal {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.85);
-            z-index: 200;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            opacity: 0;
-            visibility: hidden;
-            transition: all 0.3s ease;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.85); z-index: 200;
+            display: flex; justify-content: center; align-items: center;
+            opacity: 0; visibility: hidden; transition: all 0.3s ease;
         }
-
-        .newsletter-modal.active {
-            opacity: 1;
-            visibility: visible;
-        }
-
+        .newsletter-modal.active { opacity: 1; visibility: visible; }
         .newsletter-modal-content {
-            background: #1a1a1a;
-            border: 1px solid #333;
-            padding: 3rem;
-            max-width: 450px;
-            width: 90%;
-            text-align: center;
-            position: relative;
+            background: #1a1a1a; border: 1px solid #333; padding: 3rem;
+            max-width: 450px; width: 90%; text-align: center; position: relative;
         }
-
-        .newsletter-modal-content h3 {
-            font-size: 1.8rem;
-            color: var(--cream);
-            margin-bottom: 0.75rem;
-        }
-
-        .newsletter-modal-content p {
-            color: var(--gunmetal);
-            margin-bottom: 1.5rem;
-            font-size: 0.95rem;
-        }
-
+        .newsletter-modal-content h3 { font-size: 1.8rem; color: var(--cream); margin-bottom: 0.75rem; }
+        .newsletter-modal-content p { color: var(--gunmetal); margin-bottom: 1.5rem; font-size: 0.95rem; }
         .modal-close {
-            position: absolute;
-            top: 1rem;
-            right: 1rem;
-            background: none;
-            border: none;
-            color: var(--gunmetal);
-            font-size: 1.5rem;
-            cursor: pointer;
-            transition: color 0.3s ease;
+            position: absolute; top: 1rem; right: 1rem; background: none; border: none;
+            color: var(--gunmetal); font-size: 1.5rem; cursor: pointer; transition: color 0.3s ease;
         }
-
-        .modal-close:hover {
-            color: var(--cream);
-        }
-
-        .modal-form {
-            display: flex;
-            flex-direction: column;
-            gap: 1rem;
-        }
-
-        .modal-input {
-            padding: 1rem;
-            background: var(--pitch-black);
-            border: 1px solid #444;
-            color: var(--cream);
-            font-family: 'Source Serif 4', serif;
-            font-size: 1rem;
-            text-align: center;
-        }
-
-        .modal-input::placeholder {
-            color: var(--gunmetal);
-        }
-
-        .modal-input:focus {
-            outline: none;
-            border-color: var(--antique-bronze);
-        }
+        .modal-close:hover { color: var(--cream); }
     </style>
 
     <script>
         function openNewsletter() {
             document.getElementById('newsletter-modal').classList.add('active');
         }
-        // Close modal when clicking outside
         document.getElementById('newsletter-modal').addEventListener('click', function (e) {
-            if (e.target === this) {
-                this.classList.remove('active');
-            }
+            if (e.target === this) this.classList.remove('active');
         });
-        // Close modal with Escape key
         document.addEventListener('keydown', function (e) {
-            if (e.key === 'Escape') {
-                document.getElementById('newsletter-modal').classList.remove('active');
-            }
+            if (e.key === 'Escape') document.getElementById('newsletter-modal').classList.remove('active');
         });
+
+        // Scroll reveal for cyber-reveal elements
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.cyber-reveal').forEach(el => observer.observe(el));
     </script>
-    <div class="cyber-noise-overlay"
-        style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></div>
+
+    <div class="cyber-noise-overlay" style="position:fixed;top:0;left:0;width:100%;height:100%;pointer-events:none;z-index:9999;"></div>
     <script src="js/cyber-grit.js"></script>
 </body>
 

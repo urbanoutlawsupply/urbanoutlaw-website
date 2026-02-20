@@ -482,8 +482,18 @@
         <div class="newsletter-cta">
             <h3 class="display-font">Get Dispatches by Email</h3>
             <p>Updates when there's something worth sharing. No spam. Unsubscribe anytime.</p>
-            <form class="newsletter-form">
-                <input type="email" class="newsletter-input" placeholder="Your email address" required>
+            <!-- Mailchimp: Replace action URL with your Mailchimp form URL -->
+            <form 
+                action="https://urbanoutlawsupply.us10.list-manage.com/subscribe/post?u=9d3fc47fd4cb1bd7d2101f8e2&amp;id=2024e6b273&amp;f_id=001af2e0f0" 
+                method="post" 
+                class="newsletter-form"
+                target="_blank" 
+                novalidate
+            >
+                <input type="email" name="EMAIL" class="newsletter-input" placeholder="Your email address" required>
+                <div style="position: absolute; left: -5000px;" aria-hidden="true">
+                    <input type="text" name="b_9d3fc47fd4cb1bd7d2101f8e2_2024e6b273" tabindex="-1" value="">
+                </div>
                 <button type="submit" class="btn btn-primary display-font">Subscribe</button>
             </form>
         </div>

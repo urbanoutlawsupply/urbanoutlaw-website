@@ -15,18 +15,12 @@
             --kraft: #c4a574;
             --cream: #f5f0e8;
             --rust: #8b4513;
+            --concrete: #1a1a1a;
         }
 
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
 
-        html {
-            scroll-behavior: smooth;
-            scroll-padding-top: 100px;
-        }
+        html { scroll-behavior: smooth; scroll-padding-top: 100px; }
 
         body {
             font-family: 'Source Serif 4', Georgia, serif;
@@ -41,14 +35,11 @@
         body::before {
             content: '';
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0; width: 100%; height: 100%;
             background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
             opacity: 0.05;
             pointer-events: none;
-            z-index: 1;
+            z-index: 50;
         }
 
         .display-font {
@@ -59,259 +50,443 @@
 
         /* Navigation */
         nav {
-            position: fixed;
-            top: 0;
-            left: 0;
-            right: 0;
-            z-index: 100;
+            position: fixed; top: 0; left: 0; right: 0; z-index: 100;
             padding: 1.5rem 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
+            display: flex; justify-content: space-between; align-items: center;
             background: rgba(10,10,10,0.95);
             border-bottom: 1px solid #222;
             backdrop-filter: blur(10px);
         }
 
-        .logo {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            text-decoration: none;
-        }
+        .logo { display: flex; align-items: center; gap: 0.75rem; text-decoration: none; }
 
         .logo-badge {
-            width: 48px;
-            height: 48px;
-            background: var(--antique-bronze);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            position: relative;
+            width: 48px; height: 48px; background: var(--antique-bronze);
+            border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
 
-        .logo-badge::before {
-            content: '★';
-            font-size: 1.5rem;
-            color: var(--pitch-black);
-        }
+        .logo-badge::before { content: '★'; font-size: 1.5rem; color: var(--pitch-black); }
 
-        .logo-text {
-            font-size: 1.1rem;
-            letter-spacing: 0.15em;
-            color: var(--cream);
-        }
+        .logo-text { font-size: 1.1rem; letter-spacing: 0.15em; color: var(--cream); }
 
-        .nav-links {
-            display: flex;
-            gap: 2.5rem;
-            list-style: none;
-        }
+        .nav-links { display: flex; gap: 2.5rem; list-style: none; }
 
         .nav-links a {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 0.1em;
-            text-transform: uppercase;
-            opacity: 1;
-            transition: color 0.3s ease;
+            color: var(--cream); text-decoration: none; font-size: 0.85rem;
+            letter-spacing: 0.1em; text-transform: uppercase; transition: color 0.3s ease;
         }
 
-        .nav-links a:hover {
-            color: var(--antique-bronze);
-        }
+        .nav-links a:hover { color: var(--antique-bronze); }
+        .nav-links a.active { color: var(--antique-bronze); }
 
-        .nav-links a.active {
-            color: var(--antique-bronze);
-        }
-
-        /* Hero Section */
+        /* ==================== */
+        /* HERO — The Story     */
+        /* ==================== */
         .about-hero {
-            min-height: 60vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 10rem 2rem 4rem;
+            min-height: 70vh;
+            display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 8rem 2rem 4rem;
+            background:
+                linear-gradient(to bottom, rgba(10,10,10,0.85) 0%, rgba(10,10,10,0.7) 50%, rgba(10,10,10,0.95) 100%),
+                url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Crect width='100' height='100' fill='%23b8956e'/%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3CfeColorMatrix type='saturate' values='0'/%3E%3C/filter%3E%3Crect width='100' height='100' filter='url(%23noise)' opacity='0.4'/%3E%3C/svg%3E");
+            background-size: cover;
             position: relative;
-            background: 
-                linear-gradient(to bottom, rgba(10, 10, 10, 0.9) 0%, rgba(10, 10, 10, 0.95) 100%),
-                linear-gradient(135deg, #1a1a1a 0%, #0a0a0a 100%);
         }
 
-        .about-hero::after {
+        .about-hero::before {
             content: '';
-            position: absolute;
-            bottom: 0;
-            left: 10%;
-            right: 10%;
-            height: 1px;
-            background: linear-gradient(90deg, transparent, var(--antique-bronze), transparent);
+            position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 400 400' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+            opacity: 0.15;
+            pointer-events: none; z-index: 1;
+        }
+
+        .about-hero-content {
+            position: relative; z-index: 10;
+            max-width: 900px;
         }
 
         .about-label {
-            font-size: 0.9rem;
-            letter-spacing: 0.3em;
-            color: var(--gunmetal);
-            margin-bottom: 1.5rem;
-            display: block;
+            font-size: 1rem; letter-spacing: 0.3em; color: var(--gunmetal);
+            margin-bottom: 1.5rem; display: block;
         }
 
         .about-title {
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            line-height: 1;
-            color: var(--cream);
-            margin-bottom: 1rem;
+            font-size: clamp(3rem, 10vw, 7rem);
+            line-height: 0.95; margin-bottom: 1.5rem;
+            color: var(--kraft);
+            text-shadow: 3px 3px 0 rgba(0,0,0,0.5);
         }
 
-        .about-title .highlight {
-            color: var(--kraft);
+        .about-title .accent {
+            color: var(--cream); display: block;
         }
 
         .about-subtitle {
-            font-size: 1.2rem;
-            color: var(--gunmetal);
+            font-size: 1.2rem; color: var(--cream); opacity: 0.7;
             font-style: italic;
         }
 
-        /* Story Section */
+        /* ==================== */
+        /* STORY SECTIONS       */
+        /* ==================== */
         .story {
             padding: 5rem 2rem;
             background: var(--pitch-black);
         }
 
         .story-container {
-            max-width: 800px;
+            max-width: 750px;
             margin: 0 auto;
         }
 
         .story-section {
-            margin-bottom: 4rem;
-            position: relative;
+            margin-bottom: 3.5rem;
             padding-left: 2rem;
-            border-left: 2px solid #222;
+            border-left: 3px solid #222;
         }
 
-        .story-section:hover {
-            border-left-color: var(--antique-bronze);
-        }
-
-        .story-section::before {
-            content: '';
-            position: absolute;
-            left: -6px;
-            top: 0;
-            width: 10px;
-            height: 10px;
-            background: var(--antique-bronze);
-            border-radius: 50%;
-        }
+        .story-section:last-child { margin-bottom: 0; }
 
         .story-heading {
             font-size: 1.8rem;
             color: var(--kraft);
-            margin-bottom: 1.5rem;
+            margin-bottom: 1rem;
         }
 
         .story-text {
-            font-size: 1.1rem;
             color: var(--cream);
-            line-height: 1.9;
-            margin-bottom: 1.5rem;
+            opacity: 0.85;
+            font-size: 1.05rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
         }
 
-        .story-text strong {
-            color: var(--kraft);
-        }
+        .story-text:last-child { margin-bottom: 0; }
+
+        .story-text strong { color: var(--kraft); font-weight: 600; }
 
         .story-text .highlight {
             color: var(--antique-bronze);
             font-style: italic;
         }
 
-        /* Stats/Facts */
+        /* ==================== */
+        /* FACTS BAR            */
+        /* ==================== */
         .facts {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
             gap: 2rem;
+            max-width: 800px;
+            margin: 0 auto;
             padding: 4rem 2rem;
-            background: #0d0d0d;
-            border-top: 1px solid #1a1a1a;
-            border-bottom: 1px solid #1a1a1a;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
         }
 
-        .fact {
-            text-align: center;
-            padding: 1.5rem;
-        }
+        .fact { text-align: center; }
 
         .fact-number {
-            font-size: 3rem;
-            color: var(--antique-bronze);
-            margin-bottom: 0.5rem;
+            font-size: 3.5rem;
+            color: var(--kraft);
+            margin-bottom: 0.25rem;
         }
 
         .fact-label {
-            font-size: 0.85rem;
+            font-size: 0.8rem;
             letter-spacing: 0.15em;
             color: var(--gunmetal);
         }
 
-        /* Quote Section */
-        .quote-section {
-            padding: 5rem 2rem;
+        /* ==================== */
+        /* ETHOS SECTION        */
+        /* ==================== */
+        .ethos-section {
+            padding: 6rem 2rem;
+            background: var(--concrete);
             text-align: center;
+        }
+
+        .ethos-inner {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .ethos-label {
+            font-size: 1rem; letter-spacing: 0.3em;
+            color: var(--gunmetal); margin-bottom: 2rem;
+        }
+
+        .ethos-title {
+            font-size: clamp(2.5rem, 8vw, 5rem);
+            line-height: 1;
+            color: var(--kraft);
+            margin-bottom: 2rem;
+        }
+
+        .ethos-title .accent { color: var(--cream); display: block; }
+
+        .ethos-divider {
+            width: 80px; height: 4px; background: var(--antique-bronze);
+            margin: 0 auto 2rem; position: relative;
+        }
+
+        .ethos-divider::before, .ethos-divider::after {
+            content: ''; position: absolute; top: 50%; transform: translateY(-50%);
+            width: 8px; height: 8px; background: var(--antique-bronze);
+        }
+
+        .ethos-divider::before { left: -20px; }
+        .ethos-divider::after { right: -20px; }
+
+        .ethos-statement {
+            font-size: clamp(1.05rem, 2vw, 1.25rem);
+            line-height: 1.8;
+            color: var(--cream);
+            max-width: 700px;
+            margin: 0 auto 2rem;
+            opacity: 0.9;
+        }
+
+        .ethos-statement strong { color: var(--kraft); font-weight: 600; }
+
+        .stamp {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border: 3px solid var(--antique-bronze);
+            font-size: 0.9rem;
+            letter-spacing: 0.2em;
+            color: var(--antique-bronze);
+            transform: rotate(-3deg);
+            margin-top: 1rem;
+        }
+
+        .ethos-features {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 2rem;
+            margin-top: 4rem;
+            padding-top: 3rem;
+            border-top: 1px solid rgba(163, 139, 92, 0.3);
+        }
+
+        .ethos-feature { text-align: center; padding: 1.5rem; }
+
+        .ethos-feature h3 { font-size: 1.2rem; color: var(--kraft); margin-bottom: 0.75rem; }
+        .ethos-feature p { font-size: 0.9rem; color: var(--gunmetal); line-height: 1.6; }
+
+        /* ==================== */
+        /* THE BUILD (product)  */
+        /* ==================== */
+        .build-section {
+            padding: 6rem 2rem;
             background: var(--pitch-black);
         }
 
-        .big-quote {
-            font-size: clamp(1.5rem, 4vw, 2.5rem);
-            color: var(--kraft);
-            max-width: 800px;
-            margin: 0 auto 2rem;
+        .build-inner {
+            max-width: 1100px;
+            margin: 0 auto;
+        }
+
+        .build-header {
+            text-align: center;
+            margin-bottom: 4rem;
+        }
+
+        .build-header h2 {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--cream);
+            margin-bottom: 0.5rem;
+        }
+
+        .build-header p {
+            font-size: 1.1rem;
+            color: var(--gunmetal);
+            font-style: italic;
+        }
+
+        .build-quote {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
             line-height: 1.5;
+            color: var(--kraft);
+            font-weight: 600;
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 4rem;
+            padding: 2rem 0;
+            border-top: 1px solid #333;
+            border-bottom: 1px solid #333;
+        }
+
+        .build-quote strong { color: var(--cream); }
+
+        .features-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 3rem;
+            margin-bottom: 4rem;
+        }
+
+        .feature-block h3 {
+            font-size: 1.3rem;
+            color: var(--kraft);
+            margin-bottom: 1rem;
+        }
+
+        .feature-block p {
+            color: var(--gunmetal);
+            font-size: 1rem;
+            line-height: 1.8;
+        }
+
+        .feature-block p strong { color: var(--kraft); }
+
+        /* Specs */
+        .specs-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+            align-items: start;
+            margin-top: 4rem;
+            padding-top: 4rem;
+            border-top: 1px solid #222;
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-list li {
+            display: flex;
+            justify-content: space-between;
+            padding: 1rem 0;
+            border-bottom: 1px solid #222;
+        }
+
+        .spec-label {
+            font-size: 0.85rem;
+            letter-spacing: 0.1em;
+            color: var(--kraft);
+        }
+
+        .spec-value {
+            color: var(--gunmetal);
+            font-size: 0.95rem;
+        }
+
+        .inside-content h3 {
+            font-size: 1.5rem;
+            color: var(--cream);
+            margin-bottom: 1.5rem;
+        }
+
+        .inside-content p {
+            color: var(--gunmetal);
+            font-size: 1rem;
+            line-height: 1.8;
+            margin-bottom: 1rem;
+        }
+
+        .inside-content p strong { color: var(--kraft); }
+
+        /* Statement */
+        .statement-section {
+            padding: 8rem 2rem;
+            text-align: center;
+            background: linear-gradient(to bottom, var(--pitch-black), var(--concrete));
+        }
+
+        .statement-text {
+            font-size: clamp(2rem, 6vw, 4rem);
+            line-height: 1.2;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .statement-text .line1 { color: var(--gunmetal); display: block; }
+        .statement-text .line2 { color: var(--kraft); display: block; }
+        .statement-text .line3 { color: var(--cream); display: block; }
+
+        /* Quote Section */
+        .quote-section {
+            padding: 5rem 2rem;
+            background: var(--concrete);
+            text-align: center;
+        }
+
+        .big-quote {
+            font-size: clamp(1.3rem, 3vw, 1.8rem);
+            line-height: 1.5;
+            color: var(--cream);
+            max-width: 700px;
+            margin: 0 auto 1.5rem;
             font-style: italic;
         }
 
         .quote-attribution {
-            color: var(--gunmetal);
             font-size: 0.9rem;
-            letter-spacing: 0.1em;
+            letter-spacing: 0.15em;
+            color: var(--gunmetal);
         }
 
-        /* Social Links */
-        .social-section {
-            padding: 4rem 2rem;
+        /* CTA Section */
+        .cta-section {
+            padding: 5rem 2rem;
             text-align: center;
-            background: #0d0d0d;
+            background: var(--pitch-black);
+            border-top: 1px solid #222;
         }
 
-        .social-heading {
-            font-size: 1.5rem;
-            color: var(--cream);
+        .cta-text {
+            font-size: 1.3rem;
+            color: var(--gunmetal);
             margin-bottom: 2rem;
         }
 
-        .social-links {
+        .cta-buttons {
             display: flex;
             justify-content: center;
-            gap: 2rem;
+            gap: 1.5rem;
         }
 
-        .social-link {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            padding: 1rem 2rem;
-            background: transparent;
-            border: 1px solid var(--gunmetal);
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.9rem;
+        .btn {
+            padding: 1rem 2.5rem;
+            font-family: 'Bebas Neue', sans-serif;
+            font-size: 1.1rem;
             letter-spacing: 0.1em;
+            text-transform: uppercase;
+            text-decoration: none;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .btn-primary { background: var(--antique-bronze); color: var(--pitch-black); }
+        .btn-primary:hover { background: var(--kraft); transform: translateY(-2px); }
+
+        .btn-outline { background: transparent; color: var(--cream); border: 1px solid var(--gunmetal); }
+        .btn-outline:hover { border-color: var(--antique-bronze); color: var(--antique-bronze); }
+
+        /* Social */
+        .social-section {
+            padding: 4rem 2rem;
+            text-align: center;
+            background: var(--pitch-black);
+            border-top: 1px solid #222;
+        }
+
+        .social-heading { font-size: 1.5rem; color: var(--cream); margin-bottom: 1.5rem; }
+
+        .social-links { display: flex; justify-content: center; gap: 2rem; }
+
+        .social-link {
+            display: inline-flex; align-items: center; gap: 0.5rem;
+            padding: 1rem 2rem;
+            background: transparent; border: 1px solid var(--gunmetal);
+            color: var(--cream); text-decoration: none;
+            font-size: 0.9rem; letter-spacing: 0.1em;
             transition: all 0.3s ease;
         }
 
@@ -329,90 +504,41 @@
             text-align: center;
         }
 
-        .footer-text {
-            color: var(--gunmetal);
-            font-size: 0.85rem;
-        }
+        .footer-text { color: var(--gunmetal); font-size: 0.85rem; }
+        .footer-text a { color: var(--antique-bronze); text-decoration: none; }
 
-        .footer-text a {
-            color: var(--antique-bronze);
-            text-decoration: none;
-        }
-
-        /* Hamburger Menu */
+        /* Hamburger */
         .hamburger {
-            display: none;
-            flex-direction: column;
-            cursor: pointer;
-            gap: 5px;
-            z-index: 101;
+            display: none; flex-direction: column; cursor: pointer; gap: 5px; z-index: 101;
         }
 
-        .hamburger span {
-            width: 25px;
-            height: 2px;
-            background: var(--cream);
-            transition: all 0.3s ease;
-        }
-
-        .hamburger.active span:nth-child(1) {
-            transform: rotate(45deg) translate(5px, 5px);
-        }
-
-        .hamburger.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .hamburger.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(5px, -5px);
-        }
+        .hamburger span { width: 25px; height: 2px; background: var(--cream); transition: all 0.3s ease; }
+        .hamburger.active span:nth-child(1) { transform: rotate(45deg) translate(5px, 5px); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: rotate(-45deg) translate(5px, -5px); }
 
         /* Responsive */
         @media (max-width: 768px) {
-            nav {
-                padding: 1rem 1.5rem;
-            }
-
-            .hamburger {
-                display: flex;
-            }
+            nav { padding: 1rem 1.5rem; }
+            .hamburger { display: flex; }
 
             .nav-links {
-                position: fixed;
-                top: 0;
-                right: -100%;
-                width: 70%;
-                height: 100vh;
+                position: fixed; top: 0; right: -100%; width: 70%; height: 100vh;
                 background: rgba(10, 10, 10, 0.98);
-                flex-direction: column;
-                justify-content: center;
-                align-items: center;
-                gap: 2rem;
-                transition: right 0.3s ease;
-                border-left: 1px solid #333;
+                flex-direction: column; justify-content: center; align-items: center;
+                gap: 2rem; transition: right 0.3s ease; border-left: 1px solid #333;
             }
 
-            .nav-links.active {
-                right: 0;
-            }
+            .nav-links.active { right: 0; }
+            .nav-links a { font-size: 1.1rem; }
 
-            .nav-links a {
-                font-size: 1.1rem;
-            }
-
-            .facts {
-                grid-template-columns: 1fr;
-                gap: 1rem;
-            }
-
-            .social-links {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .story-section {
-                padding-left: 1.5rem;
-            }
+            .facts { grid-template-columns: 1fr; gap: 1rem; }
+            .ethos-features { grid-template-columns: 1fr; }
+            .features-grid { grid-template-columns: 1fr; }
+            .specs-grid { grid-template-columns: 1fr; gap: 2rem; }
+            .social-links { flex-direction: column; align-items: center; }
+            .story-section { padding-left: 1.5rem; }
+            .cta-buttons { flex-direction: column; align-items: center; }
         }
     </style>
 </head>
@@ -423,80 +549,67 @@
             <span class="logo-text display-font">Urban Outlaw Supply</span>
         </div>
         <div class="hamburger" onclick="this.classList.toggle('active'); document.querySelector('.nav-links').classList.toggle('active');">
-            <span></span>
-            <span></span>
-            <span></span>
+            <span></span><span></span><span></span>
         </div>
         <ul class="nav-links">
             <li><a href="index.html">Home</a></li>
-            <li><a href="the-build.html">The Build</a></li>
-            <li><a href="ethos.html">Ethos</a></li>
             <li><a href="about.html" class="active">About</a></li>
             <li><a href="gallery.html">The Workshop</a></li>
-            <li><a href="connect.html">Connect</a></li>
-            <li><a href="https://app.urbanoutlawsupply.com/premium-planner">Planner</a></li>
             <li><a href="shop.html">Store</a></li>
+            <li><a href="reviews.html">Reviews</a></li>
+            <li><a href="dispatches.html">Dispatches</a></li>
         </ul>
     </nav>
 
+    <!-- ==================== -->
+    <!-- HERO                 -->
+    <!-- ==================== -->
     <section class="about-hero">
-        <span class="about-label display-font">The Face Behind the Brand</span>
-        <h1 class="about-title display-font">
-            42 Years.<br>
-            <span class="highlight">One Obsession.</span>
-        </h1>
-        <p class="about-subtitle">Realism artist. Perfectionist. Pompey born and bred.</p>
+        <div class="about-hero-content">
+            <span class="about-label display-font">The Face Behind the Brand</span>
+            <h1 class="about-title display-font">
+                42 Years.<br>
+                <span class="accent">One Obsession.</span>
+            </h1>
+            <p class="about-subtitle">Realism artist. Perfectionist. Pompey born and bred.</p>
+        </div>
     </section>
 
+    <!-- ==================== -->
+    <!-- THE STORY            -->
+    <!-- ==================== -->
     <section class="story">
         <div class="story-container">
-            
             <div class="story-section">
                 <h2 class="story-heading display-font">Fratton Roads</h2>
-                <p class="story-text">
-                    I grew up in a house by Fratton Park in the 70s and 80s. If you know Pompey, you know what that means. <strong>Working class. No frills. No shortcuts.</strong> Saturday afternoons you'd hear the roar from the stadium, smell the burgers from the stands, feel the rumble of thousands of boots on concrete.
-                </p>
-                <p class="story-text">
-                    That's where this started. Not in some art school. Not with fancy materials. Just a kid with a pencil and too much time, drawing whatever was in front of him.
-                </p>
+                <p class="story-text">I grew up in a house by Fratton Park in the 70s and 80s. If you know Pompey, you know what that means. <strong>Working class. No frills. No shortcuts.</strong> Saturday afternoons you'd hear the roar from the stadium, smell the burgers from the stands, feel the rumble of thousands of boots on concrete.</p>
+                <p class="story-text">That's where this started. Not in some art school. Not with fancy materials. Just a kid with a pencil and too much time, drawing whatever was in front of him.</p>
             </div>
 
             <div class="story-section">
                 <h2 class="story-heading display-font">The Obsession</h2>
-                <p class="story-text">
-                    I've got Pure OCD. For most of my life I didn't know what to call it – just knew my brain wouldn't let things go until they were <span class="highlight">right</span>. Every line. Every shadow. Every detail had to be perfect or it would eat at me.
-                </p>
-                <p class="story-text">
-                    Turns out that's not a curse when you're doing realism portraits. <strong>It's a superpower.</strong> The thing that made everything else harder made the art better. Forty-two years of channeling that obsession into graphite and pixels.
-                </p>
+                <p class="story-text">I've got Pure OCD. For most of my life I didn't know what to call it – just knew my brain wouldn't let things go until they were <span class="highlight">right</span>. Every line. Every shadow. Every detail had to be perfect or it would eat at me.</p>
+                <p class="story-text">Turns out that's not a curse when you're doing realism portraits. <strong>It's a superpower.</strong> The thing that made everything else harder made the art better. Forty-two years of channeling that obsession into graphite and pixels.</p>
             </div>
 
             <div class="story-section">
                 <h2 class="story-heading display-font">Graphite & Pixels</h2>
-                <p class="story-text">
-                    I work in two worlds – <strong>good old graphite pencil</strong> and digital. There's something about the scratch of lead on paper that never gets old. But digital lets me push things further, work cleaner, ship faster.
-                </p>
-                <p class="story-text">
-                    My work's sold in Australia, the USA, across the UK. Portraits that look back at you. Faces with weight and history. <span class="highlight">That's what realism is – not just copying what you see, but capturing what you feel when you look at someone.</span>
-                </p>
+                <p class="story-text">I work in two worlds – <strong>good old graphite pencil</strong> and digital. There's something about the scratch of lead on paper that never gets old. But digital lets me push things further, work cleaner, ship faster.</p>
+                <p class="story-text">My work's sold in Australia, the USA, across the UK. Portraits that look back at you. Faces with weight and history. <span class="highlight">That's what realism is – not just copying what you see, but capturing what you feel when you look at someone.</span></p>
             </div>
 
             <div class="story-section">
                 <h2 class="story-heading display-font">Why Notebooks?</h2>
-                <p class="story-text">
-                    Simple. <strong>Sketchbooks these days are boring as hell.</strong>
-                </p>
-                <p class="story-text">
-                    Mass-produced. Generic covers. No soul. I wanted something that felt like it belonged in a workshop, not a gift shop. Something you'd actually want to pull out and use. Something with <span class="highlight">attitude</span>.
-                </p>
-                <p class="story-text">
-                    So I made it myself. Laser-etched kraft covers. Custom layouts. The kind of notebook I wish I'd had for the last four decades. Urban Outlaw Supply isn't a pivot from art – <strong>it's an extension of it.</strong>
-                </p>
+                <p class="story-text">Simple. <strong>Sketchbooks these days are boring as hell.</strong></p>
+                <p class="story-text">Mass-produced. Generic covers. No soul. I wanted something that felt like it belonged in a workshop, not a gift shop. Something you'd actually want to pull out and use. Something with <span class="highlight">attitude</span>.</p>
+                <p class="story-text">So I made it myself. Laser-etched kraft covers. Custom layouts. The kind of notebook I wish I'd had for the last four decades. Urban Outlaw Supply isn't a pivot from art – <strong>it's an extension of it.</strong></p>
             </div>
-
         </div>
     </section>
 
+    <!-- ==================== -->
+    <!-- FACTS                -->
+    <!-- ==================== -->
     <div class="facts">
         <div class="fact">
             <div class="fact-number display-font">42</div>
@@ -512,16 +625,153 @@
         </div>
     </div>
 
+    <!-- ==================== -->
+    <!-- ETHOS                -->
+    <!-- ==================== -->
+    <section class="ethos-section" id="ethos">
+        <div class="ethos-inner">
+            <span class="ethos-label display-font">The Urban Outlaw Supply Philosophy</span>
+
+            <h2 class="ethos-title display-font">
+                Raw.<br>
+                <span class="accent">Honest.</span><br>
+                Unapologetic.
+            </h2>
+
+            <div class="ethos-divider"></div>
+
+            <p class="ethos-statement"><strong>Laser-etched raw kraft cover</strong> with that industrial aesthetic – no glossy finish, no fancy coating. Just <strong>honest materials</strong> that show their character from day one. Each cover is cut from unbleached cardstock and run through our laser, burning the design deep into the fibre. No two covers are identical. The natural variations in the kraft – the flecks, the tone shifts, the raw edges – <strong>aren't flaws. They're proof it's real.</strong></p>
+
+            <p class="ethos-statement">The torn-edge black band isn't decoration; <strong>it's attitude</strong>. The UOS badge isn't printed on – <strong>it's burned in</strong>.</p>
+
+            <div class="stamp display-font">Authenticity Guaranteed</div>
+
+            <div class="ethos-features">
+                <div class="ethos-feature">
+                    <h3 class="display-font">No Polish</h3>
+                    <p>We don't hide behind glossy finishes. Every scuff tells a story.</p>
+                </div>
+                <div class="ethos-feature">
+                    <h3 class="display-font">No Pretense</h3>
+                    <p>Built for work, not for show. Function drives every decision.</p>
+                </div>
+                <div class="ethos-feature">
+                    <h3 class="display-font">No Compromise</h3>
+                    <p>Industrial materials. Permanent marks. Made to last.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== -->
+    <!-- THE BUILD            -->
+    <!-- ==================== -->
+    <section class="build-section" id="the-build">
+        <div class="build-inner">
+            <div class="build-header">
+                <h2 class="display-font">The Build</h2>
+                <p>Custom lasered Kraft notebooks that live in your pocket, survive your day, and earn their scars.</p>
+            </div>
+
+            <p class="build-quote">"These notebooks <strong>aren't made to look pristine</strong>. They're not meant to stay pristine. Built for the streets, workshops, and your EDC where ideas get dirty and <strong>work gets done</strong>."</p>
+
+            <div class="features-grid">
+                <div class="feature-block">
+                    <h3 class="display-font">— Built Rough</h3>
+                    <p><strong>Laser-etched raw kraft cover</strong> with that industrial aesthetic – no glossy finish, no fancy coating. Just honest materials that show their character from day one. Each cover is cut from unbleached cardstock and run through our laser, burning the design deep into the fibre. <strong>No two covers are identical.</strong></p>
+                </div>
+                <div class="feature-block">
+                    <h3 class="display-font">— Burned In</h3>
+                    <p>The torn-edge black band isn't decoration; <strong>it's attitude</strong>. The UOS badge isn't printed on – it's burned in. The natural variations in the kraft – the flecks, the tone shifts, the raw edges – aren't flaws. <strong>They're proof it's real.</strong></p>
+                </div>
+                <div class="feature-block">
+                    <h3 class="display-font">— Made For Makers</h3>
+                    <p>Inside you'll find space for the chaos: <strong>Creator Identity fields</strong> for when you need to remember whose notebook this is after it's been through hell. <strong>Objectives section</strong> for mapping out the next move. Lined pages that don't care if you're sketching with pencil dust or taking notes in the rain.</p>
+                </div>
+                <div class="feature-block">
+                    <h3 class="display-font">— Designed in the UK</h3>
+                    <p>Born in Portsmouth. <strong>Designed with 42 years of obsessive perfectionism.</strong> Every element is intentional, functional, and built to last. This isn't mass-produced generic stationery – it's a tool for people who actually use their notebooks.</p>
+                </div>
+            </div>
+
+            <!-- Specs -->
+            <div class="specs-grid">
+                <ul class="specs-list">
+                    <li>
+                        <span class="spec-label display-font">Size</span>
+                        <span class="spec-value">A6 (105 × 148mm)</span>
+                    </li>
+                    <li>
+                        <span class="spec-label display-font">Cover</span>
+                        <span class="spec-value">Raw Kraft Cardstock</span>
+                    </li>
+                    <li>
+                        <span class="spec-label display-font">Pages</span>
+                        <span class="spec-value">Lined / Cream Stock</span>
+                    </li>
+                    <li>
+                        <span class="spec-label display-font">Finish</span>
+                        <span class="spec-value">Laser-Etched</span>
+                    </li>
+                    <li>
+                        <span class="spec-label display-font">Band</span>
+                        <span class="spec-value">Torn-Edge Black</span>
+                    </li>
+                    <li>
+                        <span class="spec-label display-font">Origin</span>
+                        <span class="spec-value">Designed in UK</span>
+                    </li>
+                </ul>
+                <div class="inside-content">
+                    <h3 class="display-font">What's Inside</h3>
+                    <p><strong>Creator Identity page</strong> – Name, contact, the basics. For when your notebook outlasts your memory of where you left it.</p>
+                    <p><strong>Objectives section</strong> – Map out what you're working towards. Goals, targets, the next move.</p>
+                    <p><strong>Lined pages</strong> – Clean, simple, ready for whatever you throw at them. Sketches, notes, plans, chaos.</p>
+                    <p><strong>Start & End dates</strong> – Track when this chapter of work began and when it was filled.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- ==================== -->
+    <!-- STATEMENT            -->
+    <!-- ==================== -->
+    <section class="statement-section">
+        <h2 class="statement-text display-font">
+            <span class="line1">Grip it.</span>
+            <span class="line1">Break it in.</span>
+            <span class="line2">Ink bleeds. Pages crease.</span>
+            <span class="line3">Make it yours.</span>
+        </h2>
+    </section>
+
+    <!-- ==================== -->
+    <!-- QUOTE                -->
+    <!-- ==================== -->
     <section class="quote-section">
         <p class="big-quote">"Perfectionism isn't a flaw. It's fuel. The same thing that drives you mad is the thing that makes the work matter."</p>
         <span class="quote-attribution display-font">— Urban Outlaw Supply</span>
     </section>
 
+    <!-- ==================== -->
+    <!-- CTA                  -->
+    <!-- ==================== -->
+    <section class="cta-section">
+        <p class="cta-text">Ready to get your hands dirty?</p>
+        <div class="cta-buttons">
+            <a href="shop.html" class="btn btn-primary display-font">Shop the Supply</a>
+            <a href="gallery.html" class="btn btn-outline display-font">View the Workshop</a>
+        </div>
+    </section>
+
+    <!-- ==================== -->
+    <!-- SOCIAL               -->
+    <!-- ==================== -->
     <section class="social-section">
         <h2 class="social-heading display-font">Follow the Journey</h2>
         <div class="social-links">
-            <a href="https://www.facebook.com/urbanoutlawsupplyco/" target="_blank" class="social-link display-font">Facebook</a>
-            <a href="https://www.instagram.com/urbanoutlawsupply/" target="_blank" class="social-link display-font">Instagram</a>
+            <a href="https://www.facebook.com/share/182XAig28Q/" target="_blank" class="social-link display-font">Facebook</a>
+            <a href="https://www.instagram.com/urbanoutlawsupply" target="_blank" class="social-link display-font">Instagram</a>
             <a href="https://x.com/uosupplyco" target="_blank" class="social-link display-font">X</a>
         </div>
     </section>
