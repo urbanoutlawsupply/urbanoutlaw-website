@@ -1359,18 +1359,65 @@
             </div>
 
             <!-- ============================================
-                 PRODUCT 3: Get Notified
+                 PRODUCT 3: 404 Not Found (LIVE)
                  ============================================ -->
             <div class="product-card">
-                <span class="product-badge badge-limited display-font">Coming Soon</span>
-                <div class="coming-soon-placeholder">
-                    <span class="coming-soon-icon">📓</span>
+                <span class="product-badge badge-instock display-font">In Stock</span>
+                <div class="product-gallery"
+                    data-images="images/products/uos-nb-003/01.png,images/products/uos-nb-003/02.png,images/products/uos-nb-003/03.png,images/products/uos-nb-003/04.jpg,images/products/uos-nb-003/05.png">
+                    <div class="gallery-main">
+                        <!-- Images inserted by JavaScript -->
+                    </div>
+                    <div class="gallery-arrows">
+                        <button class="gallery-arrow gallery-prev">‹</button>
+                        <button class="gallery-arrow gallery-next">›</button>
+                    </div>
+                    <div class="gallery-nav">
+                        <!-- Dots inserted by JavaScript -->
+                    </div>
+                </div>
+                <div class="gallery-thumbs">
+                    <!-- Thumbnails inserted by JavaScript -->
                 </div>
                 <div class="product-info">
-                    <h3 class="product-name display-font">New Design Incoming</h3>
-                    <p class="product-description">Something different. Something raw. Join the list to know first.</p>
-                    <div class="product-price" style="color: var(--gunmetal);">TBC</div>
-                    <button class="btn btn-notify display-font" onclick="openNotifyModal()">Join the Waitlist</button>
+                    <h3 class="product-name display-font">404 Not Found</h3>
+                    <p class="product-description">Laser-engraved circuit board hardcover. Ruled pages, lay-flat binding. Ships in a custom branded kraft gift box. For those who operate where signals drop.</p>
+
+                    <button class="specs-toggle" onclick="toggleSpecs(this)">
+                        ▶ View Specifications
+                    </button>
+                    <div class="specs-panel">
+                        <div class="specs-title">Notebook Specs</div>
+                        <div class="spec-row">
+                            <span class="spec-label">Cover</span>
+                            <span class="spec-value">Laser-Engraved Hardcover</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Graphic</span>
+                            <span class="spec-value">Circuit Board / 404 Error Artwork</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Chassis</span>
+                            <span class="spec-value">Kraft Hardcover Finish</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Core</span>
+                            <span class="spec-value">Ruled / Lay Flat</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Packaging</span>
+                            <span class="spec-value">Custom Branded Kraft Gift Box</span>
+                        </div>
+                        <div class="spec-row">
+                            <span class="spec-label">Ships</span>
+                            <span class="spec-value">Protected &amp; Ready</span>
+                        </div>
+                    </div>
+
+                    <div class="product-price">£6.99</div>
+                    <button class="btn btn-primary display-font"
+                        onclick="addToCart('uos-nb-003', '404 Not Found', 6.99, 'images/products/uos-nb-003/01.png', this)">Add
+                        to Cart</button>
                 </div>
             </div>
 
