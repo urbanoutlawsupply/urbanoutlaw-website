@@ -1557,25 +1557,33 @@
                 const nextBtn = gallery.querySelector('.gallery-next');
 
                 let currentIndex = 0;
+                let rafPending = false;
 
-                // Create main images
+                // Create main images — cache refs as we build
+                const imgEls = [];
                 images.forEach((src, index) => {
                     const img = document.createElement('img');
-                    img.src = src;
+                    img.src = index === 0 ? src : '';
+                    img.dataset.src = src;
                     img.alt = `Product image ${index + 1}`;
+                    img.loading = index === 0 ? 'eager' : 'lazy';
                     if (index === 0) img.classList.add('active');
                     mainContainer.appendChild(img);
+                    imgEls.push(img);
                 });
 
-                // Create dots
+                // Create dots — cache refs
+                const dotEls = [];
                 images.forEach((_, index) => {
                     const dot = document.createElement('button');
                     dot.className = 'gallery-dot' + (index === 0 ? ' active' : '');
                     dot.onclick = () => goToSlide(index);
                     navContainer.appendChild(dot);
+                    dotEls.push(dot);
                 });
 
-                // Create thumbnails
+                // Create thumbnails — cache refs
+                const thumbEls = [];
                 if (thumbsContainer) {
                     images.forEach((src, index) => {
                         const thumb = document.createElement('div');
@@ -1583,32 +1591,33 @@
                         thumb.innerHTML = `<img src="${src}" alt="Thumbnail ${index + 1}">`;
                         thumb.onclick = () => goToSlide(index);
                         thumbsContainer.appendChild(thumb);
+                        thumbEls.push(thumb);
                     });
                 }
 
-                // Navigation functions
+                // Navigation — defer DOM updates to next paint frame
                 function goToSlide(index) {
                     currentIndex = index;
-                    updateGallery();
+                    if (!rafPending) {
+                        rafPending = true;
+                        requestAnimationFrame(() => {
+                            updateGallery();
+                            rafPending = false;
+                        });
+                    }
                 }
 
                 function updateGallery() {
-                    // Update main images
-                    mainContainer.querySelectorAll('img').forEach((img, i) => {
-                        img.classList.toggle('active', i === currentIndex);
+                    imgEls.forEach((img, i) => {
+                        const isActive = i === currentIndex;
+                        img.classList.toggle('active', isActive);
+                        // Lazy-load src on demand
+                        if (isActive && !img.src && img.dataset.src) {
+                            img.src = img.dataset.src;
+                        }
                     });
-
-                    // Update dots
-                    navContainer.querySelectorAll('.gallery-dot').forEach((dot, i) => {
-                        dot.classList.toggle('active', i === currentIndex);
-                    });
-
-                    // Update thumbnails
-                    if (thumbsContainer) {
-                        thumbsContainer.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
-                            thumb.classList.toggle('active', i === currentIndex);
-                        });
-                    }
+                    dotEls.forEach((dot, i) => dot.classList.toggle('active', i === currentIndex));
+                    thumbEls.forEach((thumb, i) => thumb.classList.toggle('active', i === currentIndex));
                 }
 
                 // Arrow navigation
@@ -1616,7 +1625,7 @@
                     prevBtn.onclick = (e) => {
                         e.stopPropagation();
                         currentIndex = (currentIndex - 1 + images.length) % images.length;
-                        updateGallery();
+                        goToSlide(currentIndex);
                     };
                 }
 
@@ -1624,7 +1633,7 @@
                     nextBtn.onclick = (e) => {
                         e.stopPropagation();
                         currentIndex = (currentIndex + 1) % images.length;
-                        updateGallery();
+                        goToSlide(currentIndex);
                     };
                 }
             });
