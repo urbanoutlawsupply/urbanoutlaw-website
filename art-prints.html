@@ -1,755 +1,117 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Art Prints | Urban Outlaw Supply Co.</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-    <style>
-        :root {
-            --pitch-black: #0a0a0a;
-            --gunmetal: #2a2d2e;
-            --antique-bronze: #8b7355;
-            --kraft: #c4a574;
-            --cream: #f5f0e6;
-            --accent: #d4a853;
-        }
-
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-        }
-
-        body {
-            font-family: 'Inter', sans-serif;
-            background-color: var(--pitch-black);
-            color: var(--cream);
-            line-height: 1.6;
-        }
-
-        /* Navigation */
-        nav {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            background: rgba(10, 10, 10, 0.95);
-            backdrop-filter: blur(10px);
-            z-index: 1000;
-            border-bottom: 1px solid var(--gunmetal);
-        }
-
-        .nav-container {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-            color: var(--cream);
-            text-decoration: none;
-        }
-
-        .nav-links {
-            display: flex;
-            gap: 2rem;
-            list-style: none;
-        }
-
-        .nav-links a {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.85rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        .nav-links a:hover,
-        .nav-links a.active {
-            color: var(--antique-bronze);
-        }
-
-        /* Hero Section */
-        .hero {
-            padding: 140px 2rem 60px;
-            text-align: center;
-            background: linear-gradient(180deg, var(--pitch-black) 0%, var(--gunmetal) 100%);
-            border-bottom: 1px solid var(--antique-bronze);
-        }
-
-        .hero h1 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: clamp(3rem, 8vw, 5rem);
-            letter-spacing: 8px;
-            margin-bottom: 1rem;
-            color: var(--cream);
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            color: var(--kraft);
-            max-width: 600px;
-            margin: 0 auto 1.5rem;
-            font-weight: 300;
-        }
-
-        .hero-badges {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-            margin-top: 1.5rem;
-        }
-
-        .hero-badge {
-            background: var(--gunmetal);
-            border: 1px solid var(--antique-bronze);
-            padding: 0.5rem 1.25rem;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            color: var(--kraft);
-        }
-
-        /* Pricing Bar */
-        .pricing-bar {
-            background: var(--gunmetal);
-            padding: 2rem;
-            border-bottom: 1px solid var(--antique-bronze);
-        }
-
-        .pricing-container {
-            max-width: 900px;
-            margin: 0 auto;
-        }
-
-        .pricing-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 3px;
-            text-align: center;
-            margin-bottom: 1.5rem;
-            color: var(--cream);
-        }
-
-        .pricing-grid {
-            display: flex;
-            justify-content: center;
-            gap: 1rem;
-            flex-wrap: wrap;
-        }
-
-        .price-pill {
-            display: flex;
-            align-items: center;
-            gap: 0.75rem;
-            background: var(--pitch-black);
-            border: 1px solid var(--antique-bronze);
-            padding: 0.75rem 1.5rem;
-            transition: all 0.3s ease;
-        }
-
-        .price-pill:hover {
-            background: var(--antique-bronze);
-        }
-
-        .price-pill:hover .price-size,
-        .price-pill:hover .price-tag {
-            color: var(--pitch-black);
-        }
-
-        .price-size {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2rem;
-            letter-spacing: 2px;
-            color: var(--cream);
-            transition: color 0.3s ease;
-        }
-
-        .price-tag {
-            background: var(--antique-bronze);
-            color: var(--pitch-black);
-            padding: 0.2rem 0.6rem;
-            font-weight: 600;
-            font-size: 0.9rem;
-        }
-
-        .price-pill:hover .price-tag {
-            background: var(--pitch-black);
-            color: var(--cream);
-        }
-
-        /* Print Guide */
-        .print-guide {
-            background: var(--pitch-black);
-            padding: 3rem 2rem;
-            border-bottom: 1px solid var(--gunmetal);
-        }
-
-        .guide-container {
-            max-width: 1000px;
-            margin: 0 auto;
-        }
-
-        .guide-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 4px;
-            text-align: center;
-            margin-bottom: 2rem;
-            color: var(--cream);
-        }
-
-        .guide-steps {
-            display: flex;
-            justify-content: center;
-            gap: 3rem;
-            flex-wrap: wrap;
-        }
-
-        .step {
-            display: flex;
-            align-items: center;
-            gap: 1rem;
-        }
-
-        .step-num {
-            width: 40px;
-            height: 40px;
-            background: var(--antique-bronze);
-            color: var(--pitch-black);
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.2rem;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .step-text {
-            font-size: 0.95rem;
-            color: var(--kraft);
-            font-weight: 400;
-        }
-
-        /* Catalogue Section */
-        .catalogue {
-            max-width: 1400px;
-            margin: 0 auto;
-            padding: 4rem 2rem;
-        }
-
-        .catalogue-header {
-            text-align: center;
-            margin-bottom: 3rem;
-        }
-
-        .catalogue-header h2 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 2rem;
-            letter-spacing: 4px;
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-        }
-
-        .catalogue-header p {
-            color: var(--kraft);
-            font-weight: 300;
-        }
-
-        /* Print Grid */
-        .print-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
-            gap: 2rem;
-        }
-
-        .print-card {
-            background: var(--gunmetal);
-            border: 1px solid rgba(139, 115, 85, 0.3);
-            transition: all 0.3s ease;
-            overflow: hidden;
-        }
-
-        .print-card:hover {
-            border-color: var(--antique-bronze);
-            transform: translateY(-4px);
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
-        }
-
-        .print-image-container {
-            position: relative;
-            aspect-ratio: 4/5;
-            background: var(--pitch-black);
-            overflow: hidden;
-        }
-
-        .print-image {
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            transition: transform 0.4s ease;
-        }
-
-        .print-card:hover .print-image {
-            transform: scale(1.03);
-        }
-
-        .print-badge {
-            position: absolute;
-            top: 1rem;
-            left: 1rem;
-            background: var(--antique-bronze);
-            color: var(--pitch-black);
-            padding: 0.25rem 0.75rem;
-            font-size: 0.7rem;
-            font-weight: 600;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-        }
-
-        .print-info {
-            padding: 1.5rem;
-        }
-
-        .print-title {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.4rem;
-            letter-spacing: 2px;
-            color: var(--cream);
-            margin-bottom: 0.5rem;
-        }
-
-        .print-description {
-            font-size: 0.9rem;
-            color: var(--kraft);
-            margin-bottom: 1rem;
-            font-weight: 300;
-            line-height: 1.5;
-        }
-
-        .print-formats {
-            display: flex;
-            flex-wrap: wrap;
-            gap: 0.5rem;
-            margin-bottom: 1.25rem;
-        }
-
-        .format-tag {
-            background: var(--pitch-black);
-            border: 1px solid rgba(139, 115, 85, 0.5);
-            padding: 0.25rem 0.6rem;
-            font-size: 0.7rem;
-            color: var(--kraft);
-            letter-spacing: 0.5px;
-        }
-
-        .print-options {
-            display: grid;
-            grid-template-columns: 1fr 1fr;
-            gap: 0.5rem;
-        }
-
-        .download-btn {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 0.7rem 1rem;
-            background: transparent;
-            border: 1px solid var(--antique-bronze);
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: all 0.3s ease;
-            cursor: pointer;
-        }
-
-        .download-btn:hover {
-            background: var(--antique-bronze);
-            color: var(--pitch-black);
-        }
-
-        .download-btn .size {
-            font-weight: 500;
-        }
-
-        .download-btn .price {
-            font-weight: 600;
-        }
-
-        /* Digital Notice */
-        .digital-notice {
-            background: var(--gunmetal);
-            border: 1px solid var(--antique-bronze);
-            padding: 2rem;
-            margin: 4rem auto;
-            max-width: 800px;
-            text-align: center;
-        }
-
-        .digital-notice h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: 3px;
-            color: var(--cream);
-            margin-bottom: 1rem;
-        }
-
-        .digital-notice p {
-            color: var(--kraft);
-            font-size: 0.9rem;
-            font-weight: 300;
-            line-height: 1.7;
-        }
-
-        /* Reviews Link */
-        .reviews-link {
-            text-align: center;
-            padding: 3rem 2rem;
-            background: var(--pitch-black);
-            border-top: 1px solid var(--gunmetal);
-        }
-
-        .reviews-link a {
-            display: inline-flex;
-            align-items: center;
-            gap: 0.75rem;
-            color: var(--cream);
-            text-decoration: none;
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: 3px;
-            padding: 1rem 2rem;
-            border: 1px solid var(--antique-bronze);
-            transition: all 0.3s ease;
-        }
-
-        .reviews-link a:hover {
-            background: var(--antique-bronze);
-            color: var(--pitch-black);
-        }
-
-        /* Empty State */
-        .empty-state {
-            text-align: center;
-            padding: 4rem 2rem;
-            border: 2px dashed var(--gunmetal);
-            margin: 2rem 0;
-        }
-
-        .empty-state-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.5;
-        }
-
-        .empty-state h3 {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.5rem;
-            letter-spacing: 3px;
-            color: var(--kraft);
-            margin-bottom: 0.5rem;
-        }
-
-        .empty-state p {
-            color: var(--kraft);
-            opacity: 0.7;
-            font-weight: 300;
-        }
-
-        /* Footer */
-        footer {
-            background: var(--gunmetal);
-            border-top: 1px solid var(--antique-bronze);
-            padding: 3rem 2rem;
-            text-align: center;
-        }
-
-        .footer-logo {
-            font-family: 'Bebas Neue', sans-serif;
-            font-size: 1.3rem;
-            letter-spacing: 4px;
-            color: var(--cream);
-            margin-bottom: 1rem;
-        }
-
-        .footer-tagline {
-            color: var(--kraft);
-            font-size: 0.85rem;
-            margin-bottom: 1.5rem;
-            font-weight: 300;
-        }
-
-        .footer-links {
-            display: flex;
-            justify-content: center;
-            gap: 2rem;
-            margin-bottom: 1.5rem;
-            flex-wrap: wrap;
-        }
-
-        .footer-links a {
-            color: var(--cream);
-            text-decoration: none;
-            font-size: 0.8rem;
-            letter-spacing: 1px;
-            text-transform: uppercase;
-            transition: color 0.3s ease;
-        }
-
-        .footer-links a:hover {
-            color: var(--antique-bronze);
-        }
-
-        .copyright {
-            font-size: 0.75rem;
-            color: var(--kraft);
-            opacity: 0.6;
-        }
-
-        /* Mobile Menu */
-        .mobile-menu-btn {
-            display: none;
-            background: none;
-            border: none;
-            color: var(--cream);
-            font-size: 1.5rem;
-            cursor: pointer;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .mobile-menu-btn {
-                display: block;
-            }
-
-            .nav-links {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                right: 0;
-                background: var(--pitch-black);
-                flex-direction: column;
-                padding: 1rem 2rem;
-                border-bottom: 1px solid var(--gunmetal);
-            }
-
-            .nav-links.active {
-                display: flex;
-            }
-
-            .pricing-grid {
-                flex-direction: column;
-                align-items: center;
-            }
-
-            .price-pill {
-                width: 100%;
-                max-width: 280px;
-                justify-content: center;
-            }
-
-            .guide-steps {
-                flex-direction: column;
-                align-items: center;
-                gap: 1.5rem;
-            }
-
-            .print-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .print-options {
-                grid-template-columns: 1fr;
-            }
-
-            .footer-links {
-                flex-direction: column;
-                gap: 1rem;
-            }
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Art Prints — Urban Outlaw Supply Co.</title>
+  <meta name="description" content="Realism portrait art. 40+ years of drawing. Self-taught. Sold internationally.">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+  <style>
+    *, *::before, *::after { margin: 0; padding: 0; box-sizing: border-box; }
+    :root { --black: #0a0a0a; --brass: #b8922a; --brass-dim: #7a5f1a; --brass-light: #d4aa50; --gunmetal: #4a4a4a; --cream: #f5f0e8; --cream-dim: #9a948d; }
+    html { scroll-behavior: smooth; }
+    body { background: var(--black); color: var(--cream); font-family: 'IBM Plex Mono', 'Courier New', monospace; overflow-x: hidden; }
+    body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(184,146,42,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(184,146,42,0.03) 1px, transparent 1px); background-size: 60px 60px; pointer-events: none; z-index: 0; }
+    nav { position: fixed; top: 0; width: 100%; z-index: 100; background: rgba(10,10,10,0.95); border-bottom: 1px solid var(--brass-dim); padding: 0 40px; height: 56px; display: flex; align-items: center; justify-content: space-between; }
+    .nav-logo { font-family: 'Bebas Neue', sans-serif; font-size: 22px; letter-spacing: 3px; color: var(--brass); text-decoration: none; }
+    .nav-links { display: flex; gap: 32px; list-style: none; }
+    .nav-links a { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 2px; color: var(--cream-dim); text-decoration: none; transition: color 0.2s; }
+    .nav-links a:hover { color: var(--brass); }
+    .nav-social { display: flex; gap: 16px; }
+    .nav-social a { color: var(--brass-dim); text-decoration: none; font-size: 11px; letter-spacing: 2px; transition: color 0.2s; }
+    .nav-social a:hover { color: var(--brass); }
+    .page-header { position: relative; z-index: 1; padding: 120px 40px 60px; max-width: 1100px; margin: 0 auto; }
+    .page-label { font-size: 10px; letter-spacing: 6px; color: var(--brass-dim); text-transform: uppercase; margin-bottom: 8px; }
+    .page-rule { width: 100%; height: 1px; background: var(--brass-dim); margin-bottom: 32px; }
+    .page-title { font-family: 'Bebas Neue', sans-serif; font-size: clamp(48px, 8vw, 80px); letter-spacing: 3px; color: var(--brass); margin-bottom: 8px; line-height: 1; }
+    .page-desc { font-size: 13px; line-height: 1.8; color: var(--cream-dim); max-width: 560px; margin-bottom: 48px; }
+    .grid-section { position: relative; z-index: 1; padding: 0 40px 80px; max-width: 1100px; margin: 0 auto; }
+    .grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 24px; }
+    .card { border: 1px solid var(--brass-dim); background: rgba(184,146,42,0.03); transition: border-color 0.2s; }
+    .card:hover { border-color: var(--brass); }
+    .card-img { width: 100%; aspect-ratio: 3/4; background: #111; display: flex; align-items: center; justify-content: center; border-bottom: 1px solid var(--brass-dim); overflow: hidden; }
+    .card-img img { width: 100%; height: 100%; object-fit: cover; }
+    .card-img-placeholder { font-size: 10px; letter-spacing: 3px; color: var(--brass-dim); text-transform: uppercase; }
+    .card-body { padding: 20px; }
+    .card-title { font-family: 'Bebas Neue', sans-serif; font-size: 20px; letter-spacing: 2px; color: var(--cream); margin-bottom: 8px; }
+    .card-detail { font-size: 11px; color: var(--brass-dim); letter-spacing: 2px; margin-bottom: 8px; }
+    .card-desc { font-size: 11px; line-height: 1.7; color: var(--cream-dim); margin-bottom: 16px; }
+    .card-enquire { font-family: 'Bebas Neue', sans-serif; font-size: 12px; letter-spacing: 3px; color: var(--brass); text-decoration: none; border-bottom: 1px solid var(--brass-dim); padding-bottom: 2px; transition: color 0.2s; }
+    .card-enquire:hover { color: var(--brass-light); }
+    .enquire-banner { position: relative; z-index: 1; background: rgba(184,146,42,0.05); border-top: 1px solid var(--brass-dim); border-bottom: 1px solid var(--brass-dim); padding: 48px 40px; text-align: center; }
+    .enquire-banner h2 { font-family: 'Bebas Neue', sans-serif; font-size: 32px; letter-spacing: 3px; color: var(--brass); margin-bottom: 12px; }
+    .enquire-banner p { font-size: 13px; color: var(--cream-dim); margin-bottom: 24px; }
+    .btn { font-family: 'Bebas Neue', sans-serif; font-size: 14px; letter-spacing: 3px; padding: 12px 32px; text-decoration: none; border: 1px solid var(--brass-dim); color: var(--brass); transition: all 0.2s; display: inline-block; }
+    .btn:hover { background: var(--brass); color: var(--black); }
+    .btn-solid { background: var(--brass); color: var(--black); border-color: var(--brass); }
+    .btn-solid:hover { background: var(--brass-light); }
+    footer { position: relative; z-index: 1; border-top: 1px solid var(--brass-dim); padding: 40px; display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: 16px; }
+    .footer-logo { font-family: 'Bebas Neue', sans-serif; font-size: 18px; letter-spacing: 3px; color: var(--brass-dim); }
+    .footer-copy { font-size: 10px; color: var(--gunmetal); letter-spacing: 2px; }
+    @media (max-width: 768px) { nav { padding: 0 20px; } .nav-links { display: none; } .page-header { padding: 80px 20px 40px; } .grid-section { padding: 0 20px 60px; } .enquire-banner { padding: 48px 20px; } footer { padding: 32px 20px; flex-direction: column; align-items: flex-start; } }
+  </style>
 </head>
 <body>
-    <!-- Navigation -->
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">Urban Outlaw Supply Co.</a>
-            <button class="mobile-menu-btn" onclick="toggleMenu()">☰</button>
-            <ul class="nav-links" id="navLinks">
-                <li><a href="index.html">Home</a></li>
-                <li><a href="notebooks.html">Notebooks</a></li>
-                <li><a href="art-prints.html" class="active">Art Prints</a></li>
-                <li><a href="reviews.html">Reviews</a></li>
-                <li><a href="about.html">About</a></li>
-                <li><a href="connect.html">Contact</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <!-- Hero Section -->
-    <section class="hero">
-        <h1>Art Prints</h1>
-        <p>The kind of detail you feel before you see it.</p>
-        <div class="hero-badges">
-            <span class="hero-badge">⚡ Instant Download</span>
-            <span class="hero-badge">🖨️ Print Ready</span>
-            <span class="hero-badge">300 DPI</span>
-        </div>
-    </section>
-
-    <!-- Pricing Bar -->
-    <div class="pricing-bar">
-        <div class="pricing-container">
-            <div class="pricing-title">Choose Your Size</div>
-            <div class="pricing-grid">
-                <div class="price-pill">
-                    <span class="price-size">A6</span>
-                    <span class="price-tag">£2.00</span>
-                </div>
-                <div class="price-pill">
-                    <span class="price-size">A5</span>
-                    <span class="price-tag">£3.00</span>
-                </div>
-                <div class="price-pill">
-                    <span class="price-size">A4</span>
-                    <span class="price-tag">£4.00</span>
-                </div>
-                <div class="price-pill">
-                    <span class="price-size">A3</span>
-                    <span class="price-tag">£4.50</span>
-                </div>
-            </div>
-        </div>
+  <nav>
+    <a href="/" class="nav-logo">U.O.S.</a>
+    <ul class="nav-links">
+      <li><a href="/art-prints.html">Art</a></li>
+      <li><a href="/notebooks.html">Notebooks</a></li>
+      <li><a href="/about.html">About</a></li>
+      <li><a href="/connect.html">Contact</a></li>
+    </ul>
+    <div class="nav-social">
+      <a href="https://www.instagram.com/dusta.original/" target="_blank">IG</a>
+      <a href="https://x.com/uosupplyco" target="_blank">X</a>
+      <a href="https://www.facebook.com/urbanoutlawsupply/" target="_blank">FB</a>
     </div>
-
-    <!-- Print Guide -->
-    <section class="print-guide">
-        <div class="guide-container">
-            <div class="guide-title">How It Works</div>
-            <div class="guide-steps">
-                <div class="step">
-                    <span class="step-num">1</span>
-                    <span class="step-text">Purchase & Download</span>
-                </div>
-                <div class="step">
-                    <span class="step-num">2</span>
-                    <span class="step-text">Print at Home or Pro Lab</span>
-                </div>
-                <div class="step">
-                    <span class="step-num">3</span>
-                    <span class="step-text">Frame & Display</span>
-                </div>
-            </div>
+  </nav>
+  <div class="page-header">
+    <p class="page-label">Field Ref: ART-01</p>
+    <div class="page-rule"></div>
+    <h1 class="page-title">Art Prints</h1>
+    <p class="page-desc">40+ years of drawing. Self-taught realism portraiture. Sold internationally across the UK, Australia and the USA. Never advertised once. The reaction is what counts.</p>
+  </div>
+  <div class="grid-section">
+    <div class="grid">
+      <div class="card">
+        <div class="card-img"><span class="card-img-placeholder">Image Coming</span></div>
+        <div class="card-body">
+          <p class="card-title">Portrait — Coming Soon</p>
+          <p class="card-detail">Graphite / Digital</p>
+          <p class="card-desc">Each piece made with the same discipline that runs through everything else. Nothing rushed. Nothing wasted.</p>
+          <a href="/connect.html" class="card-enquire">Enquire</a>
         </div>
-    </section>
-
-    <!-- Catalogue -->
-    <section class="catalogue">
-        <div class="catalogue-header">
-            <h2>The Collection</h2>
-            <p>42 years of realism. High-resolution digital downloads.</p>
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="card-img-placeholder">Image Coming</span></div>
+        <div class="card-body">
+          <p class="card-title">Original Work — Coming Soon</p>
+          <p class="card-detail">Original / Limited Print</p>
+          <p class="card-desc">Original works and limited prints. Contact to discuss commissions and availability.</p>
+          <a href="/connect.html" class="card-enquire">Enquire</a>
         </div>
-
-        <div class="print-grid" id="printGrid">
-            <!-- PRINT CARDS GO HERE -->
-            <!-- Template:
-            
-            <article class="print-card">
-                <div class="print-image-container">
-                    <img src="images/prints/print-name.jpg" alt="Print Title" class="print-image">
-                    <span class="print-badge">New</span>
-                </div>
-                <div class="print-info">
-                    <h3 class="print-title">Print Title</h3>
-                    <p class="print-description">Brief description of the artwork.</p>
-                    <div class="print-formats">
-                        <span class="format-tag">JPG</span>
-                        <span class="format-tag">300 DPI</span>
-                        <span class="format-tag">A6–A3</span>
-                    </div>
-                    <div class="print-options">
-                        <a href="#" class="download-btn">
-                            <span class="size">A6</span>
-                            <span class="price">£2.00</span>
-                        </a>
-                        <a href="#" class="download-btn">
-                            <span class="size">A5</span>
-                            <span class="price">£3.00</span>
-                        </a>
-                        <a href="#" class="download-btn">
-                            <span class="size">A4</span>
-                            <span class="price">£4.00</span>
-                        </a>
-                        <a href="#" class="download-btn">
-                            <span class="size">A3</span>
-                            <span class="price">£4.50</span>
-                        </a>
-                    </div>
-                </div>
-            </article>
-            
-            -->
+      </div>
+      <div class="card">
+        <div class="card-img"><span class="card-img-placeholder">Image Coming</span></div>
+        <div class="card-body">
+          <p class="card-title">Commission — Open</p>
+          <p class="card-detail">Commission Work</p>
+          <p class="card-desc">Commission a portrait. The reaction when someone sees it for the first time — that's why this exists.</p>
+          <a href="/connect.html" class="card-enquire">Enquire</a>
         </div>
-
-        <!-- Empty State -->
-        <div class="empty-state" id="emptyState">
-            <div class="empty-state-icon">🎨</div>
-            <h3>Collection Loading</h3>
-            <p>Prints are being prepared. Check back soon.</p>
-        </div>
-
-        <!-- Digital Notice -->
-        <div class="digital-notice">
-            <h3>⚡ Digital Downloads Only</h3>
-            <p>These are high-resolution digital files — nothing is physically shipped. Download instantly after purchase. Print at home or use a professional print service for best results. Personal use only. All artwork © Urban Outlaw Supply Co.</p>
-        </div>
-    </section>
-
-    <!-- Reviews Link -->
-    <section class="reviews-link">
-        <a href="reviews.html">★ Read Customer Reviews →</a>
-    </section>
-
-    <!-- Footer -->
-    <footer>
-        <div class="footer-logo">Urban Outlaw Supply Co.</div>
-        <p class="footer-tagline">Built to earn scars.</p>
-        <div class="footer-links">
-            <a href="index.html">Home</a>
-            <a href="notebooks.html">Notebooks</a>
-            <a href="art-prints.html">Art Prints</a>
-            <a href="reviews.html">Reviews</a>
-            <a href="about.html">About</a>
-            <a href="connect.html">Contact</a>
-        </div>
-        <p class="copyright">© 2025 Urban Outlaw Supply Co. All rights reserved.</p>
-    </footer>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('navLinks').classList.toggle('active');
-        }
-
-        document.addEventListener('DOMContentLoaded', function() {
-            const printGrid = document.getElementById('printGrid');
-            const emptyState = document.getElementById('emptyState');
-            
-            if (printGrid.querySelectorAll('.print-card').length > 0) {
-                emptyState.style.display = 'none';
-            }
-        });
-    </script>
+      </div>
+    </div>
+  </div>
+  <div class="enquire-banner">
+    <h2>Commission a Portrait</h2>
+    <p>Get in touch to discuss a commission. All enquiries answered directly.</p>
+    <a href="/connect.html" class="btn btn-solid">Get In Touch</a>
+  </div>
+  <footer>
+    <p class="footer-logo">U.O.S. — 2026</p>
+    <p class="footer-copy">Break The Spine. Ink The Pages.</p>
+  </footer>
 </body>
 </html>
